@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		714E16961E7DF1880067F1AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714E16951E7DF1880067F1AC /* AppDelegate.swift */; };
-		714E16981E7DF1880067F1AC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714E16971E7DF1880067F1AC /* ViewController.swift */; };
 		714E169B1E7DF1880067F1AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 714E16991E7DF1880067F1AC /* Main.storyboard */; };
 		714E169D1E7DF1880067F1AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 714E169C1E7DF1880067F1AC /* Assets.xcassets */; };
 		714E16A01E7DF1880067F1AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 714E169E1E7DF1880067F1AC /* LaunchScreen.storyboard */; };
+		A2CBEB56E0CA438D79644EC5 /* Pods_SwiftLock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D78B1EE843F942D57E8B39B /* Pods_SwiftLock.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D78B1EE843F942D57E8B39B /* Pods_SwiftLock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftLock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		714E16921E7DF1880067F1AC /* SwiftLock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftLock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		714E16951E7DF1880067F1AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		714E16971E7DF1880067F1AC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		714E169A1E7DF1880067F1AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		714E169C1E7DF1880067F1AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		714E169F1E7DF1880067F1AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		714E16A11E7DF1880067F1AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		935CC6B360341A7ADFC0DA54 /* Pods-SwiftLock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftLock.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftLock/Pods-SwiftLock.release.xcconfig"; sourceTree = "<group>"; };
+		CDD972301F907F4A16CC4873 /* Pods-SwiftLock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftLock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftLock/Pods-SwiftLock.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +31,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2CBEB56E0CA438D79644EC5 /* Pods_SwiftLock.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		51A132E13D90118240F4985C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0D78B1EE843F942D57E8B39B /* Pods_SwiftLock.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		714E16891E7DF1880067F1AC = {
 			isa = PBXGroup;
 			children = (
 				714E16941E7DF1880067F1AC /* SwiftLock */,
 				714E16931E7DF1880067F1AC /* Products */,
+				CFD906BEDDDCB039EDDF8F9E /* Pods */,
+				51A132E13D90118240F4985C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +67,30 @@
 		714E16941E7DF1880067F1AC /* SwiftLock */ = {
 			isa = PBXGroup;
 			children = (
-				714E16951E7DF1880067F1AC /* AppDelegate.swift */,
-				714E16971E7DF1880067F1AC /* ViewController.swift */,
+				715B57A91E7DF2AD00A57B0C /* Supporting Files */,
 				714E16991E7DF1880067F1AC /* Main.storyboard */,
+			);
+			path = SwiftLock;
+			sourceTree = "<group>";
+		};
+		715B57A91E7DF2AD00A57B0C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				714E16951E7DF1880067F1AC /* AppDelegate.swift */,
 				714E169C1E7DF1880067F1AC /* Assets.xcassets */,
 				714E169E1E7DF1880067F1AC /* LaunchScreen.storyboard */,
 				714E16A11E7DF1880067F1AC /* Info.plist */,
 			);
-			path = SwiftLock;
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CFD906BEDDDCB039EDDF8F9E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CDD972301F907F4A16CC4873 /* Pods-SwiftLock.debug.xcconfig */,
+				935CC6B360341A7ADFC0DA54 /* Pods-SwiftLock.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +100,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 714E16A41E7DF1880067F1AC /* Build configuration list for PBXNativeTarget "SwiftLock" */;
 			buildPhases = (
+				2A538250443B359AEC7EC58D /* [CP] Check Pods Manifest.lock */,
 				714E168E1E7DF1880067F1AC /* Sources */,
 				714E168F1E7DF1880067F1AC /* Frameworks */,
 				714E16901E7DF1880067F1AC /* Resources */,
+				65492C310C88263D22E3A815 /* [CP] Embed Pods Frameworks */,
+				481B82143E2800827F0DE807 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -132,12 +164,59 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2A538250443B359AEC7EC58D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		481B82143E2800827F0DE807 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftLock/Pods-SwiftLock-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		65492C310C88263D22E3A815 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftLock/Pods-SwiftLock-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		714E168E1E7DF1880067F1AC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				714E16981E7DF1880067F1AC /* ViewController.swift in Sources */,
 				714E16961E7DF1880067F1AC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,10 +336,12 @@
 		};
 		714E16A51E7DF1880067F1AC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CDD972301F907F4A16CC4873 /* Pods-SwiftLock.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = KWU29G76Q9;
 				INFOPLIST_FILE = SwiftLock/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = in.mohakshah.SwiftLock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -270,10 +351,12 @@
 		};
 		714E16A61E7DF1880067F1AC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 935CC6B360341A7ADFC0DA54 /* Pods-SwiftLock.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = KWU29G76Q9;
 				INFOPLIST_FILE = SwiftLock/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = in.mohakshah.SwiftLock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -300,6 +383,7 @@
 				714E16A61E7DF1880067F1AC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

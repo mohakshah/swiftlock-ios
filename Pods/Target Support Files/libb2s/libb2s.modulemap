@@ -1,0 +1,6 @@
+framework module libb2s {
+  umbrella header "libb2s-umbrella.h"
+
+  export *
+  module * { export * }
+}

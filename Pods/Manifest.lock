@@ -1,0 +1,18 @@
+PODS:
+  - libb2s (1.0.1)
+  - libsodium (1.0.11)
+  - zxcvbn-ios (1.0.4)
+
+DEPENDENCIES:
+  - libb2s (~> 1.0)
+  - libsodium (~> 1.0)
+  - zxcvbn-ios (~> 1.0)
+
+SPEC CHECKSUMS:
+  libb2s: becf51d56fef21f4e7892821bc2eb0baf87af0ab
+  libsodium: 9aba161d2ee096977ecbdcce1ada69ffe511970c
+  zxcvbn-ios: fef98b7c80f1512ff0eec47ac1fa399fc00f7e3c
+
+PODFILE CHECKSUM: 6508967a0a44189f14bfd1eaa734578b3bd29fce
+
+COCOAPODS: 1.2.0
