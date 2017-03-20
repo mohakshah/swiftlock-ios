@@ -11,6 +11,9 @@
 		714E169B1E7DF1880067F1AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 714E16991E7DF1880067F1AC /* Main.storyboard */; };
 		714E169D1E7DF1880067F1AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 714E169C1E7DF1880067F1AC /* Assets.xcassets */; };
 		714E16A01E7DF1880067F1AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 714E169E1E7DF1880067F1AC /* LaunchScreen.storyboard */; };
+		7189FA9D1E7DF44A00454478 /* MiniLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7189FA9C1E7DF44A00454478 /* MiniLock.swift */; };
+		7189FA9F1E7E13D000454478 /* Ed25519KeyPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7189FA9E1E7E13D000454478 /* Ed25519KeyPair.swift */; };
+		7189FAA11E7EB8D200454478 /* Base58.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7189FAA01E7EB8D200454478 /* Base58.swift */; };
 		A2CBEB56E0CA438D79644EC5 /* Pods_SwiftLock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D78B1EE843F942D57E8B39B /* Pods_SwiftLock.framework */; };
 /* End PBXBuildFile section */
 
@@ -22,6 +25,9 @@
 		714E169C1E7DF1880067F1AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		714E169F1E7DF1880067F1AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		714E16A11E7DF1880067F1AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7189FA9C1E7DF44A00454478 /* MiniLock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiniLock.swift; sourceTree = "<group>"; };
+		7189FA9E1E7E13D000454478 /* Ed25519KeyPair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ed25519KeyPair.swift; sourceTree = "<group>"; };
+		7189FAA01E7EB8D200454478 /* Base58.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Base58.swift; sourceTree = "<group>"; };
 		935CC6B360341A7ADFC0DA54 /* Pods-SwiftLock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftLock.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftLock/Pods-SwiftLock.release.xcconfig"; sourceTree = "<group>"; };
 		CDD972301F907F4A16CC4873 /* Pods-SwiftLock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftLock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftLock/Pods-SwiftLock.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,6 +75,9 @@
 			children = (
 				715B57A91E7DF2AD00A57B0C /* Supporting Files */,
 				714E16991E7DF1880067F1AC /* Main.storyboard */,
+				7189FA9C1E7DF44A00454478 /* MiniLock.swift */,
+				7189FA9E1E7E13D000454478 /* Ed25519KeyPair.swift */,
+				7189FAA01E7EB8D200454478 /* Base58.swift */,
 			);
 			path = SwiftLock;
 			sourceTree = "<group>";
@@ -217,7 +226,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7189FA9F1E7E13D000454478 /* Ed25519KeyPair.swift in Sources */,
 				714E16961E7DF1880067F1AC /* AppDelegate.swift in Sources */,
+				7189FA9D1E7DF44A00454478 /* MiniLock.swift in Sources */,
+				7189FAA11E7EB8D200454478 /* Base58.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
