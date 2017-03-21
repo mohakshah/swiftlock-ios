@@ -90,11 +90,13 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/libb2s/libb2s.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/libbase58/libbase58.framework"
   install_framework "$BUILT_PRODUCTS_DIR/libsodium/libsodium.framework"
   install_framework "$BUILT_PRODUCTS_DIR/zxcvbn-ios/zxcvbn_ios.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/libb2s/libb2s.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/libbase58/libbase58.framework"
   install_framework "$BUILT_PRODUCTS_DIR/libsodium/libsodium.framework"
   install_framework "$BUILT_PRODUCTS_DIR/zxcvbn-ios/zxcvbn_ios.framework"
 fi

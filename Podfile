@@ -9,4 +9,5 @@ target 'SwiftLock' do
   pod 'zxcvbn-ios', '~> 1.0'
   pod 'libb2s', '~> 1.0'
   pod 'libsodium', '~> 1.0'
+  pod 'libbase58', '~> 0.1'
 end

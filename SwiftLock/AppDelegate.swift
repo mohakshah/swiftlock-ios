@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let ret = sodium_init()
             print("libsodium initialized with return value \(ret)")
         }
-        
+
         return true
     }
 

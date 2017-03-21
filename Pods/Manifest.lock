@@ -1,18 +1,21 @@
 PODS:
   - libb2s (1.0.1)
+  - libbase58 (0.1.4)
   - libsodium (1.0.11)
   - zxcvbn-ios (1.0.4)
 
 DEPENDENCIES:
   - libb2s (~> 1.0)
+  - libbase58 (~> 0.1)
   - libsodium (~> 1.0)
   - zxcvbn-ios (~> 1.0)
 
 SPEC CHECKSUMS:
   libb2s: becf51d56fef21f4e7892821bc2eb0baf87af0ab
+  libbase58: 7c040313537b8c44b6e2d15586af8e21f7354efd
   libsodium: 9aba161d2ee096977ecbdcce1ada69ffe511970c
   zxcvbn-ios: fef98b7c80f1512ff0eec47ac1fa399fc00f7e3c
 
-PODFILE CHECKSUM: 6508967a0a44189f14bfd1eaa734578b3bd29fce
+PODFILE CHECKSUM: 661d7cc699ee663a6b771e90f7e525e0155fef9d
 
 COCOAPODS: 1.2.0
