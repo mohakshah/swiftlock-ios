@@ -10,4 +10,6 @@ target 'SwiftLock' do
   pod 'libb2s', '~> 1.0'
   pod 'libsodium', '~> 1.0'
   pod 'libbase58', '~> 0.1'
+  
+  pod 'SkyFloatingLabelTextField', '~> 3.0'
 end

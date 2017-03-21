@@ -19,6 +19,7 @@ fileprivate struct LocalConstants {
 struct Ed25519KeyPair
 {
     let privateKey, publicKey: [UInt8]
+    let printablePublicKey: String
     
     init?(fromPrivateKey privateKey: [UInt8]) {
         if privateKey.count != LocalConstants.PrivateKeySize {
@@ -40,5 +41,12 @@ struct Ed25519KeyPair
         
         self.publicKey = Array<UInt8>(UnsafeBufferPointer(start: publicKey, count: LocalConstants.PublicKeySize + LocalConstants.PublicKeyChecksumSize))
         self.privateKey = privateKey
+        
+        guard let base58Representation = Base58.encode(bytes: self.publicKey) else {
+            print("Could not encode the public key to base58!!!")
+            return nil
+        }
+        
+        self.printablePublicKey = base58Representation
     }
 }

@@ -15,14 +15,14 @@ class MiniLock
     fileprivate struct LocalConstants {
         static let Blake2sOutputLength = 32
         struct ScryptParameters {
-            static let N: UInt64 = 2 ^ 17
+            static let N: UInt64 = UInt64(pow(2.0, 17.0))
             static let R: UInt32 = 8
             static let P: UInt32 = 1
             static let OutputLength = 32
         }
     }
 
-    static func deriveKeyPair(fromPassword password: String, andEmail email: String) -> Ed25519KeyPair? {
+    static func deriveKeyPair(fromEmail email: String, andPassword password: String) -> Ed25519KeyPair? {
         // hash the password using blake2s
         let blake2sInput: [UInt8] = Array(password.utf8)
         let blake2sOutput = UnsafeMutablePointer<UInt8>.allocate(capacity: LocalConstants.Blake2sOutputLength)
@@ -31,8 +31,8 @@ class MiniLock
                 blake2sInput,
                 nil,
                 LocalConstants.Blake2sOutputLength,
-                blake2sInput.count - 1, 0)
-        
+                blake2sInput.count,
+                0)
         
         // hash the result of the previous hash using scrypt with the email as the salt
         let scryptSalt: [UInt8] = Array(email.utf8)

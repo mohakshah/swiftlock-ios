@@ -21,47 +21,84 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RMY-U1-vGy">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RMY-U1-vGy">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="SwiftLock Horizontol Logo" translatesAutoresizingMaskIntoConstraints="NO" id="H6j-q5-dsV">
-                                        <rect key="frame" x="8" y="0.0" width="359" height="100"/>
+                                        <rect key="frame" x="8" y="0.0" width="360" height="100"/>
+                                        <color key="tintColor" red="0.24313725490196078" green="0.48627450980392156" blue="0.69411764705882351" alpha="1" colorSpace="calibratedRGB"/>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Id" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Ni-2o-vyG">
-                                        <rect key="frame" x="8" y="190" width="359" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Id" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Ni-2o-vyG" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                        <rect key="frame" x="8" y="190" width="360" height="39"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
+                                                <color key="value" red="0.94509803921568625" green="0.42745098039215684" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
+                                                <color key="value" red="0.94509803920000002" green="0.42745098040000001" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="errorColor">
+                                                <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Passphrase" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Swx-7I-qhi">
-                                        <rect key="frame" x="8" y="275" width="359" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Passphrase" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Swx-7I-qhi" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                                        <rect key="frame" x="8" y="284" width="360" height="39"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
+                                                <color key="value" red="0.94509803921568625" green="0.42745098039215684" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
+                                                <color key="value" red="0.94509803920000002" green="0.42745098040000001" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="errorColor">
+                                                <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c5R-lx-viR">
-                                        <rect key="frame" x="168" y="406" width="38" height="30"/>
+                                        <rect key="frame" x="168.5" y="406" width="38" height="30"/>
                                         <state key="normal" title="Login"/>
+                                        <connections>
+                                            <action selector="performLogin:" destination="WCq-a7-bJV" eventType="touchUpInside" id="1TZ-RG-ObB"/>
+                                        </connections>
                                     </button>
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Show Password" highlightedImage="Hide Password" translatesAutoresizingMaskIntoConstraints="NO" id="56i-gE-RUz">
+                                        <rect key="frame" x="336" y="287" width="32" height="32"/>
+                                        <gestureRecognizers/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="32" id="QbY-5O-Cpu"/>
+                                            <constraint firstAttribute="height" constant="32" id="nIe-cR-9Ol"/>
+                                        </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="MlV-VW-Sl0" appends="YES" id="LAI-fJ-w5u"/>
+                                        </connections>
+                                    </imageView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="3Ni-2o-vyG" firstAttribute="leading" secondItem="Swx-7I-qhi" secondAttribute="leading" id="3DF-NU-PQL"/>
                                     <constraint firstItem="3Ni-2o-vyG" firstAttribute="top" secondItem="H6j-q5-dsV" secondAttribute="bottom" constant="90" id="3Xp-2o-ufY"/>
+                                    <constraint firstAttribute="trailing" secondItem="56i-gE-RUz" secondAttribute="trailing" constant="8" id="Dzz-wP-rWt"/>
                                     <constraint firstItem="H6j-q5-dsV" firstAttribute="leading" secondItem="RMY-U1-vGy" secondAttribute="leadingMargin" id="Hz6-kY-Om1"/>
+                                    <constraint firstItem="Swx-7I-qhi" firstAttribute="bottom" secondItem="56i-gE-RUz" secondAttribute="bottom" constant="4" id="Mfw-su-bDF"/>
                                     <constraint firstItem="H6j-q5-dsV" firstAttribute="trailing" secondItem="RMY-U1-vGy" secondAttribute="trailingMargin" id="N2V-Su-cUv"/>
                                     <constraint firstItem="Swx-7I-qhi" firstAttribute="centerX" secondItem="c5R-lx-viR" secondAttribute="centerX" id="P7e-PY-a7O"/>
                                     <constraint firstItem="Swx-7I-qhi" firstAttribute="top" secondItem="3Ni-2o-vyG" secondAttribute="bottom" constant="55" id="PAj-K6-JA1"/>
                                     <constraint firstItem="3Ni-2o-vyG" firstAttribute="trailing" secondItem="Swx-7I-qhi" secondAttribute="trailing" id="S8F-Ow-6SQ"/>
                                     <constraint firstItem="H6j-q5-dsV" firstAttribute="top" secondItem="RMY-U1-vGy" secondAttribute="top" id="UNb-jk-ZhL"/>
                                     <constraint firstItem="c5R-lx-viR" firstAttribute="centerX" secondItem="RMY-U1-vGy" secondAttribute="centerX" id="Vkw-DY-8bi"/>
-                                    <constraint firstItem="c5R-lx-viR" firstAttribute="top" secondItem="RMY-U1-vGy" secondAttribute="top" constant="406" id="WdY-Ug-ecJ"/>
                                     <constraint firstItem="H6j-q5-dsV" firstAttribute="trailing" secondItem="3Ni-2o-vyG" secondAttribute="trailing" id="Yte-Tj-dU7"/>
-                                    <constraint firstAttribute="bottom" secondItem="c5R-lx-viR" secondAttribute="bottom" constant="211" id="wuK-tF-9aC"/>
+                                    <constraint firstItem="c5R-lx-viR" firstAttribute="top" secondItem="Swx-7I-qhi" secondAttribute="bottom" constant="83" id="ipz-sv-0sS"/>
                                     <constraint firstItem="H6j-q5-dsV" firstAttribute="leading" secondItem="3Ni-2o-vyG" secondAttribute="leading" id="yKw-vN-6dR"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="RMY-U1-vGy" secondAttribute="trailing" id="I3T-zp-v8K"/>
                             <constraint firstItem="RMY-U1-vGy" firstAttribute="leading" secondItem="gRh-JD-5sO" secondAttribute="leading" id="PBU-Do-KkS"/>
@@ -69,13 +106,26 @@
                             <constraint firstItem="RMY-U1-vGy" firstAttribute="bottom" secondItem="78v-Sy-PBK" secondAttribute="top" id="ykB-c3-yqD"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailField" destination="3Ni-2o-vyG" id="Ybj-mn-rUa"/>
+                        <outlet property="passwordField" destination="Swx-7I-qhi" id="PT7-7W-lPF"/>
+                        <outlet property="passwordStateSwitch" destination="56i-gE-RUz" id="rhk-s3-KLP"/>
+                        <outlet property="scrollView" destination="RMY-U1-vGy" id="Kpi-AL-UOJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZhE-12-XCm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="MlV-VW-Sl0">
+                    <connections>
+                        <action selector="switchPasswordViewingState:" destination="WCq-a7-bJV" id="L4m-Zd-PXS"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-506.39999999999998" y="29.23538230884558"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Hide Password" width="32" height="32"/>
+        <image name="Show Password" width="32" height="32"/>
         <image name="SwiftLock Horizontol Logo" width="400" height="100"/>
     </resources>
 </document>

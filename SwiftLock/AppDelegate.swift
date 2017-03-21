@@ -21,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let ret = sodium_init()
             print("libsodium initialized with return value \(ret)")
         }
+        
+        UIApplication.shared.delegate?.window??.tintColor = ColorPalette.tint
+        UIApplication.shared.delegate?.window??.backgroundColor = ColorPalette.background
 
         return true
     }
