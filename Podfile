@@ -6,10 +6,9 @@ target 'SwiftLock' do
   use_frameworks!
 
   # Pods for SwiftLock
-  pod 'zxcvbn-ios', '~> 1.0'
-  pod 'libb2s', '~> 1.0'
-  pod 'libsodium', '~> 1.0'
-  pod 'libbase58', '~> 0.1'
-  
+  pod 'zxcvbn-ios', '~> 1.0'  
   pod 'SkyFloatingLabelTextField', '~> 3.0'
+  
+  # MiniLockCore Dev
+  pod 'MiniLockCore', :path => '../MiniLockCore'
 end

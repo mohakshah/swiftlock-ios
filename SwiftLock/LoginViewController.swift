@@ -9,6 +9,7 @@
 import UIKit
 import zxcvbn_ios
 import SkyFloatingLabelTextField
+import MiniLockCore
 
 fileprivate struct LocalConstants {
     static let minPassphraseEntropy = 100.00
@@ -27,7 +28,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailField: SkyFloatingLabelTextField! {
         didSet {
             emailField?.delegate = self
-            
         }
     }
     
@@ -54,8 +54,8 @@ class LoginViewController: UIViewController {
         
         blockUIForKeyGeneration()
         DispatchQueue.global(qos: .userInteractive).async { [weak weakSelf = self] in
-            let keyPair = MiniLock.deriveKeyPair(fromEmail: email, andPassword: password)
-            
+            let keyPair = MiniLock.KeyPair(fromEmail: email, andPassword: password)!
+            print(keyPair.publicId)
             DispatchQueue.main.async {
                 weakSelf?.unblockUI()
                 // TODO: update the global keypair
@@ -100,6 +100,8 @@ class LoginViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
+        scrollView.layoutSubviews()
+
         // disable scrollbars so they don't interfere during resizing
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
@@ -123,6 +125,7 @@ class LoginViewController: UIViewController {
     
     fileprivate func unblockUI() {
         blockingView?.removeFromSuperview()
+        blockingView = nil
     }
 }
 
