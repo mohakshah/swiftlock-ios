@@ -11,18 +11,19 @@ import zxcvbn_ios
 import SkyFloatingLabelTextField
 import MiniLockCore
 
-fileprivate struct LocalConstants {
-    static let minPassphraseEntropy = 100.00
-    static let emailPattern = "^[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\\.[a-zA-Z]{2,20}$"
-}
 
-fileprivate struct LocalStrings {
-    static let MessageDuringKeyGeneration = "Generating your keys"
-    static let KeyGenerationFailedTitle = "Key generation failed"
-    static let KeyGenerationFailedMessage = "Key generation requires 128 MB of memory. You can free up memory by force quitting other apps."
-}
-
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController
+{
+    struct Constants {
+        static let minPassphraseEntropy = 100.00
+        static let emailPattern = "^[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\\.[a-zA-Z]{2,20}$"
+    }
+    
+    struct Strings {
+        static let MessageDuringKeyGeneration = "Generating your keys"
+        static let KeyGenerationFailedTitle = "Key generation failed"
+        static let KeyGenerationFailedMessage = "Key generation requires 128 MB of memory. You can free up memory by force quitting other apps."
+    }
 
     // MARK:- Storyboard Outlets/Actions
     @IBOutlet weak var scrollView: UIScrollView!
@@ -65,7 +66,7 @@ class LoginViewController: UIViewController {
             guard let keyPair = MiniLock.KeyPair(fromEmail: email, andPassword: password) else {
                 DispatchQueue.main.async {
                     weakSelf?.unblockUI()
-                    weakSelf?.alert(withTitle: LocalStrings.KeyGenerationFailedTitle, message: LocalStrings.KeyGenerationFailedMessage)
+                    weakSelf?.alert(withTitle: Strings.KeyGenerationFailedTitle, message: Strings.KeyGenerationFailedMessage)
                 }
                 
                 return
@@ -135,7 +136,7 @@ class LoginViewController: UIViewController {
     
     fileprivate func blockUIForKeyGeneration() {
         if blockingView == nil {
-            blockingView = addBlockingView(withMessage: LocalStrings.MessageDuringKeyGeneration)
+            blockingView = addBlockingView(withMessage: Strings.MessageDuringKeyGeneration)
         }
     }
     
@@ -185,7 +186,7 @@ extension LoginViewController: UITextFieldDelegate {
     
     // return true if the email string matches regex in LocalConstants.emailPattern
     fileprivate func isAValidEmail(_ email: String) -> Bool {
-        if let regex = (try? NSRegularExpression(pattern: LocalConstants.emailPattern, options: [.anchorsMatchLines])),
+        if let regex = (try? NSRegularExpression(pattern: Constants.emailPattern, options: [.anchorsMatchLines])),
             let _ = regex.firstMatch(in: email, options: [], range: NSRange(location: 0, length: email.characters.count)) {
             return true
         } else {
@@ -196,7 +197,7 @@ extension LoginViewController: UITextFieldDelegate {
     // returns true if the entropy of password > minPassphraseEntropy
     fileprivate func isAStrongEnoughPassword(_ password: String) -> Bool {
         if let entropy = Double(DBZxcvbn().passwordStrength(password, userInputs: [emailField.text ?? ""]).entropy),
-            entropy >= LocalConstants.minPassphraseEntropy {
+            entropy >= Constants.minPassphraseEntropy {
             return true
         } else {
             return false

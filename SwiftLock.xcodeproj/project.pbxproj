@@ -96,12 +96,11 @@
 			isa = PBXGroup;
 			children = (
 				714E16991E7DF1880067F1AC /* Main.storyboard */,
-				71D6F8BB1E81ACB0003F30A2 /* Global */,
-				71A17EAF1E804D9100A5EDCC /* LoginViewController.swift */,
-				71A108F11E98C6A00083FA66 /* HomeViewController.swift */,
-				71A108F31E9A863C0083FA66 /* FileListViewController.swift */,
 				71A108ED1E98C0E00083FA66 /* CurrentUser.swift */,
 				71A17EB31E808E2A00A5EDCC /* Words.plist */,
+				71D6F8BB1E81ACB0003F30A2 /* Global */,
+				71AA59511EAA1FBE008436C0 /* View Controllers */,
+				71AA59521EAA1FDE008436C0 /* Views */,
 				715B57A91E7DF2AD00A57B0C /* Supporting Files */,
 			);
 			path = SwiftLock;
@@ -120,19 +119,37 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		71AA59511EAA1FBE008436C0 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				71A17EAF1E804D9100A5EDCC /* LoginViewController.swift */,
+				71A108F11E98C6A00083FA66 /* HomeViewController.swift */,
+				71A108F31E9A863C0083FA66 /* FileListViewController.swift */,
+			);
+			name = "View Controllers";
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		71AA59521EAA1FDE008436C0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				71D6F8B51E81AC41003F30A2 /* BlockingView.swift */,
+				71D6F8B61E81AC41003F30A2 /* BlockingView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		71D6F8BB1E81ACB0003F30A2 /* Global */ = {
 			isa = PBXGroup;
 			children = (
 				71D6F8B11E816A4E003F30A2 /* Extensions.swift */,
 				71D6F8B31E81A96E003F30A2 /* Constants.swift */,
 				71D6F8B91E81AC82003F30A2 /* Strings.swift */,
-				71D6F8B51E81AC41003F30A2 /* BlockingView.swift */,
-				71D6F8B61E81AC41003F30A2 /* BlockingView.xib */,
 				71A108F51E9AD0E20083FA66 /* SwiftLock-Bridging-Header.h */,
 				71A108F91E9AD1CD0083FA66 /* VariadicFunctionWrappers.c */,
 				71A108FA1E9AD1CD0083FA66 /* VariadicFunctionWrappers.h */,
 			);
-			name = Global;
+			path = Global;
 			sourceTree = "<group>";
 		};
 		CFD906BEDDDCB039EDDF8F9E /* Pods */ = {
