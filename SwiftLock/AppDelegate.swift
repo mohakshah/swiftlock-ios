@@ -51,9 +51,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        // TODO: Implementation
-        print(url.absoluteString)
-        print(url.lastPathComponent)
+        if url.isFileURL,
+            let homeVC = window?.rootViewController?.mainVC as? HomeViewController {
+            homeVC.handleFile(url: url)
+        }
+
         return false
     }
 

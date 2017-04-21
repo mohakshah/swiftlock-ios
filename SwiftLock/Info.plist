@@ -65,9 +65,11 @@
 			<key>UTTypeReferenceURL</key>
 			<string>https://github.com/kaepora/miniLock/blob/master/README.md#-minilock</string>
 			<key>UTTypeSize320IconFile</key>
-			<string>minilock-icon-large</string>
+			<string>minilock-icon-large.png</string>
 			<key>UTTypeSize64IconFile</key>
-			<string>minilock-icon-small</string>
+			<string>minilock-icon-small.png</string>
+			<key>UTTypeIconFile</key>
+			<string>minilock-icon-large.png</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>

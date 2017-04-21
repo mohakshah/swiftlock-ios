@@ -18,6 +18,8 @@ fileprivate struct LocalConstants {
 
 fileprivate struct LocalStrings {
     static let MessageDuringKeyGeneration = "Generating your keys"
+    static let KeyGenerationFailedTitle = "Key generation failed"
+    static let KeyGenerationFailedMessage = "Key generation requires 128 MB of memory. You can free up memory by force quitting other apps."
 }
 
 class LoginViewController: UIViewController {
@@ -28,12 +30,18 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailField: SkyFloatingLabelTextField! {
         didSet {
             emailField?.delegate = self
+            #if DEBUG
+                emailField?.text = "example@example.com"
+            #endif
         }
     }
     
     @IBOutlet weak var passwordField: SkyFloatingLabelTextField! {
         didSet {
             passwordField?.delegate = self
+            #if DEBUG
+                passwordField?.text = "demolished protocol climbs woodcut ampere"
+            #endif
         }
     }
     
@@ -54,11 +62,19 @@ class LoginViewController: UIViewController {
         
         blockUIForKeyGeneration()
         DispatchQueue.global(qos: .userInteractive).async { [weak weakSelf = self] in
-            let keyPair = MiniLock.KeyPair(fromEmail: email, andPassword: password)!
+            guard let keyPair = MiniLock.KeyPair(fromEmail: email, andPassword: password) else {
+                DispatchQueue.main.async {
+                    weakSelf?.unblockUI()
+                    weakSelf?.alert(withTitle: LocalStrings.KeyGenerationFailedTitle, message: LocalStrings.KeyGenerationFailedMessage)
+                }
+                
+                return
+            }
+
             print(keyPair.publicId)
+            CurrentUser.shared.login(withKeyPair: keyPair)
             DispatchQueue.main.async {
                 weakSelf?.unblockUI()
-                // TODO: update the global keypair
             }
         }
     }
