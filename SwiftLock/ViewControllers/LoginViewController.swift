@@ -22,7 +22,7 @@ class LoginViewController: UIViewController
     struct Strings {
         static let MessageDuringKeyGeneration = "Generating your keys"
         static let KeyGenerationFailedTitle = "Key generation failed"
-        static let KeyGenerationFailedMessage = "Key generation requires 128 MB of memory. You can free up memory by force quitting other apps."
+        static let KeyGenerationFailedMessage = "Key generation requires 128 MB of memory. You may be able to free up some memory by force quitting other apps."
     }
 
     // MARK:- Storyboard Outlets/Actions

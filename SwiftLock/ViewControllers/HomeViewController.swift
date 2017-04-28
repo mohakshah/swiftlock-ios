@@ -13,8 +13,8 @@ fileprivate struct SegueIds {
     static let ToLogin = "Home2Login"
 }
 
-class HomeViewController: FileListViewController {
-    
+class HomeViewController: FileListViewController
+{
     fileprivate var currentFile: URL? {
         didSet {
             guard let url = currentFile  else  {
@@ -72,20 +72,39 @@ class HomeViewController: FileListViewController {
     }
     
     func handleFile(url: URL) {
-        if currentFile == nil {
+        if currentFile == nil && CurrentUser.shared.isLoggedIn {
             currentFile = url
         } else {
+            do {
+                try FileManager.default.removeItem(at: url)
+            } catch (let error) {
+                print("Error deleting the source file: ", error)
+            }
+
             print("Sorry, currently working on another file:", currentFile!)
         }
     }
     
     fileprivate func decrypt(_ url: URL) {
         print("Decrypting...")
+        do {
+            let decryptor = try MiniLock.FileDecryptor(sourceFile: url, recipientKeys: CurrentUser.shared.keyPair!)
+            try decryptor.decrypt(destinationDirectory: CurrentUser.shared.decryptedDir, filename: nil, deleteSourceFile: true)
+        } catch (let error) {
+            print("error:", error)
+        }
         currentFile = nil
     }
     
     fileprivate func encrypt(_ url: URL) {
         print("Encrypting...")
+        do {
+            let encryptor = try MiniLock.FileEncryptor(fileURL: url, sender: CurrentUser.shared.keyPair!, recipients: [])
+            try encryptor.encrypt(destinationDirectory: CurrentUser.shared.encryptedDir, filename: nil, deleteSourceFile: true)
+        } catch (let error) {
+            print("error:", error)
+        }
+
         currentFile = nil
     }
 }

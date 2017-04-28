@@ -112,8 +112,7 @@ class FileListViewController: UITableViewController
         
         cell.backgroundColor = tableView.backgroundColor
 
-        let icons = UIDocumentInteractionController(url: fileList[indexPath.section][indexPath.row]).icons
-        cell.imageView?.image = icons[Int(arc4random_uniform(UInt32(icons.count)))]
+        cell.imageView?.image = UIDocumentInteractionController(url: fileList[indexPath.section][indexPath.row]).icons.first
 
         return cell
     }
@@ -133,6 +132,19 @@ class FileListViewController: UITableViewController
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.endUpdates()
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let fileURL = fileList[indexPath.section][indexPath.row]
+        let activityVC = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+        activityVC.completionWithItemsHandler = { (_, completed, returnedItems, activityError) in
+            print("Returned: ", returnedItems)
+            activityVC.dismissSelf()
+        }
+
+        present(activityVC, animated: true, completion: nil)
+        
+        activityVC.modalPresentationStyle = .popover
     }
     
     

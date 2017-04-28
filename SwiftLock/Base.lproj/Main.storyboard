@@ -24,7 +24,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RMY-U1-vGy">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="SwiftLock Horizontol Logo" translatesAutoresizingMaskIntoConstraints="NO" id="H6j-q5-dsV">
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="SwiftLock New Horizontol Logo (Dark Sea Green)" translatesAutoresizingMaskIntoConstraints="NO" id="H6j-q5-dsV">
                                         <rect key="frame" x="8" y="0.0" width="360" height="100"/>
                                         <color key="tintColor" red="0.24313725490196078" green="0.48627450980392156" blue="0.69411764705882351" alpha="1" colorSpace="calibratedRGB"/>
                                     </imageView>
@@ -131,15 +131,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FileCell" textLabel="UzB-gx-IOX" style="IBUITableViewCellStyleDefault" id="2hr-nx-aEZ">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="FileCell" textLabel="UzB-gx-IOX" style="IBUITableViewCellStyleDefault" id="2hr-nx-aEZ">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2hr-nx-aEZ" id="42q-I6-nBB">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="328" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UzB-gx-IOX">
-                                            <rect key="frame" x="15" y="0.0" width="325" height="43.5"/>
+                                            <rect key="frame" x="15" y="0.0" width="313" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -185,6 +185,6 @@
     <resources>
         <image name="Hide Password" width="32" height="32"/>
         <image name="Show Password" width="32" height="32"/>
-        <image name="SwiftLock Horizontol Logo" width="400" height="100"/>
+        <image name="SwiftLock New Horizontol Logo (Dark Sea Green)" width="400" height="100"/>
     </resources>
 </document>
