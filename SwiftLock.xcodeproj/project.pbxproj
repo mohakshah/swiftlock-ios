@@ -17,6 +17,8 @@
 		71A108FB1E9AD1CD0083FA66 /* VariadicFunctionWrappers.c in Sources */ = {isa = PBXBuildFile; fileRef = 71A108F91E9AD1CD0083FA66 /* VariadicFunctionWrappers.c */; };
 		71A17EB01E804D9100A5EDCC /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A17EAF1E804D9100A5EDCC /* LoginViewController.swift */; };
 		71A17EB41E808E2A00A5EDCC /* Words.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71A17EB31E808E2A00A5EDCC /* Words.plist */; };
+		71AF11E61EB33A230045FA64 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AF11E51EB33A230045FA64 /* Friend.swift */; };
+		71B0F28F1EB6273000734113 /* FriendsDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B0F28E1EB6273000734113 /* FriendsDatabase.swift */; };
 		71B8418D1E85BC5200F9C902 /* minilock-icon-large.png in Resources */ = {isa = PBXBuildFile; fileRef = 71B8418B1E85BC5200F9C902 /* minilock-icon-large.png */; };
 		71B8418E1E85BC5200F9C902 /* minilock-icon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 71B8418C1E85BC5200F9C902 /* minilock-icon-small.png */; };
 		71D6F8B21E816A4E003F30A2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D6F8B11E816A4E003F30A2 /* Extensions.swift */; };
@@ -43,6 +45,8 @@
 		71A108FA1E9AD1CD0083FA66 /* VariadicFunctionWrappers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VariadicFunctionWrappers.h; sourceTree = "<group>"; };
 		71A17EAF1E804D9100A5EDCC /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		71A17EB31E808E2A00A5EDCC /* Words.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Words.plist; sourceTree = "<group>"; };
+		71AF11E51EB33A230045FA64 /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		71B0F28E1EB6273000734113 /* FriendsDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsDatabase.swift; sourceTree = "<group>"; };
 		71B8418B1E85BC5200F9C902 /* minilock-icon-large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "minilock-icon-large.png"; sourceTree = "<group>"; };
 		71B8418C1E85BC5200F9C902 /* minilock-icon-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "minilock-icon-small.png"; sourceTree = "<group>"; };
 		71D6F8B11E816A4E003F30A2 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -96,9 +100,9 @@
 			isa = PBXGroup;
 			children = (
 				714E16991E7DF1880067F1AC /* Main.storyboard */,
-				71A108ED1E98C0E00083FA66 /* CurrentUser.swift */,
 				71A17EB31E808E2A00A5EDCC /* Words.plist */,
 				71D6F8BB1E81ACB0003F30A2 /* Global */,
+				71AF11E41EB339F00045FA64 /* Models */,
 				71AA59511EAA1FBE008436C0 /* View Controllers */,
 				71AA59521EAA1FDE008436C0 /* Views */,
 				715B57A91E7DF2AD00A57B0C /* Supporting Files */,
@@ -137,6 +141,16 @@
 				71D6F8B61E81AC41003F30A2 /* BlockingView.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		71AF11E41EB339F00045FA64 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				71A108ED1E98C0E00083FA66 /* CurrentUser.swift */,
+				71AF11E51EB33A230045FA64 /* Friend.swift */,
+				71B0F28E1EB6273000734113 /* FriendsDatabase.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		71D6F8BB1E81ACB0003F30A2 /* Global */ = {
@@ -297,9 +311,11 @@
 				71A17EB01E804D9100A5EDCC /* LoginViewController.swift in Sources */,
 				71A108F41E9A863C0083FA66 /* FileListViewController.swift in Sources */,
 				71D6F8B41E81A96E003F30A2 /* Constants.swift in Sources */,
+				71B0F28F1EB6273000734113 /* FriendsDatabase.swift in Sources */,
 				71A108EE1E98C0E00083FA66 /* CurrentUser.swift in Sources */,
 				71A108FB1E9AD1CD0083FA66 /* VariadicFunctionWrappers.c in Sources */,
 				71D6F8B21E816A4E003F30A2 /* Extensions.swift in Sources */,
+				71AF11E61EB33A230045FA64 /* Friend.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

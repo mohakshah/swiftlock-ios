@@ -15,6 +15,7 @@ class CurrentUser
     struct Constants {
         static let EncryptedDirectoryName = "Encrypted"
         static let DecryptedDirectoryName = "Decrypted"
+        static let FriedsDbName = "friends.db"
         
         static let PublicKeySaltUserDefaultsKey = "SaltForPublicKey"
         
@@ -49,6 +50,9 @@ class CurrentUser
         _keyPair = keyPair
         
         setupDirectories()
+        print("Home dir: ", _homeDir!)
+        _friendDb = try? FriendsDatabase(url: homeDir.appendingPathComponent(Constants.FriedsDbName, isDirectory: false),
+                              keyPair: keyPair)
         
         // post a notification
         let notification = Notification.Name(rawValue: NotificationNames.UserLoggedIn)
@@ -61,11 +65,14 @@ class CurrentUser
         // post a notificaiton
         let notification = Notification.Name(rawValue: NotificationNames.UserLoggedOut)
         NotificationCenter.default.post(name: notification, object: self)
+        
+        closeDirectories()
     }
     
     private var _homeDir: URL?
     private var _encryptedDir: URL?
     private var _decryptedDir: URL?
+    private var _friendDb: FriendsDatabase?
     
     var homeDir: URL! {
         return _homeDir
@@ -79,12 +86,22 @@ class CurrentUser
         return _decryptedDir
     }
     
+    var friendDb: FriendsDatabase! {
+        return _friendDb
+    }
+    
     private func setupDirectories() {
         _homeDir = addSubDirectory(to: FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!,
                                   named: generateHomeDirBasename())
         
         _encryptedDir = addSubDirectory(to: homeDir, named: Constants.EncryptedDirectoryName)
         _decryptedDir = addSubDirectory(to: homeDir, named: Constants.DecryptedDirectoryName)
+    }
+    
+    private func closeDirectories() {
+        _homeDir = nil
+        _encryptedDir = nil
+        _decryptedDir = nil
     }
     
     private func generateHomeDirBasename() -> String {
