@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pXQ-ZI-5TQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="lJp-bI-Xvr">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -120,12 +120,12 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2385" y="204"/>
+            <point key="canvasLocation" x="-1081" y="204"/>
         </scene>
-        <!--Home View Controller-->
+        <!--File List View Controller-->
         <scene sceneID="JIr-Jj-BWH">
             <objects>
-                <tableViewController id="zXG-1H-3Hd" customClass="HomeViewController" customModule="SwiftLock" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="zXG-1H-3Hd" customClass="SLFileListViewController" customModule="SwiftLock" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Jm9-7C-O5R">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -155,18 +155,45 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="qd4-2I-rLT"/>
-                    <connections>
-                        <segue destination="WCq-a7-bJV" kind="presentation" identifier="Home2Login" animates="NO" id="3Qx-Rx-PSW"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2z5-v7-ieN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1272.8" y="203.74812593703149"/>
+            <point key="canvasLocation" x="2212" y="203.74812593703149"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--View Controller-->
+        <scene sceneID="lWO-Er-LXz">
+            <objects>
+                <viewController id="yJo-Tb-FnN" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="94v-Y9-RfZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="49u-fu-UxN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GJm-4k-ugY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vm3-UG-JQA">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">File List icon by Chanut is Industries from flaticons.com.
+Multiple-User icon by Freepik from flaticons.com.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P6K-X9-dPt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4632.8000000000002" y="250.52473763118442"/>
+        </scene>
+        <!--Files-->
         <scene sceneID="QBC-Bl-bJi">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pXQ-ZI-5TQ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Files" image="file-list-icon" id="9N5-VY-E0J"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kER-cB-hTr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -179,12 +206,81 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ehd-Aa-2SE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1272.8" y="203.74812593703149"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="yER-xc-yIQ">
+            <objects>
+                <tableViewController id="5YT-ru-Pd6" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="1ei-cd-wWS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Lid-iG-t2x">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lid-iG-t2x" id="8Wf-Zi-Dca">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="5YT-ru-Pd6" id="M2T-ey-HX0"/>
+                            <outlet property="delegate" destination="5YT-ru-Pd6" id="Uot-G2-ZId"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="F47-zN-zBV"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3F0-Mx-nhc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2520.8000000000002" y="883.80809595202402"/>
+        </scene>
+        <!--Home View Controller-->
+        <scene sceneID="BlO-bq-C0v">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="lJp-bI-Xvr" customClass="HomeViewController" customModule="SwiftLock" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="Kmf-Ed-jHY">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="pXQ-ZI-5TQ" kind="relationship" relationship="viewControllers" id="dmg-D7-ZjQ"/>
+                        <segue destination="WCq-a7-bJV" kind="presentation" identifier="Home2Login" animates="NO" id="Dfq-L1-GPX"/>
+                        <segue destination="tfY-iB-iaL" kind="relationship" relationship="viewControllers" id="TTF-ji-UwH"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JOl-9r-5hc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="333.60000000000002" y="203.74812593703149"/>
+        </scene>
+        <!--Friends-->
+        <scene sceneID="yth-PJ-TQM">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tfY-iB-iaL" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Friends" image="friends-icon" id="qkJ-Y9-fVf"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qsZ-gN-cBk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="5YT-ru-Pd6" kind="relationship" relationship="rootViewController" id="SQC-cM-MoN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fey-01-9pK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1150" y="1039"/>
         </scene>
     </scenes>
     <resources>
         <image name="Hide Password" width="32" height="32"/>
         <image name="Show Password" width="32" height="32"/>
         <image name="SwiftLock New Horizontol Logo (Dark Sea Green)" width="400" height="100"/>
+        <image name="file-list-icon" width="32" height="32"/>
+        <image name="friends-icon" width="32" height="32"/>
     </resources>
 </document>

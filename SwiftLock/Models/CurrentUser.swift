@@ -54,6 +54,8 @@ class CurrentUser
         _friendDb = try? FriendsDatabase(url: homeDir.appendingPathComponent(Constants.FriedsDbName, isDirectory: false),
                               keyPair: keyPair)
         
+        _friendDb?.friends.append(Friend(name: "Mohak", id: keyPair.publicId))
+        
         // post a notification
         let notification = Notification.Name(rawValue: NotificationNames.UserLoggedIn)
         NotificationCenter.default.post(name: notification, object: self)

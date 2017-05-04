@@ -92,7 +92,7 @@ class FileListViewController: UITableViewController
     fileprivate var fileList = [[URL]]()
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return directories.count
+        return fileList.count
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

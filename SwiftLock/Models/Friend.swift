@@ -14,6 +14,11 @@ struct Friend: ImmutableMappable {
     let name: String?
     let id: MiniLock.Id
     
+    init(name: String?, id: MiniLock.Id) {
+        self.name = name
+        self.id = id
+    }
+    
     init(map: Map) throws {
         name = try? map.value("name")
         

@@ -13,7 +13,7 @@ fileprivate struct SegueIds {
     static let ToLogin = "Home2Login"
 }
 
-class HomeViewController: FileListViewController
+class HomeViewController: UITabBarController
 {
     fileprivate var currentFile: URL? {
         didSet {
@@ -61,10 +61,6 @@ class HomeViewController: FileListViewController
         if let _ = presentedViewController as? LoginViewController {
             dismiss(animated: true, completion: nil)
         }
-        
-        
-        
-        self.directories = [CurrentUser.shared.encryptedDir, CurrentUser.shared.decryptedDir]
     }
     
     @objc fileprivate func userLoggedOut() {

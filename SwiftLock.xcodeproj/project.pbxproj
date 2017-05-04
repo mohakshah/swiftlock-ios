@@ -19,6 +19,7 @@
 		71A17EB41E808E2A00A5EDCC /* Words.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71A17EB31E808E2A00A5EDCC /* Words.plist */; };
 		71AF11E61EB33A230045FA64 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AF11E51EB33A230045FA64 /* Friend.swift */; };
 		71B0F28F1EB6273000734113 /* FriendsDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B0F28E1EB6273000734113 /* FriendsDatabase.swift */; };
+		71B0F2971EB63C8400734113 /* SLFileListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B0F2961EB63C8400734113 /* SLFileListViewController.swift */; };
 		71B8418D1E85BC5200F9C902 /* minilock-icon-large.png in Resources */ = {isa = PBXBuildFile; fileRef = 71B8418B1E85BC5200F9C902 /* minilock-icon-large.png */; };
 		71B8418E1E85BC5200F9C902 /* minilock-icon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 71B8418C1E85BC5200F9C902 /* minilock-icon-small.png */; };
 		71D6F8B21E816A4E003F30A2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D6F8B11E816A4E003F30A2 /* Extensions.swift */; };
@@ -47,6 +48,7 @@
 		71A17EB31E808E2A00A5EDCC /* Words.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Words.plist; sourceTree = "<group>"; };
 		71AF11E51EB33A230045FA64 /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		71B0F28E1EB6273000734113 /* FriendsDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsDatabase.swift; sourceTree = "<group>"; };
+		71B0F2961EB63C8400734113 /* SLFileListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLFileListViewController.swift; sourceTree = "<group>"; };
 		71B8418B1E85BC5200F9C902 /* minilock-icon-large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "minilock-icon-large.png"; sourceTree = "<group>"; };
 		71B8418C1E85BC5200F9C902 /* minilock-icon-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "minilock-icon-small.png"; sourceTree = "<group>"; };
 		71D6F8B11E816A4E003F30A2 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				71A17EAF1E804D9100A5EDCC /* LoginViewController.swift */,
 				71A108F11E98C6A00083FA66 /* HomeViewController.swift */,
 				71A108F31E9A863C0083FA66 /* FileListViewController.swift */,
+				71B0F2961EB63C8400734113 /* SLFileListViewController.swift */,
 			);
 			name = "View Controllers";
 			path = ViewControllers;
@@ -316,6 +319,7 @@
 				71A108FB1E9AD1CD0083FA66 /* VariadicFunctionWrappers.c in Sources */,
 				71D6F8B21E816A4E003F30A2 /* Extensions.swift in Sources */,
 				71AF11E61EB33A230045FA64 /* Friend.swift in Sources */,
+				71B0F2971EB63C8400734113 /* SLFileListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,6 +13,7 @@ struct FriendsDatabase
 {
     enum Errors: Error {
         case jsonMappingError
+        case databaseEncryptedBySomebodyElse
     }
 
     let url: URL
@@ -21,6 +22,7 @@ struct FriendsDatabase
     var friends: [Friend] {
         didSet {
             try? saveFriendListToDb()
+            print("Friend List: \(friends)")
         }
     }
 
@@ -28,18 +30,21 @@ struct FriendsDatabase
         self.url = url
         self.keyPair = keyPair
         self.friends = [Friend]()
-        try updateFriendsFromDb()
+        try? updateFriendsFromDb()
     }
     
     private mutating func updateFriendsFromDb() throws {
         let decryptor = try MiniLock.FileDecryptor(sourceFile: url, recipientKeys: keyPair)
         
         let data = try decryptor.decrypt(deleteSourceFile: false)
-        guard let jsonString = String(bytes: data, encoding: .utf8) else {
-            throw Errors.jsonMappingError
-        }
         
-        guard let friendsList = Array<Friend>(JSONString: jsonString) else {
+        // make sure the database was encrypted by the user
+        guard decryptor.sender == keyPair.publicId else {
+            throw Errors.databaseEncryptedBySomebodyElse
+        }
+
+        guard let jsonString = String(bytes: data, encoding: .utf8),
+            let friendsList = try Array<Friend>(JSONString: jsonString) else {
             throw Errors.jsonMappingError
         }
         
@@ -55,8 +60,35 @@ struct FriendsDatabase
         
         let tempURL = URL(string: "file://" + NSTemporaryDirectory())!.appendingPathComponent(UUID().uuidString, isDirectory: false)
         
+        // encrypt to self
         try MiniLock.FileEncryptor.encrypt(plainTextData, destinationFileURL: tempURL, sender: keyPair, recipients: [keyPair.publicId])
         
-        try FileManager.default.moveItem(at: tempURL, to: url)
+        let backupURL = url.appendingPathExtension("backup")
+        
+        do {
+            try FileManager.default.replaceItem(at: url,
+                                                withItemAt: tempURL,
+                                                backupItemName: backupURL.lastPathComponent,
+                                                options: [],
+                                                resultingItemURL: nil)
+        } catch {
+            let nsError = error as NSError
+            print(nsError)
+            
+            // restore from backup
+            if !FileManager.default.fileExists(atPath: url.path) {
+                if FileManager.default.fileExists(atPath: backupURL.path) {
+                    try FileManager.default.moveItem(at: backupURL, to: url)
+                } else {
+                    // in case the original item was misplaced during the operation, restore it from wherever it is
+                    if let originalItemLocation = nsError.userInfo["NSFileOriginalItemLocationKey"] as? URL,
+                            originalItemLocation != url {
+                        try FileManager.default.moveItem(at: originalItemLocation, to: url)
+                    }
+                }
+            }
+            
+            try? FileManager.default.removeItem(at: tempURL)
+        }
     }
 }
