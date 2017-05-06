@@ -10,4 +10,5 @@ import Foundation
 
 struct Strings {
     static let OK = "O.K."
+    static let Delete = "Delete"
 }

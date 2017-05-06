@@ -20,6 +20,7 @@
 		71AF11E61EB33A230045FA64 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AF11E51EB33A230045FA64 /* Friend.swift */; };
 		71B0F28F1EB6273000734113 /* FriendsDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B0F28E1EB6273000734113 /* FriendsDatabase.swift */; };
 		71B0F2971EB63C8400734113 /* SLFileListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B0F2961EB63C8400734113 /* SLFileListViewController.swift */; };
+		71B6342A1EBB91C00099EBAA /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B634291EBB91C00099EBAA /* FriendListViewController.swift */; };
 		71B8418D1E85BC5200F9C902 /* minilock-icon-large.png in Resources */ = {isa = PBXBuildFile; fileRef = 71B8418B1E85BC5200F9C902 /* minilock-icon-large.png */; };
 		71B8418E1E85BC5200F9C902 /* minilock-icon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 71B8418C1E85BC5200F9C902 /* minilock-icon-small.png */; };
 		71D6F8B21E816A4E003F30A2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D6F8B11E816A4E003F30A2 /* Extensions.swift */; };
@@ -27,6 +28,8 @@
 		71D6F8B71E81AC41003F30A2 /* BlockingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D6F8B51E81AC41003F30A2 /* BlockingView.swift */; };
 		71D6F8B81E81AC41003F30A2 /* BlockingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71D6F8B61E81AC41003F30A2 /* BlockingView.xib */; };
 		71D6F8BA1E81AC82003F30A2 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D6F8B91E81AC82003F30A2 /* Strings.swift */; };
+		71E596711EBC44430092CAE1 /* FriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E596701EBC44430092CAE1 /* FriendViewController.swift */; };
+		71E596731EBCADE60092CAE1 /* FriendEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E596721EBCADE60092CAE1 /* FriendEditController.swift */; };
 		A2CBEB56E0CA438D79644EC5 /* Pods_SwiftLock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D78B1EE843F942D57E8B39B /* Pods_SwiftLock.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +52,7 @@
 		71AF11E51EB33A230045FA64 /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		71B0F28E1EB6273000734113 /* FriendsDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsDatabase.swift; sourceTree = "<group>"; };
 		71B0F2961EB63C8400734113 /* SLFileListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLFileListViewController.swift; sourceTree = "<group>"; };
+		71B634291EBB91C00099EBAA /* FriendListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
 		71B8418B1E85BC5200F9C902 /* minilock-icon-large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "minilock-icon-large.png"; sourceTree = "<group>"; };
 		71B8418C1E85BC5200F9C902 /* minilock-icon-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "minilock-icon-small.png"; sourceTree = "<group>"; };
 		71D6F8B11E816A4E003F30A2 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -56,6 +60,8 @@
 		71D6F8B51E81AC41003F30A2 /* BlockingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockingView.swift; sourceTree = "<group>"; };
 		71D6F8B61E81AC41003F30A2 /* BlockingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BlockingView.xib; sourceTree = "<group>"; };
 		71D6F8B91E81AC82003F30A2 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		71E596701EBC44430092CAE1 /* FriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendViewController.swift; sourceTree = "<group>"; };
+		71E596721EBCADE60092CAE1 /* FriendEditController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendEditController.swift; sourceTree = "<group>"; };
 		935CC6B360341A7ADFC0DA54 /* Pods-SwiftLock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftLock.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftLock/Pods-SwiftLock.release.xcconfig"; sourceTree = "<group>"; };
 		CDD972301F907F4A16CC4873 /* Pods-SwiftLock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftLock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftLock/Pods-SwiftLock.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,6 +138,9 @@
 				71A108F11E98C6A00083FA66 /* HomeViewController.swift */,
 				71A108F31E9A863C0083FA66 /* FileListViewController.swift */,
 				71B0F2961EB63C8400734113 /* SLFileListViewController.swift */,
+				71B634291EBB91C00099EBAA /* FriendListViewController.swift */,
+				71E596701EBC44430092CAE1 /* FriendViewController.swift */,
+				71E596721EBCADE60092CAE1 /* FriendEditController.swift */,
 			);
 			name = "View Controllers";
 			path = ViewControllers;
@@ -311,10 +320,13 @@
 				71D6F8B71E81AC41003F30A2 /* BlockingView.swift in Sources */,
 				714E16961E7DF1880067F1AC /* AppDelegate.swift in Sources */,
 				71A108F21E98C6A00083FA66 /* HomeViewController.swift in Sources */,
+				71B6342A1EBB91C00099EBAA /* FriendListViewController.swift in Sources */,
 				71A17EB01E804D9100A5EDCC /* LoginViewController.swift in Sources */,
+				71E596731EBCADE60092CAE1 /* FriendEditController.swift in Sources */,
 				71A108F41E9A863C0083FA66 /* FileListViewController.swift in Sources */,
 				71D6F8B41E81A96E003F30A2 /* Constants.swift in Sources */,
 				71B0F28F1EB6273000734113 /* FriendsDatabase.swift in Sources */,
+				71E596711EBC44430092CAE1 /* FriendViewController.swift in Sources */,
 				71A108EE1E98C0E00083FA66 /* CurrentUser.swift in Sources */,
 				71A108FB1E9AD1CD0083FA66 /* VariadicFunctionWrappers.c in Sources */,
 				71D6F8B21E816A4E003F30A2 /* Extensions.swift in Sources */,

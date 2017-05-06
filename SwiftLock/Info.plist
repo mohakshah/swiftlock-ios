@@ -34,6 +34,10 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>The camera is needed in order to scan QR Codes</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>The photo library is need in order to save the QR Code</string>
 	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
@@ -60,6 +64,8 @@
 			</array>
 			<key>UTTypeDescription</key>
 			<string>miniLock encrypted file</string>
+			<key>UTTypeIconFile</key>
+			<string>minilock-icon-large.png</string>
 			<key>UTTypeIdentifier</key>
 			<string>io.minilock.minilock</string>
 			<key>UTTypeReferenceURL</key>
@@ -68,8 +74,6 @@
 			<string>minilock-icon-large.png</string>
 			<key>UTTypeSize64IconFile</key>
 			<string>minilock-icon-small.png</string>
-			<key>UTTypeIconFile</key>
-			<string>minilock-icon-large.png</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>

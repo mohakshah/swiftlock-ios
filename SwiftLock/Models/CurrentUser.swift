@@ -15,7 +15,6 @@ class CurrentUser
     struct Constants {
         static let EncryptedDirectoryName = "Encrypted"
         static let DecryptedDirectoryName = "Decrypted"
-        static let FriedsDbName = "friends.db"
         
         static let PublicKeySaltUserDefaultsKey = "SaltForPublicKey"
         
@@ -37,25 +36,25 @@ class CurrentUser
     }
     
     private var _keyPair: MiniLock.KeyPair? = nil
+    private var _email: String? = nil
     
     var keyPair: MiniLock.KeyPair? {
         return _keyPair
+    }
+    
+    var email: String? {
+        return _email
     }
     
     var isLoggedIn: Bool {
         return _keyPair != nil
     }
     
-    func login(withKeyPair keyPair: MiniLock.KeyPair) {
+    func login(withKeyPair keyPair: MiniLock.KeyPair, email: String) {
         _keyPair = keyPair
         
         setupDirectories()
-        print("Home dir: ", _homeDir!)
-        _friendDb = try? FriendsDatabase(url: homeDir.appendingPathComponent(Constants.FriedsDbName, isDirectory: false),
-                              keyPair: keyPair)
-        
-        _friendDb?.friends.append(Friend(name: "Mohak", id: keyPair.publicId))
-        
+
         // post a notification
         let notification = Notification.Name(rawValue: NotificationNames.UserLoggedIn)
         NotificationCenter.default.post(name: notification, object: self)
@@ -74,7 +73,6 @@ class CurrentUser
     private var _homeDir: URL?
     private var _encryptedDir: URL?
     private var _decryptedDir: URL?
-    private var _friendDb: FriendsDatabase?
     
     var homeDir: URL! {
         return _homeDir
@@ -86,10 +84,6 @@ class CurrentUser
     
     var decryptedDir: URL! {
         return _decryptedDir
-    }
-    
-    var friendDb: FriendsDatabase! {
-        return _friendDb
     }
     
     private func setupDirectories() {

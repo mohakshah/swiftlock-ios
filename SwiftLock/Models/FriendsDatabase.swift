@@ -30,7 +30,18 @@ struct FriendsDatabase
         self.url = url
         self.keyPair = keyPair
         self.friends = [Friend]()
-        try? updateFriendsFromDb()
+//        try? updateFriendsFromDb()
+    }
+    
+    mutating func insertSorted(friend: Friend) {
+        for i in 0..<friends.count {
+            if friends[i].name.localizedCaseInsensitiveCompare(friend.name) == ComparisonResult.orderedDescending {
+                friends.insert(friend, at: i)
+                return
+            }
+        }
+        
+        friends.append(friend)
     }
     
     private mutating func updateFriendsFromDb() throws {

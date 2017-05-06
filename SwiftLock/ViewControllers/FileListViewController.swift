@@ -23,10 +23,7 @@ class FileListViewController: UITableViewController
         
         tableView.allowsMultipleSelection = true
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-         self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     fileprivate func updateFileList() {

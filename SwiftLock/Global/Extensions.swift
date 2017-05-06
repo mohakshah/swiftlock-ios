@@ -55,4 +55,43 @@ extension UIViewController
         
         return self
     }
+    
+    func onLoginCall(_ selector: Selector) {
+        let loginNotification = Notification.Name(NotificationNames.UserLoggedIn)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: selector,
+                                               name: loginNotification,
+                                               object: nil)
+    }
+    
+    func onLogoutCall(_ selector: Selector) {
+        let logoutNotification = Notification.Name(NotificationNames.UserLoggedOut)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: selector,
+                                               name: logoutNotification,
+                                               object: nil)
+    }
+}
+
+
+
+extension String {
+    // courtesy: http://stackoverflow.com/a/34454633/4590902
+    func adding(seperator: String, afterCharacters n: Int) -> String {
+        var seperatedString = ""
+        
+        let characters = [Character](self.characters)
+        
+        stride(from: 0, to: characters.count, by: n).forEach { (start) in
+            if start > 0 {
+                seperatedString += seperator
+            }
+            
+            seperatedString += String(characters[start..<min(start + n, characters.count)])
+        }
+        
+        return seperatedString
+    }
 }

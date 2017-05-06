@@ -73,7 +73,7 @@ class LoginViewController: UIViewController
             }
 
             print(keyPair.publicId)
-            CurrentUser.shared.login(withKeyPair: keyPair)
+            CurrentUser.shared.login(withKeyPair: keyPair, email: email)
             DispatchQueue.main.async {
                 weakSelf?.unblockUI()
             }

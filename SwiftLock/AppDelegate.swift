@@ -59,5 +59,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return false
     }
 
+    func applicationDidReceiveMemoryWarning(_ application: UIApplication) {
+        // empty the qrcode cache
+        Friend.qrCodeCache.removeAllObjects()
+    }
 }
 

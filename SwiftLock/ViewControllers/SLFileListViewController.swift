@@ -15,18 +15,8 @@ class SLFileListViewController: FileListViewController {
         super.viewDidLoad()
         
         // register for login and logout notifications
-        let loginNotification = Notification.Name(NotificationNames.UserLoggedIn)
-        let logoutNotification = Notification.Name(NotificationNames.UserLoggedOut)
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(userLoggedIn),
-                                               name: loginNotification,
-                                               object: nil)
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(userLoggedOut),
-                                               name: logoutNotification,
-                                               object: nil)
+        onLoginCall(#selector(userLoggedIn))
+        onLogoutCall(#selector(userLoggedOut))
     }
     
     @objc fileprivate func userLoggedIn() {
