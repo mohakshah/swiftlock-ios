@@ -23,7 +23,7 @@ class FriendListViewController: UITableViewController
     }
     
     // MARK: - Model
-    fileprivate var friendsDb: FriendsDatabase? {
+    var friendsDb: FriendsDatabase? {
         didSet {
             tableView.reloadData()
         }

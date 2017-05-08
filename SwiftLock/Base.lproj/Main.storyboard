@@ -459,6 +459,60 @@ Multiple-User icon by Freepik from flaticons.com.</string>
             </objects>
             <point key="canvasLocation" x="4306.3999999999996" y="1030.4347826086957"/>
         </scene>
+        <!--Root View Controller-->
+        <scene sceneID="wff-CD-3O8">
+            <objects>
+                <tableViewController id="HZO-tI-BLT" customClass="FriendPickerViewController" customModule="SwiftLock" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="TOp-XF-kpn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendListCell" textLabel="QQo-zS-bJR" style="IBUITableViewCellStyleDefault" id="W3J-Xs-dVQ">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W3J-Xs-dVQ" id="vbA-rX-itT">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QQo-zS-bJR">
+                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="HZO-tI-BLT" id="QGv-6h-VRz"/>
+                            <outlet property="delegate" destination="HZO-tI-BLT" id="EOG-Mr-35m"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="3ic-Jd-dkt"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5ok-Tw-o6n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1208" y="-551"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="gSs-WI-cPt">
+            <objects>
+                <navigationController id="ITS-sM-E0A" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sgc-0J-uDi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="HZO-tI-BLT" kind="relationship" relationship="rootViewController" id="9AE-h9-r2B"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qXQ-iG-fyU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="254" y="-551"/>
+        </scene>
         <!--Home View Controller-->
         <scene sceneID="BlO-bq-C0v">
             <objects>
@@ -473,6 +527,7 @@ Multiple-User icon by Freepik from flaticons.com.</string>
                         <segue destination="pXQ-ZI-5TQ" kind="relationship" relationship="viewControllers" id="dmg-D7-ZjQ"/>
                         <segue destination="WCq-a7-bJV" kind="presentation" identifier="Home2Login" animates="NO" id="Dfq-L1-GPX"/>
                         <segue destination="tfY-iB-iaL" kind="relationship" relationship="viewControllers" id="TTF-ji-UwH"/>
+                        <segue destination="ITS-sM-E0A" kind="presentation" identifier="Home2FriendPicker" id="cTo-3A-shx"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JOl-9r-5hc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -525,6 +580,6 @@ Multiple-User icon by Freepik from flaticons.com.</string>
         <image name="friends-icon" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NCO-sS-iTS"/>
+        <segue reference="dSZ-RP-0FG"/>
     </inferredMetricsTieBreakers>
 </document>
