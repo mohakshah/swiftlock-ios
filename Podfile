@@ -8,6 +8,7 @@ target 'SwiftLock' do
   # Pods for SwiftLock
   pod 'zxcvbn-ios', '~> 1.0'  
   pod 'SkyFloatingLabelTextField', '~> 3.0'
+  pod 'QRCodeReader.swift', '~> 7.4.1'
   
   # MiniLockCore Dev
   pod 'MiniLockCore', :path => '../MiniLockCore'

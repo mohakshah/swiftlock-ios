@@ -8,11 +8,13 @@ PODS:
     - libsodium (~> 1.0)
     - ObjectMapper (~> 2.2)
   - ObjectMapper (2.2.5)
+  - QRCodeReader.swift (7.4.1)
   - SkyFloatingLabelTextField (3.0.0)
   - zxcvbn-ios (1.0.4)
 
 DEPENDENCIES:
   - MiniLockCore (from `../MiniLockCore`)
+  - QRCodeReader.swift (~> 7.4.1)
   - SkyFloatingLabelTextField (~> 3.0)
   - zxcvbn-ios (~> 1.0)
 
@@ -26,9 +28,10 @@ SPEC CHECKSUMS:
   libsodium: 9aba161d2ee096977ecbdcce1ada69ffe511970c
   MiniLockCore: 768adf0c14583bec199e8954cd76e4bf00ade895
   ObjectMapper: fb30f71e08470d1e5a20b199fafe1246281db898
+  QRCodeReader.swift: 39b149584852b7b721012126d38a14024b851366
   SkyFloatingLabelTextField: 35bc0c2653ad73c5fd8b7a34cfedf09c94367a1a
   zxcvbn-ios: fef98b7c80f1512ff0eec47ac1fa399fc00f7e3c
 
-PODFILE CHECKSUM: 167729275bb401ecad86495c3cafc894bb2ae7b4
+PODFILE CHECKSUM: 1b475f23bfe439843f0648dd23109fda3ca6b6dd
 
 COCOAPODS: 1.2.1

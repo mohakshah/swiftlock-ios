@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import AVFoundation
+import QRCodeReader
+import AudioToolbox
 
 class FriendListViewController: UITableViewController
 {
@@ -73,13 +76,47 @@ class FriendListViewController: UITableViewController
     }
     
     @objc fileprivate func addFriend() {
-        // add friend segue
-        print("Can't add a friend yet!")
-        performSegue(withIdentifier: Constants.AddFriendSegue, sender: nil)
+        present(addFriendOptionsSheet, animated: true, completion: nil)
     }
+    
+    lazy var addFriendOptionsSheet: UIAlertController = {
+        let sheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        // option to scan qr code
+        sheet.addAction(UIAlertAction(title: Strings.ScanQRCode, style: .default) { [weak self] (_) in
+            self?.present(self!.qrReaderVC, animated: true, completion: nil)
+        })
+        
+        
+        // option to enter details manually
+        sheet.addAction(UIAlertAction(title: Strings.EnterManually, style: .default) { [weak self] (_) in
+            self?.performSegue(withIdentifier: Constants.AddFriendSegue, sender: nil)
+        })
+        
+        // cancel
+        sheet.addAction(UIAlertAction(title: Strings.Cancel, style: .cancel) { [weak self] (_) in
+            self?.dismiss(animated: true, completion: nil)
+        })
+        
+        return sheet
+    }()
+    
+    // lazily instantiate and setup QRReaderVC
+    lazy var qrReaderVC: QRCodeReaderViewController = {
+        let builder = QRCodeReaderViewControllerBuilder {
+            $0.reader = QRCodeReader(metadataObjectTypes: [AVMetadataObjectTypeQRCode], captureDevicePosition: .back)
+        }
+        
+        let reader = QRCodeReaderViewController(builder: builder)
+        reader.delegate = self
+        reader.modalPresentationStyle = .formSheet
+        return reader
+    }()
+}
 
-    // MARK: - Table view data source
-
+// MARK: - Table view data source
+extension FriendListViewController
+{
     override func numberOfSections(in tableView: UITableView) -> Int {
         if friendsDb != nil {
             // self and friends
@@ -179,6 +216,7 @@ class FriendListViewController: UITableViewController
     }
 }
 
+// MARK: - FriendViewDelegate
 extension FriendListViewController: FriendViewDelegate {
     func friendViewDelegate(_ viewer: FriendViewController, didEditFriendTo newFriend: Friend) {
         if selectedIndex.section == 0 {
@@ -192,6 +230,7 @@ extension FriendListViewController: FriendViewDelegate {
     }
 }
 
+// MARK: - FriendEditDelegate
 extension FriendListViewController: FriendEditDelegate {
     func friendEditControllerDidCancel(_ editor: FriendEditController) {
         dismiss(animated: true, completion: nil)
@@ -200,5 +239,34 @@ extension FriendListViewController: FriendEditDelegate {
     func friendEditController(_ editor: FriendEditController, didEditFriend newFriend: Friend) {
         friendsDb?.insertSorted(friend: newFriend)
         dismiss(animated: true) { [weak self] in self?.tableView.reloadData() }
+    }
+}
+
+// MARK: - QRCodeReaderViewControllerDelegate
+extension FriendListViewController: QRCodeReaderViewControllerDelegate {
+    func reader(_ reader: QRCodeReaderViewController, didScanResult result: QRCodeReaderResult) {
+        // vibrate the phone
+        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+        
+        guard let newFriend = Friend(fromQRCodeScheme: result.value) else {
+            // alert and continue scanning
+            let alertVC = UIAlertController(title: Strings.InvalidQRCode, message: Strings.TryAgain, preferredStyle: .alert)
+            alertVC.addAction(UIAlertAction(title: Strings.OK, style: .cancel, handler: { (_) in reader.startScanning() }))
+            reader.present(alertVC, animated: true, completion: nil)
+            return
+        }
+
+        // dismiss the scanner vc and add the friend to the database
+        dismiss(animated: true, completion: nil)
+        friendsDb?.insertSorted(friend: newFriend)
+        tableView.reloadData()
+    }
+    
+    func reader(_ reader: QRCodeReaderViewController, didSwitchCamera newCaptureDevice: AVCaptureDeviceInput) {
+        // don't care
+    }
+    
+    func readerDidCancel(_ reader: QRCodeReaderViewController) {
+        dismiss(animated: true, completion: nil)
     }
 }
