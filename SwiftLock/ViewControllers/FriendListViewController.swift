@@ -187,12 +187,16 @@ extension FriendListViewController
     }
     
     @objc fileprivate func deleteSelected() {
-        if let indices = tableView.indexPathsForSelectedRows,
+        // delete selected rows, starting from the last index
+        if let indices = tableView.indexPathsForSelectedRows?.sorted(by: { $0.row > $1.row }),
             var friendList = friendsDb?.friends {
             tableView.beginUpdates()
+            // remove from the temp array
             for index in indices {
                 friendList.remove(at: index.row)
             }
+            
+            // save the temp
             friendsDb?.friends = friendList
             tableView.deleteRows(at: indices, with: .automatic)
             tableView.endUpdates()

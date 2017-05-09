@@ -10,34 +10,36 @@ import Foundation
 import MiniLockCore
 import ObjectMapper
 
-struct Friend: ImmutableMappable {
-    let name: String
-    let id: MiniLock.Id
+struct Friend: Mappable {
+    private var _name: String!
+    private var _id: MiniLock.Id!
     
+    var name: String {
+        return _name
+    }
+    var id: MiniLock.Id {
+        return _id
+    }
+
     init(name: String, id: MiniLock.Id) {
-        self.name = name
-        self.id = id
+        self._name = name
+        self._id = id
     }
     
     // MARK: - JSON Mapping
-    init(map: Map) throws {
-        name = try map.value("name")
-        
-        // decode id from the base58 String
-        let b58Id: String = try map.value("id")
-        guard let id = MiniLock.Id(fromBase58String: b58Id) else {
-            throw MapError(key: "id", currentValue: b58Id, reason: "Corrupt base58 encoded string")
+    
+    init?(map: Map) {
+        if map.JSON["name"] == nil || map.JSON["id"] == nil {
+            return nil
         }
-        
-        self.id = id
+    }
+
+    mutating func mapping(map: Map) {
+        _name   <- map["name"]
+        _id     <- (map["id"], Friend.id2B58Transform)
     }
     
-    func mapping(map: Map) {
-        name            >>> map["name"]
-        id.base58String >>> map["id"]
-    }
-    
-    static let transform = TransformOf<MiniLock.Id, String>(fromJSON: { (string) -> MiniLock.Id? in
+    static let id2B58Transform = TransformOf<MiniLock.Id, String>(fromJSON: { (string) -> MiniLock.Id? in
         guard let string = string else {
             return nil
         }
@@ -129,7 +131,7 @@ struct Friend: ImmutableMappable {
             return nil
         }
         
-        self.name = name
-        self.id = id
+        self._name = name
+        self._id = id
     }
 }

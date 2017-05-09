@@ -30,7 +30,7 @@ struct FriendsDatabase
         self.url = url
         self.keyPair = keyPair
         self.friends = [Friend]()
-//        try? updateFriendsFromDb()
+        try? updateFriendsFromDb()
     }
     
     mutating func insertSorted(friend: Friend) {
@@ -55,7 +55,7 @@ struct FriendsDatabase
         }
 
         guard let jsonString = String(bytes: data, encoding: .utf8),
-            let friendsList = try Array<Friend>(JSONString: jsonString) else {
+            let friendsList = Array<Friend>(JSONString: jsonString) else {
             throw Errors.jsonMappingError
         }
         
