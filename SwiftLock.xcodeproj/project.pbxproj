@@ -21,6 +21,8 @@
 		71AF11E61EB33A230045FA64 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AF11E51EB33A230045FA64 /* Friend.swift */; };
 		71B0F28F1EB6273000734113 /* FriendsDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B0F28E1EB6273000734113 /* FriendsDatabase.swift */; };
 		71B0F2971EB63C8400734113 /* SLFileListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B0F2961EB63C8400734113 /* SLFileListViewController.swift */; };
+		71B5D72D1EC99D3100CFA2ED /* Acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71B5D72C1EC99D3100CFA2ED /* Acknowledgements.plist */; };
+		71B5D72F1ECB1F4300CFA2ED /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B5D72E1ECB1F4300CFA2ED /* SettingsViewController.swift */; };
 		71B6342A1EBB91C00099EBAA /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B634291EBB91C00099EBAA /* FriendListViewController.swift */; };
 		71B8418D1E85BC5200F9C902 /* minilock-icon-large.png in Resources */ = {isa = PBXBuildFile; fileRef = 71B8418B1E85BC5200F9C902 /* minilock-icon-large.png */; };
 		71B8418E1E85BC5200F9C902 /* minilock-icon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 71B8418C1E85BC5200F9C902 /* minilock-icon-small.png */; };
@@ -54,6 +56,8 @@
 		71AF11E51EB33A230045FA64 /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		71B0F28E1EB6273000734113 /* FriendsDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsDatabase.swift; sourceTree = "<group>"; };
 		71B0F2961EB63C8400734113 /* SLFileListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLFileListViewController.swift; sourceTree = "<group>"; };
+		71B5D72C1EC99D3100CFA2ED /* Acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Acknowledgements.plist; sourceTree = "<group>"; };
+		71B5D72E1ECB1F4300CFA2ED /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		71B634291EBB91C00099EBAA /* FriendListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
 		71B8418B1E85BC5200F9C902 /* minilock-icon-large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "minilock-icon-large.png"; sourceTree = "<group>"; };
 		71B8418C1E85BC5200F9C902 /* minilock-icon-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "minilock-icon-small.png"; sourceTree = "<group>"; };
@@ -123,6 +127,7 @@
 		715B57A91E7DF2AD00A57B0C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				71B5D72C1EC99D3100CFA2ED /* Acknowledgements.plist */,
 				714E16951E7DF1880067F1AC /* AppDelegate.swift */,
 				714E169C1E7DF1880067F1AC /* Assets.xcassets */,
 				714E169E1E7DF1880067F1AC /* LaunchScreen.storyboard */,
@@ -144,6 +149,7 @@
 				71E596701EBC44430092CAE1 /* FriendViewController.swift */,
 				71E596721EBCADE60092CAE1 /* FriendEditController.swift */,
 				715EB3D71EC06F6F00AE04F4 /* FriendPickerViewController.swift */,
+				71B5D72E1ECB1F4300CFA2ED /* SettingsViewController.swift */,
 			);
 			name = "View Controllers";
 			path = ViewControllers;
@@ -257,6 +263,7 @@
 				71D6F8B81E81AC41003F30A2 /* BlockingView.xib in Resources */,
 				71B8418E1E85BC5200F9C902 /* minilock-icon-small.png in Resources */,
 				71A17EB41E808E2A00A5EDCC /* Words.plist in Resources */,
+				71B5D72D1EC99D3100CFA2ED /* Acknowledgements.plist in Resources */,
 				71B8418D1E85BC5200F9C902 /* minilock-icon-large.png in Resources */,
 				714E16A01E7DF1880067F1AC /* LaunchScreen.storyboard in Resources */,
 				714E169D1E7DF1880067F1AC /* Assets.xcassets in Resources */,
@@ -336,6 +343,7 @@
 				71D6F8B21E816A4E003F30A2 /* Extensions.swift in Sources */,
 				71AF11E61EB33A230045FA64 /* Friend.swift in Sources */,
 				71B0F2971EB63C8400734113 /* SLFileListViewController.swift in Sources */,
+				71B5D72F1ECB1F4300CFA2ED /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

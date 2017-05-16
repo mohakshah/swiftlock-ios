@@ -15,6 +15,10 @@ protocol FriendPickerDelegate {
 
 class FriendPickerViewController: FriendListViewController {
     
+    struct Constants {
+        static let MVCTitle = "Select Friends"
+    }
+    
     var delegate: FriendPickerDelegate?
     
     var leftBarButtonItem: UIBarButtonItem?
@@ -30,8 +34,10 @@ class FriendPickerViewController: FriendListViewController {
         
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
+        
+        self.navigationItem.title = Constants.MVCTitle
     }
-    
+
     @objc fileprivate func done() {
         if let indices = tableView.indexPathsForSelectedRows,
             let friendList = friendsDb?.friends {

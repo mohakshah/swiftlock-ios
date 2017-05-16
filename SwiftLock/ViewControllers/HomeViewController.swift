@@ -8,29 +8,13 @@
 
 import UIKit
 import MiniLockCore
-
-fileprivate struct SegueIds {
-    static let ToLogin = "Home2Login"
-}
+import MBProgressHUD
 
 class HomeViewController: UITabBarController
 {
-    fileprivate var currentFile: URL? {
-        didSet {
-            guard let url = currentFile  else  {
-                return
-            }
-
-            do {
-                if try MiniLock.isEncryptedFile(url: url) {
-                    decrypt(url)
-                } else {
-                    encrypt(url)
-                }
-            } catch (let error) {
-                print(error)
-            }
-        }
+    struct SegueIds {
+        static let ToLogin = "Home2Login"
+        static let ToFriendPicker = "Home2FriendPicker"
     }
 
     override func viewDidLoad() {
@@ -59,7 +43,12 @@ class HomeViewController: UITabBarController
     }
     
     func handleFile(url: URL) {
-        if currentFile == nil && CurrentUser.shared.isLoggedIn {
+        guard CurrentUser.shared.isLoggedIn else {
+            presentedViewController?.alert(withTitle: Strings.TryingToOpenFileWhenLoggedOut, message: nil)
+            return
+        }
+
+        if currentFile == nil {
             currentFile = url
         } else {
             do {
@@ -68,30 +57,176 @@ class HomeViewController: UITabBarController
                 print("Error deleting the source file: ", error)
             }
 
-            print("Sorry, currently working on another file:", currentFile!)
+            print("Currently working on another file:", currentFile!)
+        }
+    }
+
+    fileprivate var currentFile: URL? {
+        didSet {
+            guard let url = currentFile  else  {
+                return
+            }
+            
+            do {
+                if try MiniLock.isEncryptedFile(url: url) {
+                    decrypt(url)
+                } else {
+                    // just segue to the friend picker, it will call the encrypt funciton
+                    performSegue(withIdentifier: SegueIds.ToFriendPicker, sender: nil)
+                }
+            } catch (let error) {
+                print(error)
+            }
+        }
+    }
+    
+    fileprivate var progressHUD: MBProgressHUD? {
+        didSet {
+            progressHUD?.removeFromSuperViewOnHide = true
+            progressHUD?.mode = .annularDeterminate
         }
     }
     
     fileprivate func decrypt(_ url: URL) {
         print("Decrypting...")
+        
+        progressHUD = MBProgressHUD.showAdded(to: self.view, animated: true)
+        progressHUD!.label.text = Strings.DecryptingMessageInProgressHUD
+        
+        var decryptor: MiniLock.FileDecryptor
         do {
-            let decryptor = try MiniLock.FileDecryptor(sourceFile: url, recipientKeys: CurrentUser.shared.keyPair!)
-            try decryptor.decrypt(destinationDirectory: CurrentUser.shared.decryptedDir, filename: nil, deleteSourceFile: true)
-        } catch (let error) {
-            print("error:", error)
+            decryptor = try MiniLock.FileDecryptor(sourceFile: url, recipientKeys: CurrentUser.shared.keyPair!)
+        } catch {
+            DispatchQueue.main.async { [weak self] in
+                self?.progressHUD?.hide(animated: true)
+                self?.alert(withTitle: Strings.ErrorDecryptingFile, message: error as? String)
+                self?.currentFile = nil
+            }
+            
+            return
         }
-        currentFile = nil
+        
+        decryptor.processDelegate = self
+        
+        // go off the main q
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            defer {
+                self?.currentFile = nil
+            }
+
+            var decryptedFile: URL
+            do {
+                 decryptedFile = try decryptor.decrypt(destinationDirectory: CurrentUser.shared.decryptedDir, filename: nil, deleteSourceFile: true)
+            } catch {
+                DispatchQueue.main.async {
+                    self?.progressHUD?.hide(animated: true)
+                    self?.alert(withTitle: Strings.ErrorDecryptingFile, message: error as? String)
+                }
+                return
+            }
+            
+            // dispatch back to the main q
+            DispatchQueue.main.async {
+                guard let strongSelf = self else {
+                    return
+                }
+                
+                strongSelf.progressHUD?.hide(animated: true)
+                let activityVC = UIActivityViewController(activityItems: [decryptedFile], applicationActivities: nil)
+                activityVC.modalPresentationStyle = .popover
+                
+                strongSelf.present(activityVC, animated: true, completion: nil)
+            }
+        }
     }
     
-    fileprivate func encrypt(_ url: URL) {
-        print("Encrypting...")
+    fileprivate func encrypt(_ url: URL, to friends: [Friend]) {
+        progressHUD = MBProgressHUD.showAdded(to: self.view, animated: true)
+        progressHUD!.label.text = Strings.EncryptingMessageInProgressHUD
+
+        var encryptor: MiniLock.FileEncryptor
         do {
-            let encryptor = try MiniLock.FileEncryptor(fileURL: url, sender: CurrentUser.shared.keyPair!, recipients: [])
-            try encryptor.encrypt(destinationDirectory: CurrentUser.shared.encryptedDir, filename: nil, deleteSourceFile: true)
-        } catch (let error) {
-            print("error:", error)
+            encryptor = try MiniLock.FileEncryptor(fileURL: url,
+                                                   sender: CurrentUser.shared.keyPair!,
+                                                   recipients: friends.map { $0.id } )
+        } catch {
+            DispatchQueue.main.async { [weak self] in
+                self?.progressHUD?.hide(animated: true)
+                self?.alert(withTitle: Strings.ErrorEncryptingFile, message: error as? String)
+                self?.currentFile = nil
+            }
+
+            return
+        }
+        
+        encryptor.processDelegate = self
+        
+        // go off the main q
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            defer {
+                self?.currentFile = nil
+            }
+
+            var encryptedFile: URL
+            do {
+                encryptedFile = try encryptor.encrypt(destinationDirectory: CurrentUser.shared.encryptedDir, filename: nil, deleteSourceFile: true)
+            } catch {
+                DispatchQueue.main.async {
+                    self?.progressHUD?.hide(animated: true)
+                    self?.alert(withTitle: Strings.ErrorEncryptingFile, message: error as? String)
+                }
+
+                return
+            }
+            
+            // dispatch back to the main q
+            DispatchQueue.main.async {
+                guard let strongSelf = self else {
+                    return
+                }
+
+                strongSelf.progressHUD?.hide(animated: true)
+                let activityVC = UIActivityViewController(activityItems: [encryptedFile], applicationActivities: nil)
+                activityVC.modalPresentationStyle = .popover
+                
+                strongSelf.present(activityVC, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == SegueIds.ToFriendPicker,
+            let friendPicker = segue.destination.mainVC as? FriendPickerViewController {
+            friendPicker.delegate = self
+        }
+    }
+}
+
+extension HomeViewController: FriendPickerDelegate {
+    func friendPicker(_ picker: FriendPickerViewController, didPickFriends friends: [Friend]) {
+        if presentedViewController?.mainVC == picker {
+            dismiss(animated: true, completion: nil)
         }
 
-        currentFile = nil
+        guard let url = currentFile else {
+            return
+        }
+        
+        encrypt(url, to: friends)
+    }
+    
+    func friendPickerDidCancel(_ picker: FriendPickerViewController) {
+        if presentedViewController?.mainVC == picker {
+            dismiss(animated: true, completion: nil)
+            currentFile = nil
+        }
+    }
+}
+
+extension HomeViewController: MiniLockProcessDelegate {
+    func setProgress(to progress: Double, process: MiniLockProcess) {
+        DispatchQueue.main.async { [weak self] in
+            self?.progressHUD?.progress = Float(progress)
+        }
     }
 }

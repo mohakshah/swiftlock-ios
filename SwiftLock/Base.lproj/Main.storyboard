@@ -123,7 +123,7 @@
             </objects>
             <point key="canvasLocation" x="-1081" y="204"/>
         </scene>
-        <!--File List View Controller-->
+        <!--List of Files-->
         <scene sceneID="JIr-Jj-BWH">
             <objects>
                 <tableViewController id="zXG-1H-3Hd" customClass="SLFileListViewController" customModule="SwiftLock" customModuleProvider="target" sceneMemberID="viewController">
@@ -155,40 +155,141 @@
                             <outlet property="delegate" destination="zXG-1H-3Hd" id="KGv-5q-15i"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="qd4-2I-rLT"/>
+                    <navigationItem key="navigationItem" title="List of Files" id="qd4-2I-rLT"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2z5-v7-ieN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2212" y="203.74812593703149"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="lWO-Er-LXz">
+        <!--User Settings-->
+        <scene sceneID="vQK-cJ-Lb9">
             <objects>
-                <viewController id="yJo-Tb-FnN" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="94v-Y9-RfZ"/>
-                        <viewControllerLayoutGuide type="bottom" id="49u-fu-UxN"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="GJm-4k-ugY">
+                <tableViewController id="vgl-up-v4B" customClass="SettingsViewController" customModule="SwiftLock" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="TTT-Tf-jIV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vm3-UG-JQA">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">File List icon by Chanut is Industries from flaticons.com.
-Multiple-User icon by Freepik from flaticons.com.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="P6K-X9-dPt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="ru1-2B-D4p">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="2sH-wv-cu6" detailTextLabel="AUZ-Rr-hRV" style="IBUITableViewCellStyleValue1" id="NYi-dB-Ge0">
+                                        <rect key="frame" x="0.0" y="35" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NYi-dB-Ge0" id="k2B-lX-4FW">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Auto Logout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2sH-wv-cu6">
+                                                    <rect key="frame" x="15" y="12" width="94" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Never" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AUZ-Rr-hRV">
+                                                    <rect key="frame" x="296" y="12" width="44" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="45m-N5-LI3">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="BX7-D7-G7G" style="IBUITableViewCellStyleDefault" id="DdG-gE-Kcq">
+                                        <rect key="frame" x="0.0" y="115" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DdG-gE-Kcq" id="BS7-nY-9Wx">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="About" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BX7-D7-G7G">
+                                                    <rect key="frame" x="15" y="0.0" width="325" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="xSZ-ZW-lnI" kind="show" identifier="Settings2About" id="I4h-E7-cra"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="4WN-Tv-kqa">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="hRl-it-Dfu">
+                                        <rect key="frame" x="0.0" y="195" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hRl-it-Dfu" id="XFt-9J-4Pj">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g4F-g9-JN5">
+                                                    <rect key="frame" x="16" y="8" width="54" height="27.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <state key="normal" title="Logout"/>
+                                                    <connections>
+                                                        <action selector="logout:" destination="vgl-up-v4B" eventType="touchUpInside" id="IZs-UQ-Fqe"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="g4F-g9-JN5" firstAttribute="top" secondItem="XFt-9J-4Pj" secondAttribute="topMargin" id="7RP-UQ-WV5"/>
+                                                <constraint firstItem="g4F-g9-JN5" firstAttribute="leading" secondItem="XFt-9J-4Pj" secondAttribute="leadingMargin" constant="8" id="HY4-Sb-9Up"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="g4F-g9-JN5" secondAttribute="bottom" id="MhW-03-lHu"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="vgl-up-v4B" id="ltH-hc-bdb"/>
+                            <outlet property="delegate" destination="vgl-up-v4B" id="8vb-2f-Yzs"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="User Settings" id="2o4-up-Ljd"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1lD-Mj-hu4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4632.8000000000002" y="250.52473763118442"/>
+            <point key="canvasLocation" x="1547" y="-618"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hTb-qx-vgB">
+            <objects>
+                <navigationController id="xSZ-ZW-lnI" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="toS-IJ-Cm0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RGT-gj-Bik" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2500" y="-657"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="gt1-w2-BDf">
+            <objects>
+                <navigationController id="YC0-GZ-0o4" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" image="Settings" id="gG8-BO-g7L"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qb8-L5-2rb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vgl-up-v4B" kind="relationship" relationship="rootViewController" id="HmF-ms-oDW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Uv-AJ-z3l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="598" y="-618"/>
         </scene>
         <!--Files-->
         <scene sceneID="QBC-Bl-bJi">
@@ -209,7 +310,7 @@ Multiple-User icon by Freepik from flaticons.com.</string>
             </objects>
             <point key="canvasLocation" x="1272.8" y="203.74812593703149"/>
         </scene>
-        <!--Friend List View Controller-->
+        <!--List of Friends-->
         <scene sceneID="yER-xc-yIQ">
             <objects>
                 <tableViewController id="5YT-ru-Pd6" customClass="FriendListViewController" customModule="SwiftLock" customModuleProvider="target" sceneMemberID="viewController">
@@ -241,7 +342,7 @@ Multiple-User icon by Freepik from flaticons.com.</string>
                             <outlet property="delegate" destination="5YT-ru-Pd6" id="Uot-G2-ZId"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="F47-zN-zBV"/>
+                    <navigationItem key="navigationItem" title="List of Friends" id="F47-zN-zBV"/>
                     <connections>
                         <segue destination="OF4-Eb-7dh" kind="show" identifier="FriendList2Friend" id="gEe-SJ-ntu"/>
                         <segue destination="4Eh-3j-efw" kind="presentation" identifier="FriendList2Add" id="dSZ-RP-0FG"/>
@@ -459,7 +560,7 @@ Multiple-User icon by Freepik from flaticons.com.</string>
             </objects>
             <point key="canvasLocation" x="4306.3999999999996" y="1030.4347826086957"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Friend Picker-->
         <scene sceneID="wff-CD-3O8">
             <objects>
                 <tableViewController id="HZO-tI-BLT" customClass="FriendPickerViewController" customModule="SwiftLock" customModuleProvider="target" sceneMemberID="viewController">
@@ -491,11 +592,11 @@ Multiple-User icon by Freepik from flaticons.com.</string>
                             <outlet property="delegate" destination="HZO-tI-BLT" id="EOG-Mr-35m"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="3ic-Jd-dkt"/>
+                    <navigationItem key="navigationItem" title="Friend Picker" id="3ic-Jd-dkt"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ok-Tw-o6n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1208" y="-551"/>
+            <point key="canvasLocation" x="-1142" y="1004"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gSs-WI-cPt">
@@ -511,7 +612,7 @@ Multiple-User icon by Freepik from flaticons.com.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qXQ-iG-fyU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="254" y="-551"/>
+            <point key="canvasLocation" x="-2018" y="1004"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="BlO-bq-C0v">
@@ -528,6 +629,7 @@ Multiple-User icon by Freepik from flaticons.com.</string>
                         <segue destination="WCq-a7-bJV" kind="presentation" identifier="Home2Login" animates="NO" id="Dfq-L1-GPX"/>
                         <segue destination="tfY-iB-iaL" kind="relationship" relationship="viewControllers" id="TTF-ji-UwH"/>
                         <segue destination="ITS-sM-E0A" kind="presentation" identifier="Home2FriendPicker" id="cTo-3A-shx"/>
+                        <segue destination="YC0-GZ-0o4" kind="relationship" relationship="viewControllers" id="CB4-KO-1p9"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JOl-9r-5hc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -574,6 +676,7 @@ Multiple-User icon by Freepik from flaticons.com.</string>
     </scenes>
     <resources>
         <image name="Hide Password" width="32" height="32"/>
+        <image name="Settings" width="32" height="32"/>
         <image name="Show Password" width="32" height="32"/>
         <image name="SwiftLock New Horizontol Logo (Dark Sea Green)" width="400" height="100"/>
         <image name="file-list-icon" width="32" height="32"/>

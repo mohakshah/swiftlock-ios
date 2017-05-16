@@ -42,10 +42,9 @@ class FriendViewController: UITableViewController
         }
         
         let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        activityVC.modalPresentationStyle = .popover
         
         present(activityVC, animated: true, completion: nil)
-        
-        activityVC.modalPresentationStyle = .popover
     }
     
     // MARK: - Model

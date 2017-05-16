@@ -27,20 +27,17 @@ class FileListViewController: UITableViewController
     }
 
     fileprivate func updateFileList() {
-        if fileList.count < directories.count {
-            let missing = [[URL]](repeating: [URL](), count: directories.count - fileList.count)
-            fileList.append(contentsOf: missing)
-        }
+        fileList.removeAll(keepingCapacity: true)
         
         let resourceKeys: [URLResourceKey] = [.isRegularFileKey, .creationDateKey, .fileSizeKey]
 
         for i in 0..<directories.count {
             do {
-                fileList[i] = try FileManager.default.contentsOfDirectory(at: directories[i],
+                fileList.append(try FileManager.default.contentsOfDirectory(at: directories[i],
                                                                           includingPropertiesForKeys: resourceKeys,
                                                                           options: [])
                                                                             .filter { try $0.isRegularFile() }
-                                                                                .sorted { $0.creationDate > $1.creationDate}
+                                                                                .sorted { $0.creationDate > $1.creationDate})
             } catch (let error) {
                 print(error)
                 fileList[i].removeAll()
