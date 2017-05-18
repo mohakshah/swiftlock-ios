@@ -14,6 +14,10 @@ import MiniLockCore
 
 class LoginViewController: UIViewController
 {
+    struct SegueIds {
+        static let ToSuggester = "Login2Suggester"
+    }
+
     struct Constants {
         static let minPassphraseEntropy = 100.00
         static let emailPattern = "^[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\\.[a-zA-Z]{2,20}$"
@@ -84,7 +88,7 @@ class LoginViewController: UIViewController
         passwordStateSwitch.isHighlighted = !passwordStateSwitch.isHighlighted
         passwordField.isSecureTextEntry = !passwordField.isSecureTextEntry
     }
-    
+
     // MARK:- View
     
     override func viewDidLoad() {
@@ -101,8 +105,6 @@ class LoginViewController: UIViewController
                                                name: Notification.Name.UITextFieldTextDidChange,
                                                object: passwordField)
         
-        
-        
         // listen for the keyboard activity
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillAppear(notification:)),
@@ -117,6 +119,7 @@ class LoginViewController: UIViewController
     }
     
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         scrollView.layoutSubviews()
 
         // disable scrollbars so they don't interfere during resizing
@@ -130,7 +133,6 @@ class LoginViewController: UIViewController
         scrollView.showsHorizontalScrollIndicator = true
     }
     
-    
     // MARK: UI Blocking
     fileprivate var blockingView: BlockingView?
     
@@ -143,6 +145,24 @@ class LoginViewController: UIViewController
     fileprivate func unblockUI() {
         blockingView?.removeFromSuperview()
         blockingView = nil
+    }
+    
+    // MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == SegueIds.ToSuggester, let navVC = segue.destination as? UINavigationController, let suggesterVC = navVC.mainVC as? PassphraseSuggesterViewController {
+            suggesterVC.delegate = self
+            
+            navVC.modalPresentationStyle = .popover
+            navVC.preferredContentSize = CGSize(width: 256, height: 128)
+            if let ppc = navVC.popoverPresentationController {
+                ppc.delegate = self
+                ppc.permittedArrowDirections = .any
+                if let view = sender as? UIView {
+                    ppc.sourceView = view.superview
+                    ppc.sourceRect = view.frame
+                }
+            }
+        }
     }
 }
 
@@ -220,5 +240,33 @@ extension LoginViewController: UITextFieldDelegate {
         let zeroInset = UIEdgeInsets.zero
         scrollView.contentInset = zeroInset
         scrollView.scrollIndicatorInsets = zeroInset
+    }
+}
+
+// MARK: - PassphraseSuggesterDelegate
+extension LoginViewController: PassphraseSuggesterDelegate {
+    func passphraseSuggester(_ suggester: PassphraseSuggesterViewController, didSelectPassword password: String) {
+        // make sure its the right controller before dismissing
+        guard presentedViewController?.mainVC == suggester else {
+            return
+        }
+        
+        dismiss(animated: true, completion: nil)
+        
+        // update the password field and error messages
+        self.passwordField.text = password
+        _ = validatePasswordField()
+        
+        // show the selected passphrase
+        if self.passwordField.isSecureTextEntry {
+            self.switchPasswordViewingState(self)
+        }
+    }
+}
+
+// MARK: - UIPopoverPresentationControllerDelegate
+extension LoginViewController: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
     }
 }

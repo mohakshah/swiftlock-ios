@@ -16,6 +16,7 @@ struct Strings {
     static let ScanQRCode = "Scan QR Code"
     static let EnterManually = "Enter Manually"
     static let Cancel = "Cancel"
+    static let Accept = "Accept"
     
     static let DecryptingMessageInProgressHUD = "Decrypting File"
     static let EncryptingMessageInProgressHUD = "Encrypting File"

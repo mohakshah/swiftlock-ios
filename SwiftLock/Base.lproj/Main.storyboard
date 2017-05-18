@@ -10,6 +10,69 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Passphrase Suggester View Controller-->
+        <scene sceneID="4iT-cd-K0h">
+            <objects>
+                <viewController id="VRz-jo-LIX" customClass="PassphraseSuggesterViewController" customModule="SwiftLock" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="V7l-LT-35B"/>
+                        <viewControllerLayoutGuide type="bottom" id="iid-51-gBp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ph4-aa-o6v">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qa6-Cu-5VY">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Super Long Passphrase" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dnf-4t-5bn">
+                                        <rect key="frame" x="8" y="20" width="359" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Dnf-4t-5bn" firstAttribute="centerX" secondItem="Qa6-Cu-5VY" secondAttribute="centerX" id="PaH-SJ-ZHm"/>
+                                    <constraint firstItem="Dnf-4t-5bn" firstAttribute="trailing" secondItem="Qa6-Cu-5VY" secondAttribute="trailingMargin" id="Poq-LA-UwL"/>
+                                    <constraint firstItem="Dnf-4t-5bn" firstAttribute="leading" secondItem="Qa6-Cu-5VY" secondAttribute="leadingMargin" id="gCT-KC-Pye"/>
+                                    <constraint firstItem="Dnf-4t-5bn" firstAttribute="top" secondItem="Qa6-Cu-5VY" secondAttribute="top" constant="20" symbolic="YES" id="gn4-it-7ja"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Qa6-Cu-5VY" secondAttribute="trailing" id="2O1-lA-qid"/>
+                            <constraint firstItem="Qa6-Cu-5VY" firstAttribute="top" secondItem="Ph4-aa-o6v" secondAttribute="top" id="UtT-im-4Wl"/>
+                            <constraint firstItem="Qa6-Cu-5VY" firstAttribute="bottom" secondItem="iid-51-gBp" secondAttribute="top" id="hYP-BK-kmB"/>
+                            <constraint firstItem="Qa6-Cu-5VY" firstAttribute="leading" secondItem="Ph4-aa-o6v" secondAttribute="leading" id="vda-uq-zDO"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="dcK-0T-91i"/>
+                    <connections>
+                        <outlet property="passphraseField" destination="Dnf-4t-5bn" id="HLN-rk-0e8"/>
+                        <outlet property="scrollView" destination="Qa6-Cu-5VY" id="5ed-Lv-OUl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bSE-0S-hTN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2061.5999999999999" y="121.88905547226388"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="KjF-5v-e3U">
+            <objects>
+                <navigationController storyboardIdentifier="PassphraseSuggesterNavigationController" id="t6S-qM-TE2" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="een-0O-pCR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="VRz-jo-LIX" kind="relationship" relationship="rootViewController" id="hRy-wr-mWP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Til-Gp-drh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2850" y="122"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="gSh-JL-cdN">
             <objects>
@@ -36,10 +99,10 @@
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
-                                                <color key="value" red="0.94509803921568625" green="0.42745098039215684" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="value" red="0.1450980392" green="0.72156862749999995" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
-                                                <color key="value" red="0.94509803920000002" green="0.42745098040000001" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="value" red="0.1450980392" green="0.72156862749999995" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="errorColor">
                                                 <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -47,16 +110,16 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Passphrase" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Swx-7I-qhi" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                        <rect key="frame" x="8" y="284" width="360" height="39.5"/>
+                                        <rect key="frame" x="8" y="284" width="360" height="40"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" secureTextEntry="YES"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="selectedLineColor">
-                                                <color key="value" red="0.94509803921568625" green="0.42745098039215684" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="value" red="0.1450980392" green="0.72156862749999995" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="selectedTitleColor">
-                                                <color key="value" red="0.94509803920000002" green="0.42745098040000001" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="value" red="0.1450980392" green="0.72156862749999995" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="errorColor">
                                                 <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -64,14 +127,14 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c5R-lx-viR">
-                                        <rect key="frame" x="169" y="406.5" width="38" height="30"/>
+                                        <rect key="frame" x="169" y="407" width="38" height="30"/>
                                         <state key="normal" title="Login"/>
                                         <connections>
                                             <action selector="performLogin:" destination="WCq-a7-bJV" eventType="touchUpInside" id="1TZ-RG-ObB"/>
                                         </connections>
                                     </button>
                                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Show Password" highlightedImage="Hide Password" translatesAutoresizingMaskIntoConstraints="NO" id="56i-gE-RUz">
-                                        <rect key="frame" x="336" y="287.5" width="32" height="32"/>
+                                        <rect key="frame" x="336" y="288" width="32" height="32"/>
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="32" id="QbY-5O-Cpu"/>
@@ -81,8 +144,19 @@
                                             <outletCollection property="gestureRecognizers" destination="MlV-VW-Sl0" appends="YES" id="LAI-fJ-w5u"/>
                                         </connections>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gpe-B9-RCL">
+                                        <rect key="frame" x="8" y="332" width="124" height="28"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <state key="normal" title="Suggest Passphrase"/>
+                                        <connections>
+                                            <segue destination="t6S-qM-TE2" kind="popoverPresentation" identifier="Login2Suggester" popoverAnchorView="Gpe-B9-RCL" id="uIK-gK-UAy">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="Gpe-B9-RCL" firstAttribute="leading" secondItem="Swx-7I-qhi" secondAttribute="leading" id="1cT-5g-URL"/>
                                     <constraint firstItem="3Ni-2o-vyG" firstAttribute="leading" secondItem="Swx-7I-qhi" secondAttribute="leading" id="3DF-NU-PQL"/>
                                     <constraint firstItem="3Ni-2o-vyG" firstAttribute="top" secondItem="H6j-q5-dsV" secondAttribute="bottom" constant="90" id="3Xp-2o-ufY"/>
                                     <constraint firstAttribute="trailing" secondItem="56i-gE-RUz" secondAttribute="trailing" constant="8" id="Dzz-wP-rWt"/>
@@ -96,6 +170,7 @@
                                     <constraint firstItem="c5R-lx-viR" firstAttribute="centerX" secondItem="RMY-U1-vGy" secondAttribute="centerX" id="Vkw-DY-8bi"/>
                                     <constraint firstItem="H6j-q5-dsV" firstAttribute="trailing" secondItem="3Ni-2o-vyG" secondAttribute="trailing" id="Yte-Tj-dU7"/>
                                     <constraint firstItem="c5R-lx-viR" firstAttribute="top" secondItem="Swx-7I-qhi" secondAttribute="bottom" constant="83" id="ipz-sv-0sS"/>
+                                    <constraint firstItem="Gpe-B9-RCL" firstAttribute="top" secondItem="Swx-7I-qhi" secondAttribute="bottom" constant="8" symbolic="YES" id="tRJ-cX-c83"/>
                                     <constraint firstItem="H6j-q5-dsV" firstAttribute="leading" secondItem="3Ni-2o-vyG" secondAttribute="leading" id="yKw-vN-6dR"/>
                                 </constraints>
                             </scrollView>
@@ -180,14 +255,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Auto Logout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2sH-wv-cu6">
-                                                    <rect key="frame" x="15" y="12" width="94" height="21"/>
+                                                    <rect key="frame" x="15" y="12" width="93.5" height="20.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Never" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AUZ-Rr-hRV">
-                                                    <rect key="frame" x="296" y="12" width="44" height="20.5"/>
+                                                    <rect key="frame" x="299" y="14" width="41" height="18"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
