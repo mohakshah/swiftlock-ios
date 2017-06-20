@@ -31,4 +31,10 @@ class SLFileListViewController: FileListViewController {
         super.awakeFromNib()
         self.tabBarItem.title = "Files"
     }
+    
+    // add encryption and decryption options to the share sheet
+    fileprivate let cryptoActivities: [UIActivity] = [EncryptActivity(), DecryptActivity()]
+    override var customActivitiesForShareSheet: [UIActivity]? {
+        return cryptoActivities
+    }
 }

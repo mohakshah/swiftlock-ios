@@ -17,6 +17,11 @@ class FileListViewController: UITableViewController
             updateFileList()
         }
     }
+    
+    // sub-classes can override this var to add custom activities to the share sheet
+    var customActivitiesForShareSheet: [UIActivity]? {
+        return nil
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,7 +135,8 @@ class FileListViewController: UITableViewController
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let fileURL = fileList[indexPath.section][indexPath.row]
-        let activityVC = UIActivityViewController(activityItems: [fileURL], applicationActivities: nil)
+        let activityVC = UIActivityViewController(activityItems: [fileURL],
+                                                  applicationActivities: customActivitiesForShareSheet)
         activityVC.completionWithItemsHandler = { (_, completed, returnedItems, activityError) in
             print("Returned: ", returnedItems)
             activityVC.dismissSelf()

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		710888B71EF87500001C7FBE /* EncryptActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710888B61EF87500001C7FBE /* EncryptActivity.swift */; };
+		710888B91EF87B26001C7FBE /* DecryptActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710888B81EF87B26001C7FBE /* DecryptActivity.swift */; };
 		714840721ECCD287004938A0 /* PassphraseSuggesterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714840711ECCD287004938A0 /* PassphraseSuggesterViewController.swift */; };
 		714E16961E7DF1880067F1AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714E16951E7DF1880067F1AC /* AppDelegate.swift */; };
 		714E169B1E7DF1880067F1AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 714E16991E7DF1880067F1AC /* Main.storyboard */; };
@@ -39,6 +41,8 @@
 
 /* Begin PBXFileReference section */
 		0D78B1EE843F942D57E8B39B /* Pods_SwiftLock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftLock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		710888B61EF87500001C7FBE /* EncryptActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptActivity.swift; sourceTree = "<group>"; };
+		710888B81EF87B26001C7FBE /* DecryptActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecryptActivity.swift; sourceTree = "<group>"; };
 		714840711ECCD287004938A0 /* PassphraseSuggesterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassphraseSuggesterViewController.swift; sourceTree = "<group>"; };
 		714E16921E7DF1880067F1AC /* SwiftLock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftLock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		714E16951E7DF1880067F1AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -173,6 +177,8 @@
 				71A108ED1E98C0E00083FA66 /* CurrentUser.swift */,
 				71AF11E51EB33A230045FA64 /* Friend.swift */,
 				71B0F28E1EB6273000734113 /* FriendsDatabase.swift */,
+				710888B61EF87500001C7FBE /* EncryptActivity.swift */,
+				710888B81EF87B26001C7FBE /* DecryptActivity.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -339,6 +345,7 @@
 				71A108F41E9A863C0083FA66 /* FileListViewController.swift in Sources */,
 				71D6F8B41E81A96E003F30A2 /* Constants.swift in Sources */,
 				71B0F28F1EB6273000734113 /* FriendsDatabase.swift in Sources */,
+				710888B91EF87B26001C7FBE /* DecryptActivity.swift in Sources */,
 				71E596711EBC44430092CAE1 /* FriendViewController.swift in Sources */,
 				71A108EE1E98C0E00083FA66 /* CurrentUser.swift in Sources */,
 				715EB3D81EC06F6F00AE04F4 /* FriendPickerViewController.swift in Sources */,
@@ -347,6 +354,7 @@
 				714840721ECCD287004938A0 /* PassphraseSuggesterViewController.swift in Sources */,
 				71AF11E61EB33A230045FA64 /* Friend.swift in Sources */,
 				71B0F2971EB63C8400734113 /* SLFileListViewController.swift in Sources */,
+				710888B71EF87500001C7FBE /* EncryptActivity.swift in Sources */,
 				71B5D72F1ECB1F4300CFA2ED /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

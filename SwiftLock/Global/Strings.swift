@@ -18,6 +18,9 @@ struct Strings {
     static let Cancel = "Cancel"
     static let Accept = "Accept"
     
+    static let EncryptActivity = "Encrypt"
+    static let DecryptActivity = "Decrypt"
+    
     static let DecryptingMessageInProgressHUD = "Decrypting File"
     static let EncryptingMessageInProgressHUD = "Encrypting File"
     static let ErrorEncryptingFile = "Error trying to encrypt the file"
@@ -27,5 +30,5 @@ struct Strings {
     
     static let IconCredits = "File List icon by Chanut is Industries from flaticons.com." + "\n\n" +
         "Multiple-User icon by Freepik from flaticons.com." + "\n\n" +
-    "Settings icon from https://icons8.com/web-app/2969/Settings-Filled"
+        "Settings, Lock and Unlock icon are from https://icons8.com/"
 }
