@@ -22,13 +22,6 @@ class FriendListViewController: UITableViewController
         static let NameForCurrentUser = "Me"
     }
     
-    // MARK: - Model
-    var friendsDb: FriendsDatabase? {
-        didSet {
-            tableView.reloadData()
-        }
-    }
-    
     var currentUser: Friend?
     var selectedIndex = IndexPath(row: 0, section: 0)
     
@@ -58,21 +51,12 @@ class FriendListViewController: UITableViewController
     
     @objc fileprivate func userLoggedIn() {
         currentUser = Friend(name: Constants.NameForCurrentUser, id: CurrentUser.shared.keyPair!.publicId)
-        openDatabase()
+        tableView.reloadData()
     }
     
     @objc fileprivate func userLoggedOut() {
-        closeDatabase()
         self.navigationController?.popToRootViewController(animated: true)
-    }
-    
-    fileprivate func openDatabase() {
-        friendsDb = try? FriendsDatabase(url: CurrentUser.shared.homeDir.appendingPathComponent(Constants.FriedsDbName),
-                                    keyPair: CurrentUser.shared.keyPair!)
-    }
-    
-    fileprivate func closeDatabase() {
-        friendsDb = nil
+        tableView.reloadData()
     }
     
     @objc fileprivate func addFriend() {
@@ -93,7 +77,7 @@ class FriendListViewController: UITableViewController
             self?.performSegue(withIdentifier: Constants.AddFriendSegue, sender: nil)
         })
         
-        // cancel
+        // option to dismiss
         sheet.addAction(UIAlertAction(title: Strings.Cancel, style: .cancel) { [weak self] (_) in
             self?.dismiss(animated: true, completion: nil)
         })
@@ -118,7 +102,7 @@ class FriendListViewController: UITableViewController
 extension FriendListViewController
 {
     override func numberOfSections(in tableView: UITableView) -> Int {
-        if friendsDb != nil {
+        if CurrentUser.shared.friendsDb != nil {
             // self and friends
             return 2
         } else {
@@ -131,7 +115,7 @@ extension FriendListViewController
         if section == 0 {
             return 1
         } else {
-            return friendsDb?.friends.count ?? 0
+            return CurrentUser.shared.friendsDb?.friends.count ?? 0
         }
     }
 
@@ -142,7 +126,7 @@ extension FriendListViewController
         if indexPath.section == 0 {
             cell.textLabel?.text = currentUser?.name
         } else {
-            if let name = friendsDb?.friends[indexPath.row].name {
+            if let name = CurrentUser.shared.friendsDb?.friends[indexPath.row].name {
                 cell.textLabel?.text = name
             }
         }
@@ -153,7 +137,7 @@ extension FriendListViewController
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
-            friendsDb?.friends.remove(at: indexPath.row)
+            CurrentUser.shared.friendsDb?.friends.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.endUpdates()
         }
@@ -189,7 +173,7 @@ extension FriendListViewController
     @objc fileprivate func deleteSelected() {
         // delete selected rows, starting from the last index
         if let indices = tableView.indexPathsForSelectedRows?.sorted(by: { $0.row > $1.row }),
-            var friendList = friendsDb?.friends {
+            var friendList = CurrentUser.shared.friendsDb?.friends {
             tableView.beginUpdates()
             // remove from the temp array
             for index in indices {
@@ -197,7 +181,7 @@ extension FriendListViewController
             }
             
             // save the temp
-            friendsDb?.friends = friendList
+            CurrentUser.shared.friendsDb?.friends = friendList
             tableView.deleteRows(at: indices, with: .automatic)
             tableView.endUpdates()
         }
@@ -208,8 +192,9 @@ extension FriendListViewController
             if selectedIndex.section == 0 {
                 friendVC.friend = currentUser
                 friendVC.isViewingCurrentUser = true
+                friendVC.isEditable = false                 // TODO: Remove once user prefs can be saved in a db 
             } else {
-                friendVC.friend = friendsDb?.friends[selectedIndex.row]
+                friendVC.friend = CurrentUser.shared.friendsDb?.friends[selectedIndex.row]
                 friendVC.isEditable = true
             }
 
@@ -227,8 +212,8 @@ extension FriendListViewController: FriendViewDelegate {
             // TODO: Save the new username to user preferences
             currentUser = newFriend
         } else {
-            friendsDb?.friends.remove(at: selectedIndex.row)
-            friendsDb?.insertSorted(friend: newFriend)
+            CurrentUser.shared.friendsDb?.friends.remove(at: selectedIndex.row)
+            CurrentUser.shared.friendsDb?.insertSorted(friend: newFriend)
         }
         tableView.reloadData()
     }
@@ -241,7 +226,7 @@ extension FriendListViewController: FriendEditDelegate {
     }
     
     func friendEditController(_ editor: FriendEditController, didEditFriend newFriend: Friend) {
-        friendsDb?.insertSorted(friend: newFriend)
+        CurrentUser.shared.friendsDb?.insertSorted(friend: newFriend)
         dismiss(animated: true) { [weak self] in self?.tableView.reloadData() }
     }
 }
@@ -262,7 +247,7 @@ extension FriendListViewController: QRCodeReaderViewControllerDelegate {
 
         // dismiss the scanner vc and add the friend to the database
         dismiss(animated: true, completion: nil)
-        friendsDb?.insertSorted(friend: newFriend)
+        CurrentUser.shared.friendsDb?.insertSorted(friend: newFriend)
         tableView.reloadData()
     }
     
