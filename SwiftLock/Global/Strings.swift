@@ -31,4 +31,17 @@ struct Strings {
     static let IconCredits = "File List icon by Chanut is Industries from flaticons.com." + "\n\n" +
         "Multiple-User icon by Freepik from flaticons.com." + "\n\n" +
         "Settings, Lock and Unlock icon are from https://icons8.com/"
+    
+    static let PhotoLibrary = "Photo Library"
+    static let Camera = "Camera"
+    
+    static let PhotoLibraryAuthorizationRestrictedTitle = "Error opening the photo library"
+    static let PhotoLibraryAuthorizationRestrictedMessage = "Your organization has restricted this app's access to the photo library."
+    static let PhotoLibraryAuthorizationDeniedTitle = "Error opening the photo library"
+    static let PhotoLibraryAuthorizationDeniedMessage = "To allow this app to open the photo library, go to iPhone's Settings→Privacy→Photos and turn on access to this app."
+    
+    static let CameraAuthorizationRestrictedTitle = "Error opening the camera"
+    static let CameraAuthorizationRestrictedMessage = "Your organization has restricted this app's access to the camera."
+    static let CameraAuthorizationDeniedTitle = "Error opening the camera"
+    static let CameraAuthorizationDeniedMessage = "To allow this app to open the camera, go to iPhone's Settings→Privacy→Camera and turn on access to this app."
 }

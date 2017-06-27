@@ -20,7 +20,7 @@ On top of implementing the space-saving floating title, the component also suppo
 
 Up until version 1.2 Swift 2.2 and 2.3 compatible (and there is a Swift 2.3 branch in case you need it).
 From version 2.0 onwards only compatible with Swift 3.
-Please be midnful of the version you're using.
+Please be mindful of the version you're using.
 
 ## Usage
 
@@ -184,7 +184,7 @@ Lastly, let CocoaPods fetch the latest version of the component by running:
 $ cocoapods update
 ```
 
-#####Integrating into Objective C projects
+##### Integrating into Objective C projects
 
 When integrating the component into an Objective C project, in the Podfile add `use_frameworks!`. For example as shown in [SkyFloatingLabelTextFieldObjectiveCExample](https://github.com/Skyscanner/SkyFloatingLabelTextField/tree/master/SkyFloatingLabelTextFieldObjectiveCExample):
 

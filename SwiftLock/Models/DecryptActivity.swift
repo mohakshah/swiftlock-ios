@@ -34,9 +34,8 @@ class DecryptActivity: UIActivity
     }
     
     override func prepare(withActivityItems activityItems: [Any]) {
-        if let url = activityItems.first as? URL,
-            let homeVC = UIApplication.shared.delegate?.window??.rootViewController?.mainVC as? HomeViewController {
-            homeVC.handleFile(url: url)
+        if let url = activityItems.first as? URL {
+            _ = AppDelegate.openFile(url: url)
         }
     }
     

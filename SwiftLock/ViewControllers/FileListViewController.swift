@@ -28,7 +28,7 @@ class FileListViewController: UITableViewController
         
         tableView.allowsMultipleSelection = true
 
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
     }
 
     fileprivate func updateFileList() {
@@ -95,7 +95,18 @@ class FileListViewController: UITableViewController
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return directories[section].lastPathComponent
+        if fileList[section].isEmpty {
+            return nil
+        } else {
+            return directories[section].lastPathComponent.uppercased()
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.textLabel?.textAlignment = .center
+            headerView.textLabel?.textColor = .darkGray
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -137,10 +148,6 @@ class FileListViewController: UITableViewController
         let fileURL = fileList[indexPath.section][indexPath.row]
         let activityVC = UIActivityViewController(activityItems: [fileURL],
                                                   applicationActivities: customActivitiesForShareSheet)
-        activityVC.completionWithItemsHandler = { (_, completed, returnedItems, activityError) in
-            print("Returned: ", returnedItems)
-            activityVC.dismissSelf()
-        }
 
         present(activityVC, animated: true, completion: nil)
         

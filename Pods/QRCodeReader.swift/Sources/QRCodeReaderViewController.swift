@@ -38,6 +38,7 @@ public class QRCodeReaderViewController: UIViewController {
   let showSwitchCameraButton: Bool
   let showTorchButton: Bool
   let showOverlayView: Bool
+  let handleOrientationChange: Bool
 
   // MARK: - Managing the Callback Responders
 
@@ -61,13 +62,14 @@ public class QRCodeReaderViewController: UIViewController {
    - parameter builder: A QRCodeViewController builder object.
    */
   required public init(builder: QRCodeReaderViewControllerBuilder) {
-    readerView             = builder.readerView
-    startScanningAtLoad    = builder.startScanningAtLoad
-    codeReader             = builder.reader
-    showCancelButton       = builder.showCancelButton
-    showSwitchCameraButton = builder.showSwitchCameraButton
-    showTorchButton        = builder.showTorchButton
-    showOverlayView        = builder.showOverlayView
+    readerView              = builder.readerView
+    startScanningAtLoad     = builder.startScanningAtLoad
+    codeReader              = builder.reader
+    showCancelButton        = builder.showCancelButton
+    showSwitchCameraButton  = builder.showSwitchCameraButton
+    showTorchButton         = builder.showTorchButton
+    showOverlayView         = builder.showOverlayView
+    handleOrientationChange = builder.handleOrientationChange
 
     super.init(nibName: nil, bundle: nil)
 
@@ -97,13 +99,14 @@ public class QRCodeReaderViewController: UIViewController {
   }
 
   required public init?(coder aDecoder: NSCoder) {
-    codeReader             = QRCodeReader()
-    readerView             = QRCodeReaderContainer(displayable: QRCodeReaderView())
-    startScanningAtLoad    = false
-    showCancelButton       = false
-    showTorchButton        = false
-    showSwitchCameraButton = false
-    showOverlayView        = false
+    codeReader              = QRCodeReader()
+    readerView              = QRCodeReaderContainer(displayable: QRCodeReaderView())
+    startScanningAtLoad     = false
+    showCancelButton        = false
+    showTorchButton         = false
+    showSwitchCameraButton  = false
+    showOverlayView         = false
+    handleOrientationChange = false
 
     super.init(coder: aDecoder)
   }
@@ -138,8 +141,12 @@ public class QRCodeReaderViewController: UIViewController {
   func orientationDidChange(_ notification: Notification) {
     readerView.view.setNeedsDisplay()
 
-    if let device = notification.object as? UIDevice , codeReader.previewLayer.connection.isVideoOrientationSupported {
-      codeReader.previewLayer.connection.videoOrientation = QRCodeReader.videoOrientation(deviceOrientation: device.orientation, withSupportedOrientations: supportedInterfaceOrientations, fallbackOrientation: codeReader.previewLayer.connection.videoOrientation)
+    if showOverlayView, let qrv = readerView.displayable as? QRCodeReaderView {
+        qrv.overlayView?.setNeedsDisplay()
+    }
+
+    if handleOrientationChange == true, let device = notification.object as? UIDevice, let connection = codeReader.previewLayer.connection, connection.isVideoOrientationSupported {
+      connection.videoOrientation = QRCodeReader.videoOrientation(deviceOrientation: device.orientation, withSupportedOrientations: supportedInterfaceOrientations, fallbackOrientation: connection.videoOrientation)
     }
   }
 
@@ -163,10 +170,10 @@ public class QRCodeReaderViewController: UIViewController {
     // Setup camera preview layer
     codeReader.previewLayer.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
 
-    if codeReader.previewLayer.connection.isVideoOrientationSupported {
+    if let connection = codeReader.previewLayer.connection, connection.isVideoOrientationSupported {
       let orientation = UIDevice.current.orientation
 
-      codeReader.previewLayer.connection.videoOrientation = QRCodeReader.videoOrientation(deviceOrientation: orientation, withSupportedOrientations: supportedInterfaceOrientations)
+      connection.videoOrientation = QRCodeReader.videoOrientation(deviceOrientation: orientation, withSupportedOrientations: supportedInterfaceOrientations)
     }
 
     readerView.displayable.cameraView.layer.insertSublayer(codeReader.previewLayer, at: 0)

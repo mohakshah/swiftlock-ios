@@ -17,6 +17,11 @@ class HomeViewController: UITabBarController
         static let ToFriendPicker = "Home2FriendPicker"
     }
 
+    struct Constants {
+        static let TemporaryLocations: [URL] = [URL(string: "file://" + NSTemporaryDirectory())!,
+                                                FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("Inbox")]
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -67,24 +72,34 @@ class HomeViewController: UITabBarController
                 return
             }
             
+            let fileIsEncrypted: Bool
             do {
-                if try MiniLock.isEncryptedFile(url: url) {
-                    decrypt(url)
-                } else {
-                    // if a vc is on top, dismiss it first
-                    if presentedViewController != nil {
-                        let semaphore = DispatchSemaphore(value: 1)
-                        presentedViewController?.dismiss(animated: true) { semaphore.signal() }
-
-                        // wait for dismissal
-                        semaphore.wait()
-                    }
-
-                    // just segue to the friend picker, it will call the encrypt funciton
-                    performSegue(withIdentifier: SegueIds.ToFriendPicker, sender: nil)
-                }
+                fileIsEncrypted = try MiniLock.isEncryptedFile(url: url)
             } catch (let error) {
                 print(error)
+                return
+            }
+            
+            if fileIsEncrypted {
+                decrypt(url)
+            } else {
+                let semaphore = DispatchSemaphore(value: 0)
+                // if a vc is on top, dismiss it first
+                if presentedViewController != nil {
+                    presentedViewController?.dismiss(animated: true) { semaphore.signal() }
+                } else {
+                    semaphore.signal()
+                }
+                
+                // wait for dismissal in a background queue
+                DispatchQueue(label: "HomeVC.currentFile.didSet").async { [weak self] in
+                    semaphore.wait()
+                    
+                    DispatchQueue.main.async {
+                        // segue to the friend picker, it will call the encrypt funciton
+                        self?.performSegue(withIdentifier: SegueIds.ToFriendPicker, sender: nil)
+                    }
+                }
             }
         }
     }
@@ -98,8 +113,6 @@ class HomeViewController: UITabBarController
     
     fileprivate func decrypt(_ url: URL) {
         print("Decrypting...")
-
-        let fileIsInInbox = isFileInInbox(url: url)
         
         progressHUD = MBProgressHUD.showAdded(to: self.view, animated: true)
         progressHUD!.label.text = Strings.DecryptingMessageInProgressHUD
@@ -127,7 +140,9 @@ class HomeViewController: UITabBarController
 
             var decryptedFile: URL
             do {
-                 decryptedFile = try decryptor.decrypt(destinationDirectory: CurrentUser.shared.decryptedDir, filename: nil, deleteSourceFile: fileIsInInbox)
+                 decryptedFile = try decryptor.decrypt(destinationDirectory: CurrentUser.shared.decryptedDir,
+                                                       filename: nil,
+                                                       deleteSourceFile: HomeViewController.isFileInTemporaryLocation(url: url))
             } catch {
                 DispatchQueue.main.async {
                     self?.progressHUD?.hide(animated: true)
@@ -154,8 +169,6 @@ class HomeViewController: UITabBarController
     fileprivate func encrypt(_ url: URL, to friends: [Friend]) {
         progressHUD = MBProgressHUD.showAdded(to: self.view, animated: true)
         progressHUD!.label.text = Strings.EncryptingMessageInProgressHUD
-        
-        let fileIsInInbox = isFileInInbox(url: url)
 
         var encryptor: MiniLock.FileEncryptor
         do {
@@ -182,7 +195,9 @@ class HomeViewController: UITabBarController
 
             var encryptedFile: URL
             do {
-                encryptedFile = try encryptor.encrypt(destinationDirectory: CurrentUser.shared.encryptedDir, filename: nil, deleteSourceFile: fileIsInInbox)
+                encryptedFile = try encryptor.encrypt(destinationDirectory: CurrentUser.shared.encryptedDir,
+                                                      filename: nil,
+                                                      deleteSourceFile: HomeViewController.isFileInTemporaryLocation(url: url))
             } catch {
                 DispatchQueue.main.async {
                     self?.progressHUD?.hide(animated: true)
@@ -207,12 +222,9 @@ class HomeViewController: UITabBarController
         }
     }
     
-    fileprivate func isFileInInbox(url: URL) -> Bool {
-        let inboxPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-                            .appendingPathComponent("Inbox").path
-        let inboxContents = (try? FileManager.default.contentsOfDirectory(atPath: inboxPath)) ?? []
-        
-        return inboxContents.contains(url.path)
+    fileprivate class func isFileInTemporaryLocation(url: URL) -> Bool {
+        let parentDir = url.deletingLastPathComponent()
+        return Constants.TemporaryLocations.contains(parentDir)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

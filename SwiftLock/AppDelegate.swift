@@ -51,17 +51,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        if url.isFileURL,
-            let homeVC = window?.rootViewController?.mainVC as? HomeViewController {
-            homeVC.handleFile(url: url)
-        }
-
-        return false
+        return openFile(url: url)
     }
 
     func applicationDidReceiveMemoryWarning(_ application: UIApplication) {
         // empty the qrcode cache
         Friend.qrCodeCache.removeAllObjects()
+    }
+    
+    /// Asks HomeVC to handle the file url
+    ///
+    /// - Parameter url: URL to a _file_
+    /// - Returns: returns true if homeVC was successfully handed the url
+    func openFile(url: URL) -> Bool {
+        if url.isFileURL,
+            let homeVC = window?.rootViewController?.mainVC as? HomeViewController {
+            homeVC.handleFile(url: url)
+            return true
+        }
+        
+        return false
+    }
+    
+    /// Convenience class function for the instance method openFile(url: )
+    class func openFile(url: URL) -> Bool {
+        return (UIApplication.shared.delegate as! AppDelegate).openFile(url: url)
     }
 }
 
