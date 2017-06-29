@@ -30,7 +30,8 @@ struct Strings {
     
     static let IconCredits = "File List icon by Chanut is Industries from flaticons.com." + "\n\n" +
         "Multiple-User icon by Freepik from flaticons.com." + "\n\n" +
-        "Settings, Lock and Unlock icon are from https://icons8.com/"
+        "Settings, Lock and Unlock icon are from https://icons8.com/" + "\n\n" +
+        "FileTypeIcons by Roundicons from flaticons.com"
     
     static let PhotoLibrary = "Photo Library"
     static let Camera = "Camera"

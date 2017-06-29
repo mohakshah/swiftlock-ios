@@ -29,6 +29,8 @@
 		71B6342A1EBB91C00099EBAA /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71B634291EBB91C00099EBAA /* FriendListViewController.swift */; };
 		71B8418D1E85BC5200F9C902 /* minilock-icon-large.png in Resources */ = {isa = PBXBuildFile; fileRef = 71B8418B1E85BC5200F9C902 /* minilock-icon-large.png */; };
 		71B8418E1E85BC5200F9C902 /* minilock-icon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 71B8418C1E85BC5200F9C902 /* minilock-icon-small.png */; };
+		71BB44511F030F3F0074FD03 /* FileTypeIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BB44501F030F3F0074FD03 /* FileTypeIcons.swift */; };
+		71BB44531F030F5C0074FD03 /* FileTypeIcons-Roundicons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71BB44521F030F5C0074FD03 /* FileTypeIcons-Roundicons.xcassets */; };
 		71D6F8B21E816A4E003F30A2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D6F8B11E816A4E003F30A2 /* Extensions.swift */; };
 		71D6F8B41E81A96E003F30A2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D6F8B31E81A96E003F30A2 /* Constants.swift */; };
 		71D6F8B71E81AC41003F30A2 /* BlockingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D6F8B51E81AC41003F30A2 /* BlockingView.swift */; };
@@ -67,6 +69,8 @@
 		71B634291EBB91C00099EBAA /* FriendListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
 		71B8418B1E85BC5200F9C902 /* minilock-icon-large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "minilock-icon-large.png"; sourceTree = "<group>"; };
 		71B8418C1E85BC5200F9C902 /* minilock-icon-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "minilock-icon-small.png"; sourceTree = "<group>"; };
+		71BB44501F030F3F0074FD03 /* FileTypeIcons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileTypeIcons.swift; sourceTree = "<group>"; };
+		71BB44521F030F5C0074FD03 /* FileTypeIcons-Roundicons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "FileTypeIcons-Roundicons.xcassets"; sourceTree = "<group>"; };
 		71D6F8B11E816A4E003F30A2 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		71D6F8B31E81A96E003F30A2 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		71D6F8B51E81AC41003F30A2 /* BlockingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockingView.swift; sourceTree = "<group>"; };
@@ -140,6 +144,7 @@
 				714E16A11E7DF1880067F1AC /* Info.plist */,
 				71B8418B1E85BC5200F9C902 /* minilock-icon-large.png */,
 				71B8418C1E85BC5200F9C902 /* minilock-icon-small.png */,
+				71BB44521F030F5C0074FD03 /* FileTypeIcons-Roundicons.xcassets */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -179,6 +184,7 @@
 				71B0F28E1EB6273000734113 /* FriendsDatabase.swift */,
 				710888B61EF87500001C7FBE /* EncryptActivity.swift */,
 				710888B81EF87B26001C7FBE /* DecryptActivity.swift */,
+				71BB44501F030F3F0074FD03 /* FileTypeIcons.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -271,6 +277,7 @@
 			files = (
 				71D6F8B81E81AC41003F30A2 /* BlockingView.xib in Resources */,
 				71B8418E1E85BC5200F9C902 /* minilock-icon-small.png in Resources */,
+				71BB44531F030F5C0074FD03 /* FileTypeIcons-Roundicons.xcassets in Resources */,
 				71A17EB41E808E2A00A5EDCC /* Words.plist in Resources */,
 				71B5D72D1EC99D3100CFA2ED /* Acknowledgements.plist in Resources */,
 				71B8418D1E85BC5200F9C902 /* minilock-icon-large.png in Resources */,
@@ -355,6 +362,7 @@
 				71AF11E61EB33A230045FA64 /* Friend.swift in Sources */,
 				71B0F2971EB63C8400734113 /* SLFileListViewController.swift in Sources */,
 				710888B71EF87500001C7FBE /* EncryptActivity.swift in Sources */,
+				71BB44511F030F3F0074FD03 /* FileTypeIcons.swift in Sources */,
 				71B5D72F1ECB1F4300CFA2ED /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -18,7 +18,7 @@ class FileListViewController: UITableViewController
         }
     }
     
-    // sub-classes can override this var to add custom activities to the share sheet
+    /// sub-classes can override this var to add custom activities to the share sheet
     var customActivitiesForShareSheet: [UIActivity]? {
         return nil
     }
@@ -74,10 +74,14 @@ class FileListViewController: UITableViewController
                                                                      eventMask: DispatchSource.FileSystemEvent.write,
                                                                      queue: DispatchQueue.global(qos: .utility))
             
-            watcher.setEventHandler { [weak weakSelf = self] in
+            watcher.setEventHandler { [weak self] in
                 DispatchQueue.main.async {
-                    weakSelf?.updateFileList()
+                    self?.updateFileList()
                 }
+            }
+            
+            watcher.setCancelHandler() {
+                close(fd)
             }
             
             watcher.resume()
@@ -121,10 +125,20 @@ class FileListViewController: UITableViewController
         cell.detailTextLabel?.text = fileList[indexPath.section][indexPath.row].fileSize
         
         cell.backgroundColor = tableView.backgroundColor
-
-        cell.imageView?.image = UIDocumentInteractionController(url: fileList[indexPath.section][indexPath.row]).icons.first
+        
+        cell.imageView?.image = image(forFile: fileList[indexPath.section][indexPath.row])
 
         return cell
+    }
+    
+    
+    /// Returns an image appropriate to be the icon of `file`
+    /// Sub-classes can override to use custom icons
+    ///
+    /// - Parameter file: URL of the file for which the icon is to be generated
+    /// - Returns: UIImage to use as icon or nil if none could be found
+    func image(forFile file: URL) -> UIImage? {
+        return UIDocumentInteractionController(url: file).icons.first
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

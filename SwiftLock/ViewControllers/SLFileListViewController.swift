@@ -40,6 +40,10 @@ class SLFileListViewController: FileListViewController {
         self.tabBarItem.title = "Files"
     }
     
+    override func image(forFile file: URL) -> UIImage? {
+        return FileTypeIcons.icon(forFileWithExtension: file.pathExtension) ?? FileTypeIcons.defaultIcon
+    }
+    
     // add encryption and decryption options to the share sheet
     fileprivate let cryptoActivities: [UIActivity] = [EncryptActivity(), DecryptActivity()]
     override var customActivitiesForShareSheet: [UIActivity]? {

@@ -1,0 +1,22 @@
+{
+  "name": "FileTypeIcons",
+  "version": "0.1.0",
+  "summary": "A short description of FileTypeIcons.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/mohakshah/FileTypeIcons",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Mohak Shah": "mohak@mohakshah.in"
+  },
+  "source": {
+    "git": "https://github.com/mohakshah/FileTypeIcons.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "FileTypeIcons/Classes/**/*"
+}

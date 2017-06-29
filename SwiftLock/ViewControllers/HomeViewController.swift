@@ -158,6 +158,7 @@ class HomeViewController: UITabBarController
                 }
                 
                 strongSelf.progressHUD?.hide(animated: true)
+                strongSelf.fileListVC?.tableView?.reloadData()          // updates the file size in FileListVC
                 let activityVC = UIActivityViewController(activityItems: [decryptedFile], applicationActivities: nil)
                 activityVC.modalPresentationStyle = .popover
                 
@@ -214,6 +215,7 @@ class HomeViewController: UITabBarController
                 }
 
                 strongSelf.progressHUD?.hide(animated: true)
+                strongSelf.fileListVC?.tableView?.reloadData()          // updates the file size in FileListVC
                 let activityVC = UIActivityViewController(activityItems: [encryptedFile], applicationActivities: nil)
                 activityVC.modalPresentationStyle = .popover
                 
@@ -233,6 +235,20 @@ class HomeViewController: UITabBarController
             friendPicker.delegate = self
         }
     }
+    
+    lazy var fileListVC: SLFileListViewController? = {
+        if let viewControllers = self.viewControllers {
+            for vc in viewControllers {
+                if let fileListVC = vc.mainVC as? SLFileListViewController {
+                    print("Found fileList!")
+                    return fileListVC
+                }
+            }
+        }
+        
+        print("FileListVC not found!")
+        return nil
+    }()
 }
 
 extension HomeViewController: FriendPickerDelegate {
