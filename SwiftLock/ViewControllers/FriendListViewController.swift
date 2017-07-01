@@ -37,10 +37,12 @@ class FriendListViewController: UITableViewController
         
         tableView.allowsMultipleSelectionDuringEditing = true
 
+        // setup 'addButton' and 'deleteButton'
         addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addFriend))
         deleteButton = UIBarButtonItem(title: Strings.Delete, style: .plain, target: self, action: #selector(deleteSelected))
         deleteButton!.tintColor = .red
         
+        // add 'addButton' and editButton to the navigation bar
         self.navigationItem.leftBarButtonItem = self.editButtonItem
         self.navigationItem.rightBarButtonItem = addButton
         
@@ -50,11 +52,13 @@ class FriendListViewController: UITableViewController
     }
     
     @objc fileprivate func userLoggedIn() {
+        // Create a new Friend with the default name and newly logged in user's public id and update the currentUser
         currentUser = Friend(name: Constants.NameForCurrentUser, id: CurrentUser.shared.keyPair!.publicId)
         tableView.reloadData()
     }
     
     @objc fileprivate func userLoggedOut() {
+        // In case we are displaying a Friend's details, go back to the root VC
         self.navigationController?.popToRootViewController(animated: true)
         tableView.reloadData()
     }
@@ -67,11 +71,12 @@ class FriendListViewController: UITableViewController
         let sheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         // option to scan qr code
-        sheet.addAction(UIAlertAction(title: Strings.ScanQRCode, style: .default) { [weak self] (_) in
-            self?.present(self!.qrReaderVC, animated: true, completion: nil)
-        })
-        
-        
+        if AVCaptureDevice.devices(withMediaType: AVMediaTypeVideo).count > 0 {
+            sheet.addAction(UIAlertAction(title: Strings.ScanQRCode, style: .default) { [weak self] (_) in
+                self?.present(self!.qrReaderVC, animated: true, completion: nil)
+            })
+        }
+
         // option to enter details manually
         sheet.addAction(UIAlertAction(title: Strings.EnterManually, style: .default) { [weak self] (_) in
             self?.performSegue(withIdentifier: Constants.AddFriendSegue, sender: nil)
@@ -163,6 +168,7 @@ extension FriendListViewController
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         
+        // switch between 'deleteButton' and 'addButton'
         if editing {
             self.navigationItem.rightBarButtonItem = deleteButton
         } else {
@@ -188,18 +194,22 @@ extension FriendListViewController
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let friendVC = segue.destination.mainVC as? FriendViewController {
+        if segue.identifier == Constants.FriendVCSegue,
+            let friendVC = segue.destination.mainVC as? FriendViewController {
             if selectedIndex.section == 0 {
+                // display the current user's details
                 friendVC.friend = currentUser
                 friendVC.isViewingCurrentUser = true
                 friendVC.isEditable = false                 // TODO: Remove once user prefs can be saved in a db 
             } else {
+                // display the details of the friend selected
                 friendVC.friend = CurrentUser.shared.friendsDb?.friends[selectedIndex.row]
                 friendVC.isEditable = true
             }
 
             friendVC.delegate = self
-        } else if let addVC = segue.destination.mainVC as? FriendEditController {
+        } else if segue.identifier == Constants.AddFriendSegue,
+            let addVC = segue.destination.mainVC as? FriendEditController {
             addVC.delegate = self
         }
     }
@@ -212,9 +222,11 @@ extension FriendListViewController: FriendViewDelegate {
             // TODO: Save the new username to user preferences
             currentUser = newFriend
         } else {
+            // remove the old one and insert the new one
             CurrentUser.shared.friendsDb?.friends.remove(at: selectedIndex.row)
             CurrentUser.shared.friendsDb?.insertSorted(friend: newFriend)
         }
+
         tableView.reloadData()
     }
 }
@@ -226,6 +238,7 @@ extension FriendListViewController: FriendEditDelegate {
     }
     
     func friendEditController(_ editor: FriendEditController, didEditFriend newFriend: Friend) {
+        // insert the manually entered info to the database
         CurrentUser.shared.friendsDb?.insertSorted(friend: newFriend)
         dismiss(animated: true) { [weak self] in self?.tableView.reloadData() }
     }
@@ -237,6 +250,7 @@ extension FriendListViewController: QRCodeReaderViewControllerDelegate {
         // vibrate the phone
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         
+        // Try to create a Friend object from the value of the scanned QR Code
         guard let newFriend = Friend(fromQRCodeScheme: result.value) else {
             // alert and continue scanning
             let alertVC = UIAlertController(title: Strings.InvalidQRCode, message: Strings.TryAgain, preferredStyle: .alert)

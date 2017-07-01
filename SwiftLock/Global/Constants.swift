@@ -21,13 +21,11 @@ struct NotificationNames {
     static let UserLoggedOut = "SLUserDidLogout"
 }
 
-struct BinarySizes {
-    static let KB = 1 << 10
-    static let MB = 1 << 20
-    static let GB = 1 << 30
-}
-
 extension UIColor {
+    /// Initializes a UIColor object from an array of RGB hex characters with alpha channel set to 1.0.
+    ///
+    /// - Parameter hex: An array of 6 hex characters such as [f, f, 0, 0, f, f]
+    /// Note: if the input is invalid, a UIColor(white: 1.0, alpha: 1.0) is returned
     convenience init(fromHex hex: [Character]) {
         guard hex.count == 6 else {
             self.init(white: 1.0, alpha: 1.0)

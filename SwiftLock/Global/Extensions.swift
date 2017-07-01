@@ -24,6 +24,11 @@ extension UIView {
 // MARK: - UIViewController
 extension UIViewController
 {
+    /// Presents an UIAlertController with a title, message and an O.K. button that dismisses the alert
+    ///
+    /// - Parameters:
+    ///   - title: Title of the alert
+    ///   - message: Detailed message of the alert
     func alert(withTitle title: String, message: String?) {
         DispatchQueue.main.async { [weak weakSelf = self] in
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -33,10 +38,15 @@ extension UIViewController
         }
     }
     
+    /// Calls dismiss on presenting VC
     func dismissSelf() {
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
+    /// Adds a BlockingView with a message to the root view of self
+    ///
+    /// - Parameter message: The message to display in the view
+    /// - Returns: Returns the BlockingView that was just added.
     func addBlockingView(withMessage message: String?) -> BlockingView? {
         if let blockingView = Bundle.main.loadNibNamed("BlockingView", owner: nil, options: nil)?.first as? BlockingView {
             blockingView.frame = view.bounds
@@ -48,6 +58,7 @@ extension UIViewController
         return nil
     }
     
+    /// If self is a UINavigationController, returns the rootVC of self. Otherwise returns slef
     var mainVC: UIViewController {
         if let rootVC = (self as? UINavigationController)?.viewControllers.first {
             return rootVC
@@ -56,6 +67,9 @@ extension UIViewController
         return self
     }
     
+    /// Adds an observer in notification center for notification named 'NotificationNames.UserLoggedIn'
+    ///
+    /// - Parameter selector: The selector called when the notification is broadcast
     func onLoginCall(_ selector: Selector) {
         let loginNotification = Notification.Name(NotificationNames.UserLoggedIn)
         
@@ -65,6 +79,9 @@ extension UIViewController
                                                object: nil)
     }
     
+    /// Adds an observer in notification center for notification named 'NotificationNames.UserLoggedOut'
+    ///
+    /// - Parameter selector: The selector called when the notification is broadcast
     func onLogoutCall(_ selector: Selector) {
         let logoutNotification = Notification.Name(NotificationNames.UserLoggedOut)
         
@@ -78,7 +95,13 @@ extension UIViewController
 
 
 extension String {
-    // courtesy: http://stackoverflow.com/a/34454633/4590902
+    /// Adds 'seperator' after every 'n' characters in self
+    /// courtesy: http://stackoverflow.com/a/34454633/4590902
+    ///
+    /// - Parameters:
+    ///   - seperator: The string to insert after 'n' characters
+    ///   - n: No. of characters to group
+    /// - Returns: The string with seperators inserted
     func adding(seperator: String, afterCharacters n: Int) -> String {
         var seperatedString = ""
         

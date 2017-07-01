@@ -45,4 +45,9 @@ struct Strings {
     static let CameraAuthorizationRestrictedMessage = "Your organization has restricted this app's access to the camera."
     static let CameraAuthorizationDeniedTitle = "Error opening the camera"
     static let CameraAuthorizationDeniedMessage = "To allow this app to open the camera, go to iPhone's Settings→Privacy→Camera and turn on access to this app."
+    
+    static let ErrorDeletingMultipleFilesTitle = "Error Deleting!"
+    static let ErrorDeletingMultipleFilesMessagePrefix = "Could not delete "
+    
+    static let TheConjunctionAnd = "and"
 }

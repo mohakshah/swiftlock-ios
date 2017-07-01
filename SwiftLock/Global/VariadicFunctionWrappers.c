@@ -8,6 +8,10 @@
 
 #include "VariadicFunctionWrappers.h"
 
+
+/**
+ Simple wrapper around the variadic 'open' function.
+ */
 int
 vfw_open(const char *path, int oflag) {
     return open(path, oflag);

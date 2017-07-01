@@ -11,6 +11,10 @@ import UIKit
 
 class FileTypeIcons
 {
+    /// Returns a UIImage suitable as an icon for a file with extension 'extnsn'
+    ///
+    /// - Parameter extnsn: A file's extension
+    /// - Returns: UIImage of the icon for that file or nil if it's an unknown extension
     class func icon(forFileWithExtension extnsn: String) -> UIImage? {
         switch extnsn.lowercased() {
         case "aac":

@@ -13,6 +13,7 @@ protocol FriendViewDelegate {
     func friendViewDelegate(_ viewer: FriendViewController, didEditFriendTo newFriend: Friend)
 }
 
+/// Displays details of a Friend object like name, id, QRCode and provides the option to share using the standard share sheet
 class FriendViewController: UITableViewController
 {
     struct Constants {
@@ -36,7 +37,7 @@ class FriendViewController: UITableViewController
         items.append(text)
 
         // convert the CIImage of the qrCode to CGImage so that it can be shared
-        if let ciImage = friend.qrCode(ofSize: Constants.QRCodeShareSize)?.ciImage,
+        if let ciImage = friend.qrCodeCI,
             let cgImage = CIContext().createCGImage(ciImage, from: ciImage.extent) {
             items.append(UIImage(cgImage: cgImage))
         }
@@ -55,20 +56,25 @@ class FriendViewController: UITableViewController
     }
     
     var delegate: FriendViewDelegate?
+    
+    // A parent VC can set this to allow/disallow editing of the Friend
     var isEditable: Bool = true {
         didSet {
             self.navigationItem.rightBarButtonItem?.isEnabled = isEditable
         }
     }
     
+    // A parent VC can set this to just allow editing the name and not the miniLock Id
     var isViewingCurrentUser: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // configure the tableView
         tableView.estimatedRowHeight = 64
         tableView.rowHeight = UITableViewAutomaticDimension
 
+        // add edit button to the navigation bar
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editContact))
         self.navigationItem.rightBarButtonItem?.isEnabled = isEditable
         

@@ -22,13 +22,17 @@ class FileListViewController: UITableViewController
     var customActivitiesForShareSheet: [UIActivity]? {
         return nil
     }
+    
+    var deleteButton, rightBarButton: UIBarButtonItem?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.allowsMultipleSelection = true
+        tableView.allowsMultipleSelectionDuringEditing = true
 
         self.navigationItem.leftBarButtonItem = self.editButtonItem
+        deleteButton = UIBarButtonItem(title: Strings.Delete, style: .plain, target: self, action: #selector(deleteSelectedFiles))
+        deleteButton!.tintColor = .red
     }
 
     fileprivate func updateFileList() {
@@ -150,15 +154,14 @@ class FileListViewController: UITableViewController
                 alert(withTitle: "Error deleting file.", message: error.localizedDescription)
                 return
             }
-
-            tableView.beginUpdates()
-            fileList[indexPath.section].remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            tableView.endUpdates()
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard !self.isEditing else {
+            return
+        }
+
         let fileURL = fileList[indexPath.section][indexPath.row]
         let activityVC = UIActivityViewController(activityItems: [fileURL],
                                                   applicationActivities: customActivitiesForShareSheet)
@@ -166,10 +169,49 @@ class FileListViewController: UITableViewController
         present(activityVC, animated: true, completion: nil)
         
         activityVC.modalPresentationStyle = .popover
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        if editing {
+            rightBarButton = self.navigationItem.rightBarButtonItem
+            self.navigationItem.rightBarButtonItem = deleteButton
+        } else {
+            self.navigationItem.rightBarButtonItem = rightBarButton
+        }
+    }
     
-
+    @objc fileprivate func deleteSelectedFiles() {
+        if let indices = tableView.indexPathsForSelectedRows {
+            let urlsToDelete = indices.map { fileList[$0.section][$0.row] }
+            
+            var failedURLS = [URL]()
+            for url in urlsToDelete {
+                do {
+                    try FileManager.default.removeItem(at: url)
+                } catch {
+                    print("Failed to delte", url, "with error:", error)
+                    failedURLS.append(url)
+                }
+            }
+            
+            if !failedURLS.isEmpty {
+                if failedURLS.count == 1 {
+                    alert(withTitle: Strings.ErrorDeletingMultipleFilesTitle,
+                          message: Strings.ErrorDeletingMultipleFilesMessagePrefix + failedURLS.first!.lastPathComponent)
+                } else {
+                    let last = failedURLS.removeLast().lastPathComponent
+                    let failedFilenameList = failedURLS.map({$0.lastPathComponent}).joined(separator: ",").appending(" " + Strings.TheConjunctionAnd + " " + last)
+                    
+                    alert(withTitle: Strings.ErrorDeletingMultipleFilesTitle,
+                          message: Strings.ErrorDeletingMultipleFilesMessagePrefix + failedFilenameList)
+                }
+            }
+        }
+    }
 }
 
 fileprivate extension URL {

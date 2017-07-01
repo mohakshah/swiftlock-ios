@@ -35,6 +35,8 @@ class LoginViewController: UIViewController
     @IBOutlet weak var emailField: SkyFloatingLabelTextField! {
         didSet {
             emailField?.delegate = self
+            
+            // populate with test email
             #if DEBUG
                 emailField?.text = "example@example.com"
             #endif
@@ -44,6 +46,8 @@ class LoginViewController: UIViewController
     @IBOutlet weak var passwordField: SkyFloatingLabelTextField! {
         didSet {
             passwordField?.delegate = self
+            
+            // populate with test password
             #if DEBUG
                 passwordField?.text = "demolished protocol climbs woodcut ampere"
             #endif
@@ -57,7 +61,6 @@ class LoginViewController: UIViewController
         }
         
         guard validatePasswordField() else {
-            // suggest a password
             passwordField.becomeFirstResponder()
             return
         }
@@ -66,25 +69,34 @@ class LoginViewController: UIViewController
         let password = passwordField.text!
         
         blockUIForKeyGeneration()
-        DispatchQueue.global(qos: .userInteractive).async { [weak weakSelf = self] in
+        
+        // go off the main Q
+        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+            // try and generate a MiniLock.KeyPair from the email and password that the user entered
             guard let keyPair = MiniLock.KeyPair(fromEmail: email, andPassword: password) else {
                 DispatchQueue.main.async {
-                    weakSelf?.unblockUI()
-                    weakSelf?.alert(withTitle: Strings.KeyGenerationFailedTitle, message: Strings.KeyGenerationFailedMessage)
+                    // unblock the UI and alert the user
+                    self?.unblockUI()
+                    self?.alert(withTitle: Strings.KeyGenerationFailedTitle, message: Strings.KeyGenerationFailedMessage)
                 }
                 
                 return
             }
 
-            print(keyPair.publicId)
+            #if DEBUG
+                print(keyPair.publicId)
+            #endif
+            
+            // login with the keypair we just generated and unblock the UI
             CurrentUser.shared.login(withKeyPair: keyPair, email: email)
             DispatchQueue.main.async {
-                weakSelf?.unblockUI()
+                self?.unblockUI()
             }
         }
     }
     
     @IBAction func switchPasswordViewingState(_ sender: Any) {
+        // inverts the state of passwordField's secureTextEntry and passwordStateSwitch's highlight
         passwordStateSwitch.isHighlighted = !passwordStateSwitch.isHighlighted
         passwordField.isSecureTextEntry = !passwordField.isSecureTextEntry
     }
@@ -150,10 +162,14 @@ class LoginViewController: UIViewController
     // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == SegueIds.ToSuggester, let navVC = segue.destination as? UINavigationController, let suggesterVC = navVC.mainVC as? PassphraseSuggesterViewController {
+            // set self as the delegate
             suggesterVC.delegate = self
             
+            // setup the modal presentation to show a popover even in a CompactWidth environment
             navVC.modalPresentationStyle = .popover
             navVC.preferredContentSize = CGSize(width: 256, height: 128)
+            
+            // setup the popover presentation
             if let ppc = navVC.popoverPresentationController {
                 ppc.delegate = self
                 ppc.permittedArrowDirections = .any
@@ -199,7 +215,7 @@ extension LoginViewController: UITextFieldDelegate {
             passwordField.errorMessage = nil
             return true
         } else {
-            passwordField.errorMessage = "Passphrase is weak"
+            passwordField.errorMessage = "Passphrase is weak. Try one of the suggested passphrases."
             return false
         }
     }
@@ -266,6 +282,7 @@ extension LoginViewController: PassphraseSuggesterDelegate {
 
 // MARK: - UIPopoverPresentationControllerDelegate
 extension LoginViewController: UIPopoverPresentationControllerDelegate {
+    // This is to make sure that the popover does not expand to full screen even in a CompactWidth environment
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return .none
     }

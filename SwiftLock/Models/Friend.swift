@@ -10,75 +10,81 @@ import Foundation
 import MiniLockCore
 import ObjectMapper
 
-struct Friend: Mappable {
-    private var _name: String!
-    private var _id: MiniLock.Id!
-    
-    var name: String {
-        return _name
-    }
-    var id: MiniLock.Id {
-        return _id
-    }
+/// Structure that holds a person's name and MiniLock Id
+struct Friend: ImmutableMappable {
+    let name: String
+    let id: MiniLock.Id
 
     init(name: String, id: MiniLock.Id) {
-        self._name = name
-        self._id = id
+        self.name = name
+        self.id = id
     }
     
     // MARK: - JSON Mapping
     
-    init?(map: Map) {
-        if map.JSON["name"] == nil || map.JSON["id"] == nil {
-            return nil
+    init(map: Map) throws {
+        name = try map.value("name")
+        let idString: String = try map.value("id")
+        
+        guard let id = MiniLock.Id(fromBase58String: idString) else {
+            throw MapError(key: nil, currentValue: nil, reason: nil)
         }
-    }
-
-    mutating func mapping(map: Map) {
-        _name   <- map["name"]
-        _id     <- (map["id"], Friend.id2B58Transform)
+        
+        self.id = id
     }
     
-    static let id2B58Transform = TransformOf<MiniLock.Id, String>(fromJSON: { (string) -> MiniLock.Id? in
-        guard let string = string else {
-            return nil
-        }
-        return MiniLock.Id(fromBase58String: string)
-    }, toJSON: { (id) -> String? in
-        return id?.base58String
-    })
+    func mapping(map: Map) {
+        name >>> map["name"]
+        id.base58String >>> map["id"]
+    }
     
     // MARK: - QRCode Encoding
+    
+    // Cache to hold the qrcodes
     static let qrCodeCache = NSCache<NSString, CIImage>()
     
+    /// Generates a QRCode image of this friend
+    ///
+    /// - Parameter size: Dimension of the required QR Code
+    /// - Returns: UIImage of the qrCode generated or nil in case of error
     func qrCode(ofSize size: CGSize) -> UIImage? {
-        if let ciImage = qrCode() {
+        // get the CIImage version of the QR Code
+        if let ciImage = qrCodeCI {
+            // transform the CIImage to the requested dimensions and return the UIImage
             let transform = CGAffineTransform(scaleX: size.width / ciImage.extent.size.width,
                                               y: size.height / ciImage.extent.size.height)
+
             return UIImage(ciImage: ciImage.applying(transform))
         }
+
         return nil
     }
-    
-    func qrCode() -> CIImage? {
-        let scheme = qrCodeScheme()
+
+    /// CIImage of the friend's qrCode or nil in case of error
+    var qrCodeCI: CIImage? {
+        // check if the CIImage is already in 'qrCodeCache'
+        let scheme = qrCodeScheme
         if let ciImage = Friend.qrCodeCache.object(forKey: scheme as NSString) {
+            // return the cached version
             return ciImage
         }
 
+        // create a new CIImage
         let filter = CIFilter(name: "CIQRCodeGenerator")!
         let data = Data(scheme.utf8)
         filter.setValue(data, forKey: "inputMessage")
         
         if let ciImage = filter.outputImage {
+            // add it to cache and return it
             Friend.qrCodeCache.setObject(ciImage, forKey: scheme as NSString)
             return ciImage
         }
         
         return nil
     }
-    
-    func qrCodeScheme() -> String {
+
+    /// Returns the friend's name and base58 id encoded in the scheme used for generating QRCode
+    fileprivate var qrCodeScheme: String {
         let escapedName = name.replacingOccurrences(of: ";", with: "\\;").replacingOccurrences(of: ":", with: "\\:")
         return "SL:N:" + escapedName + ";I:" + id.base58String + ";;"
     }
@@ -86,6 +92,7 @@ struct Friend: Mappable {
     // MARK: - QRCode Decoding
     private static let b58Digits = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
     
+    /// The pattern to use for parsing the QR Code scheme
     private static let pattern = "^(?:SL:)(?:N:)" // (tags) match "SL:N:" but _don't_include_ in results
 
                         // (Name) match 1 or more characters except ':' & ';'. Those characters are accepted only if escaped with '\'
@@ -99,25 +106,35 @@ struct Friend: Mappable {
         
                         // (tags) match the ending ";;" but _don't_include_ in results
                         + "(?:;;)$"
-    
+
     private static let qrCodeSchemeRegex = try! NSRegularExpression(pattern: pattern, options: [])
     
+    /// Decodes 'scheme' and returns the name and MiniLock id stored in it
+    ///
+    /// - Parameter scheme: The scheme retrieved from the QR Code
+    /// - Returns: name and id encoded in the stream
     static func decodeQRCodeScheme(_ scheme: String) -> (name: String, id: MiniLock.Id)? {
+        // match the whole string
         guard let match = qrCodeSchemeRegex.firstMatch(in: scheme,
                                                        options: [],
                                                        range: NSRange(location: 0, length: scheme.characters.count)) else {
                                                         return nil
         }
         
+        // make sure no. of matches is as expectd
         guard match.numberOfRanges == 3 else {
             return nil
         }
 
+        // extract name
         let name = (scheme as NSString).substring(with: match.rangeAt(1))
                                         .replacingOccurrences(of: "\\;", with: ";")
                                         .replacingOccurrences(of: "\\:", with: ":")
         
+        // extract base58 id string
         let b58 = (scheme as NSString).substring(with: match.rangeAt(2))
+        
+        // create an id object
         guard let id = MiniLock.Id(fromBase58String: b58) else {
             return nil
         }
@@ -131,7 +148,7 @@ struct Friend: Mappable {
             return nil
         }
         
-        self._name = name
-        self._id = id
+        self.name = name
+        self.id = id
     }
 }

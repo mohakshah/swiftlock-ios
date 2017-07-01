@@ -37,6 +37,8 @@ class FriendEditController: UITableViewController
     }
     
     var delegate: FriendEditDelegate? = nil
+    
+    // A parent VC can set this to false to just allow editing the name and not the miniLock Id
     var canEditId: Bool = true {
         didSet {
             idField?.isUserInteractionEnabled = canEditId
@@ -46,6 +48,7 @@ class FriendEditController: UITableViewController
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // add 'done' and 'cancel' buttons to the navigation bar
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancel))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
     }
@@ -55,13 +58,17 @@ class FriendEditController: UITableViewController
     }
     
     @objc private func done() {
+        // Get username
         guard let name = nameField.text, !name.isEmpty else {
+            // Display error
             nameField.errorMessage = "Invalid"
             nameField.becomeFirstResponder()
             return
         }
         
+        // Get miniLock Id
         guard let b58 = idField.text, !b58.isEmpty, let id = MiniLock.Id(fromBase58String: b58) else {
+            // display error
             idField.errorMessage = "Invalid"
             idField.becomeFirstResponder()
             return
@@ -74,8 +81,4 @@ class FriendEditController: UITableViewController
         nameField?.text = friend?.name
         idField?.text = friend?.id.base58String
     }
-}
-
-extension FriendEditController: UITextViewDelegate {
-    
 }

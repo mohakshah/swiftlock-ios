@@ -23,6 +23,7 @@ class PassphraseSuggesterViewController: UIViewController
     
     // MARK: - properties
     fileprivate lazy var wordList: [String] = {
+        // load the words from 'Words.plist' file as an array
         if let url = Bundle.main.url(forResource: "Words", withExtension: "plist"),
             let words = NSArray(contentsOf: url) as? [String] {
             return words
@@ -64,17 +65,19 @@ class PassphraseSuggesterViewController: UIViewController
     }
     
     @objc fileprivate func accept() {
+        // notifiy the delegate of the selected password
         if let password = passphraseField.text, !password.isEmpty {
             delegate?.passphraseSuggester(self, didSelectPassword: password)
         }
     }
     
     @objc fileprivate func generateNewPassphrase() {
+        // can't do anything without the words
         if wordList.isEmpty {
             return
         }
 
-        // add "wordsToSelect" no. of words to an array
+        // create an array of 'wordsToSelect' no. of randomly selected words from 'wordsList'
         var words = [String]()
         for _ in 0..<wordsToSelect {
             let random = Int(randombytes_uniform(UInt32(wordList.count)))

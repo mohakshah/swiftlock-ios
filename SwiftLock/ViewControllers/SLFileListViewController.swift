@@ -24,14 +24,16 @@ class SLFileListViewController: FileListViewController {
         onLoginCall(#selector(userLoggedIn))
         onLogoutCall(#selector(userLoggedOut))
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(openGallery))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(presentFileSourceList))
     }
     
     @objc fileprivate func userLoggedIn() {
-        self.directories = [CurrentUser.shared.encryptedDir, CurrentUser.shared.decryptedDir]
+        // List contents of user's Encrypted and Decrypted Directories
+        self.directories = [CurrentUser.shared.decryptedDir, CurrentUser.shared.encryptedDir]
     }
     
     @objc fileprivate func userLoggedOut() {
+        // List no directories
         self.directories = []
     }
     
@@ -41,6 +43,7 @@ class SLFileListViewController: FileListViewController {
     }
     
     override func image(forFile file: URL) -> UIImage? {
+        // provide custom file type icons
         return FileTypeIcons.icon(forFileWithExtension: file.pathExtension) ?? FileTypeIcons.defaultIcon
     }
     
@@ -50,13 +53,17 @@ class SLFileListViewController: FileListViewController {
         return cryptoActivities
     }
     
-    @objc fileprivate func openGallery() {
+    // MARK: - Gallery Options
+    
+    @objc fileprivate func presentFileSourceList() {
         present(fileSourceList, animated: true, completion: nil)
     }
     
+    /// Shows the user various sources from where they can import a file
     fileprivate lazy var fileSourceList: UIAlertController = {
         var alertVC = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
+        // photo library action if available
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let action = UIAlertAction(title: Strings.PhotoLibrary, style: UIAlertActionStyle.default) { [weak self] _ in
                 self?.showPhotoLibrary()
@@ -65,6 +72,7 @@ class SLFileListViewController: FileListViewController {
             alertVC.addAction(action)
         }
         
+        // camera action if available
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let action = UIAlertAction(title: Strings.Camera, style: UIAlertActionStyle.default) { [weak self] _ in
                 self?.showCamera()
@@ -73,6 +81,7 @@ class SLFileListViewController: FileListViewController {
             alertVC.addAction(action)
         }
 
+        // dismiss action
         let action = UIAlertAction(title: Strings.Cancel, style: UIAlertActionStyle.cancel, handler: nil)
         alertVC.addAction(action)
         
@@ -81,7 +90,9 @@ class SLFileListViewController: FileListViewController {
         return alertVC
     }()
     
+    /// Displays the user's photo library. Asks for authorization first, if that's required
     fileprivate func showPhotoLibrary() {
+        // check and handle the authorization status
         switch PHPhotoLibrary.authorizationStatus() {
         case .denied:
             alert(withTitle: Strings.PhotoLibraryAuthorizationDeniedTitle, message: Strings.PhotoLibraryAuthorizationDeniedMessage)
@@ -105,19 +116,23 @@ class SLFileListViewController: FileListViewController {
         }
 
         // if we got this far, then we should have the authorization
+
+        // setup the imagePicker
         imagePicker.sourceType = .photoLibrary
-        
         imagePicker.modalPresentationStyle = .popover
         
         present(imagePicker, animated: true, completion: nil)
         
+        // setup the popover presentation
         if let ppc = imagePicker.popoverPresentationController {
             ppc.permittedArrowDirections = .any
             ppc.barButtonItem = self.navigationItem.rightBarButtonItem
         }
     }
     
+    /// Displays the user's camera. Asks for authorization first, if that's required
     fileprivate func showCamera() {
+        // check and handle the authorization status
         switch AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo) {
         case .denied:
             alert(withTitle: Strings.PhotoLibraryAuthorizationDeniedTitle, message: Strings.PhotoLibraryAuthorizationDeniedMessage)
@@ -141,15 +156,19 @@ class SLFileListViewController: FileListViewController {
         }
         
         // if we got this far, then we should have the authorization
+        
+        // setup the imagePicker
         imagePicker.sourceType = .camera
         imagePicker.modalPresentationStyle = .fullScreen
         
         present(imagePicker, animated: true, completion: nil)
     }
     
+    // The UIImagePickerController to display user's photo library and camera
     lazy var imagePicker: UIImagePickerController = {
         let imagePicker = UIImagePickerController()
         
+        // configure imagePicker
         imagePicker.mediaTypes = [kUTTypeImage as String]
         imagePicker.allowsEditing = false
         imagePicker.delegate = self
@@ -158,21 +177,24 @@ class SLFileListViewController: FileListViewController {
     }()
 }
 
+// MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
 extension SLFileListViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        // dismiss imagePicker
         dismiss(animated: true) {
+            // get the image user selected
             guard let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
                 return
             }
             
+            // convert it to JPEG
             guard let jpegData = UIImageJPEGRepresentation(selectedImage, Constants.JPEGQuality) else {
                 print("Error converting the selected image to JPEG")
                 return
             }
 
             // get fd and path of a unique temp file
-            let tempURL: URL?
-            let (tempFD, tempPath) = GlobalUtils.getTempFileDescriptorAndPath(withFileExtension: "jpg", in: nil)
+            let (tempFD, tempPath) = GlobalUtils.createUniqueFile(withExtension: "jpg", in: nil)
             guard tempFD != -1 else {
                 // report error
                 return
@@ -184,13 +206,13 @@ extension SLFileListViewController: UIImagePickerControllerDelegate, UINavigatio
             tempHandle.closeFile()
             
             // create url object from tempPath
-            tempURL = URL(string: "file://" + String(cString: tempPath))
-            guard tempURL != nil else {
+            guard let tempURL = URL(string: "file://" + String(cString: tempPath)) else {
                 print("Could not convert tempPath to URL object!")
                 return
             }
             
-            _ = AppDelegate.openFile(url: tempURL!)
+            // let AppDelegate handle the file now
+            _ = AppDelegate.openFile(url: tempURL)
         }
     }
 

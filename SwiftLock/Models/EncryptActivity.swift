@@ -24,6 +24,7 @@ class EncryptActivity: UIActivity
     }
     
     override func canPerform(withActivityItems activityItems: [Any]) -> Bool {
+        // return true if the first item in activityItems is a URL to a miniLock encrypted file
         if let url = activityItems.first as? URL {
             if (try? !MiniLock.isEncryptedFile(url: url)) ?? false {
                 return true
@@ -34,6 +35,7 @@ class EncryptActivity: UIActivity
     }
     
     override func prepare(withActivityItems activityItems: [Any]) {
+        // let AppDelgate handle the file
         if let url = activityItems.first as? URL {
             _ = AppDelegate.openFile(url: url)
         }
