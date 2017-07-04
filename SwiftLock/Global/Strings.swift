@@ -23,8 +23,6 @@ struct Strings {
     
     static let DecryptingMessageInProgressHUD = "Decrypting File"
     static let EncryptingMessageInProgressHUD = "Encrypting File"
-    static let ErrorEncryptingFile = "Error trying to encrypt the file"
-    static let ErrorDecryptingFile = "Error trying to decrypt the file"
     
     static let TryingToOpenFileWhenLoggedOut = "You must first log in to encrypt/decrypt a file"
     
@@ -50,4 +48,17 @@ struct Strings {
     static let ErrorDeletingMultipleFilesMessagePrefix = "Could not delete "
     
     static let TheConjunctionAnd = "and"
+    
+    static let FileEncryptionSuccessTitle = "Done!"
+    static let FileEncryptionSuccessBodyPrefix = "File recipients: "
+    static let FileEncryptionSuccessCurrentUserCanDecrypt = "You can decrypt this file."
+    static let FileEncryptionSuccessCurrentUserCanNotDecrypt = "You can not decrypt this file."
+
+    static let FileEncryptionFailureTitle = "Error!"
+
+    static let FileDecryptionSuccessTitle = "Done!"
+    static let FileDecryptionSuccessBodyPrefix = "File encrypted by: "
+    static let FileDecryptionSuccessBodyWhenSelfIsSender = "You encrypted this file yourself!"
+    
+    static let FileDecryptionFailureTitle = "Error!"
 }

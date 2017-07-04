@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import MiniLockCore
 
 // MARK: - UIView extension
 extension UIView {
@@ -116,5 +116,13 @@ extension String {
         }
         
         return seperatedString
+    }
+}
+
+/// Verbose description of the errors
+extension MiniLock.Errors: LocalizedError {
+    public var errorDescription: String? {
+        // use the builtin English descriptions
+        return NSLocalizedString(String(describing: self), comment: "")
     }
 }

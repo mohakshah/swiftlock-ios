@@ -15,6 +15,8 @@
 		714E169D1E7DF1880067F1AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 714E169C1E7DF1880067F1AC /* Assets.xcassets */; };
 		714E16A01E7DF1880067F1AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 714E169E1E7DF1880067F1AC /* LaunchScreen.storyboard */; };
 		715EB3D81EC06F6F00AE04F4 /* FriendPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 715EB3D71EC06F6F00AE04F4 /* FriendPickerViewController.swift */; };
+		7178823C1F090D5600B81D48 /* FinalStatusSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7178823B1F090D5600B81D48 /* FinalStatusSheet.swift */; };
+		7178823E1F090D6100B81D48 /* FinalStatusSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7178823D1F090D6100B81D48 /* FinalStatusSheet.xib */; };
 		71A108EE1E98C0E00083FA66 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A108ED1E98C0E00083FA66 /* CurrentUser.swift */; };
 		71A108F21E98C6A00083FA66 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A108F11E98C6A00083FA66 /* HomeViewController.swift */; };
 		71A108F41E9A863C0083FA66 /* FileListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71A108F31E9A863C0083FA66 /* FileListViewController.swift */; };
@@ -53,8 +55,10 @@
 		714E169F1E7DF1880067F1AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		714E16A11E7DF1880067F1AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		715EB3D71EC06F6F00AE04F4 /* FriendPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendPickerViewController.swift; sourceTree = "<group>"; };
+		7178823B1F090D5600B81D48 /* FinalStatusSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FinalStatusSheet.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		7178823D1F090D6100B81D48 /* FinalStatusSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FinalStatusSheet.xib; sourceTree = "<group>"; };
 		71A108ED1E98C0E00083FA66 /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
-		71A108F11E98C6A00083FA66 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		71A108F11E98C6A00083FA66 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = HomeViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		71A108F31E9A863C0083FA66 /* FileListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileListViewController.swift; sourceTree = "<group>"; };
 		71A108F51E9AD0E20083FA66 /* SwiftLock-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftLock-Bridging-Header.h"; sourceTree = "<group>"; };
 		71A108F91E9AD1CD0083FA66 /* VariadicFunctionWrappers.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = VariadicFunctionWrappers.c; sourceTree = "<group>"; };
@@ -124,7 +128,6 @@
 			isa = PBXGroup;
 			children = (
 				714E16991E7DF1880067F1AC /* Main.storyboard */,
-				71A17EB31E808E2A00A5EDCC /* Words.plist */,
 				71D6F8BB1E81ACB0003F30A2 /* Global */,
 				71AF11E41EB339F00045FA64 /* Models */,
 				71AA59511EAA1FBE008436C0 /* View Controllers */,
@@ -137,6 +140,7 @@
 		715B57A91E7DF2AD00A57B0C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				71A17EB31E808E2A00A5EDCC /* Words.plist */,
 				71B5D72C1EC99D3100CFA2ED /* Acknowledgements.plist */,
 				714E16951E7DF1880067F1AC /* AppDelegate.swift */,
 				714E169C1E7DF1880067F1AC /* Assets.xcassets */,
@@ -172,6 +176,8 @@
 			children = (
 				71D6F8B51E81AC41003F30A2 /* BlockingView.swift */,
 				71D6F8B61E81AC41003F30A2 /* BlockingView.xib */,
+				7178823B1F090D5600B81D48 /* FinalStatusSheet.swift */,
+				7178823D1F090D6100B81D48 /* FinalStatusSheet.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -281,6 +287,7 @@
 				71A17EB41E808E2A00A5EDCC /* Words.plist in Resources */,
 				71B5D72D1EC99D3100CFA2ED /* Acknowledgements.plist in Resources */,
 				71B8418D1E85BC5200F9C902 /* minilock-icon-large.png in Resources */,
+				7178823E1F090D6100B81D48 /* FinalStatusSheet.xib in Resources */,
 				714E16A01E7DF1880067F1AC /* LaunchScreen.storyboard in Resources */,
 				714E169D1E7DF1880067F1AC /* Assets.xcassets in Resources */,
 				714E169B1E7DF1880067F1AC /* Main.storyboard in Resources */,
@@ -362,6 +369,7 @@
 				71AF11E61EB33A230045FA64 /* Friend.swift in Sources */,
 				71B0F2971EB63C8400734113 /* SLFileListViewController.swift in Sources */,
 				710888B71EF87500001C7FBE /* EncryptActivity.swift in Sources */,
+				7178823C1F090D5600B81D48 /* FinalStatusSheet.swift in Sources */,
 				71BB44511F030F3F0074FD03 /* FileTypeIcons.swift in Sources */,
 				71B5D72F1ECB1F4300CFA2ED /* SettingsViewController.swift in Sources */,
 			);

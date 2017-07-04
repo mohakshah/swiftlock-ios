@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina3_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="FinalStatusSheet" customModule="SwiftLock" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6hY-Xd-Tbk" userLabel="Translucency View">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O5Z-aZ-pcU" userLabel="CenteringView">
+                    <rect key="frame" x="3" y="0.0" width="314.5" height="480"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bbw-LK-RfD" userLabel="CardView">
+                            <rect key="frame" x="20" y="52" width="274.5" height="408"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NHp-zP-ZNc">
+                                    <rect key="frame" x="0.0" y="49" width="274.5" height="33.5"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F3C-kk-zaH">
+                                    <rect key="frame" x="8" y="90" width="258.5" height="232"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <mutableString key="text">On July 16, 1969, the Apollo 11 spacecraft launched from the Kennedy Space Center in Florida. Its mission was to go where no human being had gone before - the moon! The crew consisted of Neil Armstrong, Michael Collins, and Buzz Aldrin. The spacecraft landed on the moon in the Sea of Tranquility, a basaltic flood plain, on July 20, 1969. The moonwalk took place the following day. On July 21, 1969, at precisely 10:56 EDT, Commander Neil Armstrong emerged from the Lunar Module and took his famous first step onto the moon’s surface. He declared, “That’s one small step for man, one giant leap for mankind.” It was a monumental moment in human history!</mutableString>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="SYO-mg-LRj">
+                                    <rect key="frame" x="8" y="90" width="258.5" height="232"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <mutableString key="text">On July 16, 1969, the Apollo 11 spacecraft launched from the Kennedy Space Center in Florida. Its mission was to go where no human being had gone before - the moon! The crew consisted of Neil Armstrong, Michael Collins, and Buzz Aldrin. The spacecraft landed on the moon in the Sea of Tranquility, a basaltic flood plain, on July 20, 1969. The moonwalk took place the following day. On July 21, 1969, at precisely 10:56 EDT, Commander Neil Armstrong emerged from the Lunar Module and took his famous first step onto the moon’s surface. He declared, “That’s one small step for man, one giant leap for mankind.” It was a monumental moment in human history</mutableString>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
+                                <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Emg-hq-PWa">
+                                    <rect key="frame" x="20" y="350" width="234.5" height="38"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ztp-So-ezL">
+                                            <rect key="frame" x="0.0" y="0.0" width="113.5" height="38"/>
+                                            <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                            <state key="normal" title=" Share ">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j6O-lH-X6p">
+                                            <rect key="frame" x="121.5" y="0.0" width="113" height="38"/>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                            <state key="normal" title="O.K.">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="SYO-mg-LRj" firstAttribute="leading" secondItem="F3C-kk-zaH" secondAttribute="leading" id="55a-Th-9sJ"/>
+                                <constraint firstItem="Emg-hq-PWa" firstAttribute="leading" secondItem="Bbw-LK-RfD" secondAttribute="leading" constant="20" symbolic="YES" id="5uT-af-WSa"/>
+                                <constraint firstAttribute="trailing" secondItem="Emg-hq-PWa" secondAttribute="trailing" constant="20" symbolic="YES" id="CKp-2h-6wL"/>
+                                <constraint firstItem="F3C-kk-zaH" firstAttribute="top" secondItem="NHp-zP-ZNc" secondAttribute="bottom" constant="8" symbolic="YES" id="JHD-GI-nVZ"/>
+                                <constraint firstItem="Emg-hq-PWa" firstAttribute="top" secondItem="F3C-kk-zaH" secondAttribute="bottom" constant="28" id="M7a-9H-70I"/>
+                                <constraint firstAttribute="trailing" secondItem="F3C-kk-zaH" secondAttribute="trailing" constant="8" id="NSt-He-3DU"/>
+                                <constraint firstAttribute="bottom" secondItem="Emg-hq-PWa" secondAttribute="bottom" constant="20" symbolic="YES" id="NY2-kq-HcW"/>
+                                <constraint firstItem="SYO-mg-LRj" firstAttribute="bottom" secondItem="F3C-kk-zaH" secondAttribute="bottom" id="Qgs-Cw-40M"/>
+                                <constraint firstItem="F3C-kk-zaH" firstAttribute="leading" secondItem="Bbw-LK-RfD" secondAttribute="leading" constant="8" id="VrG-EO-CWh"/>
+                                <constraint firstItem="NHp-zP-ZNc" firstAttribute="top" secondItem="Bbw-LK-RfD" secondAttribute="top" constant="49" id="csE-wP-bfV"/>
+                                <constraint firstItem="NHp-zP-ZNc" firstAttribute="leading" secondItem="Bbw-LK-RfD" secondAttribute="leading" id="ikg-cv-Cwr"/>
+                                <constraint firstAttribute="trailing" secondItem="NHp-zP-ZNc" secondAttribute="trailing" id="kFo-Rd-TJr"/>
+                                <constraint firstItem="SYO-mg-LRj" firstAttribute="top" secondItem="F3C-kk-zaH" secondAttribute="top" id="mdQ-Hf-LPd"/>
+                                <constraint firstItem="SYO-mg-LRj" firstAttribute="trailing" secondItem="F3C-kk-zaH" secondAttribute="trailing" id="qyA-cj-u0L"/>
+                            </constraints>
+                        </view>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Green Checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="2D9-Q8-djJ">
+                            <rect key="frame" x="125" y="20" width="64" height="64"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="64" id="Byn-xB-d18"/>
+                                <constraint firstAttribute="width" secondItem="2D9-Q8-djJ" secondAttribute="height" id="oTk-cs-QiN"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="Bbw-LK-RfD" secondAttribute="bottom" constant="20" id="Ifq-3b-XC9"/>
+                        <constraint firstItem="2D9-Q8-djJ" firstAttribute="centerX" secondItem="O5Z-aZ-pcU" secondAttribute="centerX" id="N0t-7K-BB2"/>
+                        <constraint firstItem="Bbw-LK-RfD" firstAttribute="top" secondItem="O5Z-aZ-pcU" secondAttribute="top" constant="52" id="cLl-dI-J1f"/>
+                        <constraint firstItem="2D9-Q8-djJ" firstAttribute="top" secondItem="O5Z-aZ-pcU" secondAttribute="top" constant="20" id="rFV-ei-Enj"/>
+                        <constraint firstAttribute="trailing" secondItem="Bbw-LK-RfD" secondAttribute="trailing" constant="20" id="rXy-Pc-Xh2"/>
+                        <constraint firstItem="Bbw-LK-RfD" firstAttribute="leading" secondItem="O5Z-aZ-pcU" secondAttribute="leading" constant="20" id="rxq-7k-x6d"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="6hY-Xd-Tbk" secondAttribute="bottom" id="0HM-r3-paV"/>
+                <constraint firstAttribute="trailing" secondItem="6hY-Xd-Tbk" secondAttribute="trailing" id="2mb-AH-yH8"/>
+                <constraint firstItem="O5Z-aZ-pcU" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="6Na-gP-TJ0"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="O5Z-aZ-pcU" secondAttribute="bottom" id="A6q-GN-9KP"/>
+                <constraint firstItem="O5Z-aZ-pcU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" id="Did-At-cJE"/>
+                <constraint firstItem="O5Z-aZ-pcU" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="SGR-fx-MuE"/>
+                <constraint firstItem="6hY-Xd-Tbk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="fK8-s8-zpo"/>
+                <constraint firstItem="6hY-Xd-Tbk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="mc5-L1-Q98"/>
+                <constraint firstItem="O5Z-aZ-pcU" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="top" id="mzy-Qq-ZLd"/>
+            </constraints>
+            <connections>
+                <outlet property="bodyTextView" destination="SYO-mg-LRj" id="Uf4-Ua-Rsv"/>
+                <outlet property="checkMarkImage" destination="2D9-Q8-djJ" id="ySg-mv-ntb"/>
+                <outlet property="labelToGuideBodyTextView" destination="F3C-kk-zaH" id="eay-G6-fKb"/>
+                <outlet property="okButton" destination="j6O-lH-X6p" id="xLi-S8-0hI"/>
+                <outlet property="shareButton" destination="Ztp-So-ezL" id="4di-io-VBe"/>
+                <outlet property="titleLabel" destination="NHp-zP-ZNc" id="LXt-0A-vqJ"/>
+                <outlet property="translucencyView" destination="6hY-Xd-Tbk" id="x2n-gF-OKS"/>
+            </connections>
+            <point key="canvasLocation" x="36" y="71"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Green Checkmark" width="64" height="64"/>
+    </resources>
+</document>

@@ -112,6 +112,9 @@ class HomeViewController: UITabBarController
                 return
             }
             
+            // if a status sheet is up, dismiss it
+            dismissFinalStatusSheet()
+            
             // check whether file is encrypted or not
             let fileIsEncrypted: Bool
             do {
@@ -162,7 +165,7 @@ class HomeViewController: UITabBarController
         } catch {
             // handle init errors
             progressHUD?.hide(animated: true)
-            alert(withTitle: Strings.ErrorDecryptingFile, message: error as? String)
+            showErrorSheet(withTitle: Strings.FileDecryptionFailureTitle, body: error.localizedDescription)
             currentFile = nil
 
             return
@@ -187,7 +190,7 @@ class HomeViewController: UITabBarController
                 // hide progressHUD and alert the user
                 DispatchQueue.main.async {
                     self?.progressHUD?.hide(animated: true)
-                    self?.alert(withTitle: Strings.ErrorDecryptingFile, message: error as? String)
+                    self?.showErrorSheet(withTitle: Strings.FileDecryptionFailureTitle, body: error.localizedDescription)
                 }
                 return
             }
@@ -197,15 +200,26 @@ class HomeViewController: UITabBarController
                 guard let strongSelf = self else {
                     return
                 }
-                
+
+                // hide progressHUD and update the file size in FileListVC
                 strongSelf.progressHUD?.hide(animated: true)
-                strongSelf.fileListVC?.tableView?.reloadData()          // updates the file size in FileListVC
+                strongSelf.fileListVC?.tableView?.reloadData()
+
+                // create a string for the body of the FinalStatusSheet
+                var body: String
                 
-                // show a share sheet for the file that was just decrypted
-                let activityVC = UIActivityViewController(activityItems: [decryptedFile], applicationActivities: nil)
-                activityVC.modalPresentationStyle = .popover
+                if decryptor.sender == CurrentUser.shared.keyPair?.publicId {
+                    body = Strings.FileDecryptionSuccessBodyWhenSelfIsSender
+                } else if let name = CurrentUser.shared.friendsDb?.friends.filter({ $0.id == decryptor.sender }).first?.name {
+                    body = Strings.FileDecryptionSuccessBodyPrefix + name
+                } else {
+                    body = Strings.FileDecryptionSuccessBodyPrefix + decryptor.sender.base58String
+                }
                 
-                strongSelf.present(activityVC, animated: true, completion: nil)
+                // show a FinalStatusSheet
+                strongSelf.showSuccessSheet(forFileURL: decryptedFile,
+                                            title: Strings.FileDecryptionSuccessTitle,
+                                            body: body)
             }
         }
     }
@@ -229,7 +243,7 @@ class HomeViewController: UITabBarController
         } catch {
             // handle init errors
             progressHUD?.hide(animated: true)
-            alert(withTitle: Strings.ErrorEncryptingFile, message: error as? String)
+            showErrorSheet(withTitle: Strings.FileEncryptionFailureTitle, body: error.localizedDescription)
             currentFile = nil
 
             return
@@ -255,7 +269,7 @@ class HomeViewController: UITabBarController
                 DispatchQueue.main.async {
                     // hide progressHUD and alert the user
                     self?.progressHUD?.hide(animated: true)
-                    self?.alert(withTitle: Strings.ErrorEncryptingFile, message: error as? String)
+                    self?.showErrorSheet(withTitle: Strings.FileEncryptionFailureTitle, body: error.localizedDescription)
                 }
 
                 return
@@ -266,15 +280,23 @@ class HomeViewController: UITabBarController
                 guard let strongSelf = self else {
                     return
                 }
-
+                
+                // hide progressHUD, update the file size in FileListVC and show a FinalStatusSheet
                 strongSelf.progressHUD?.hide(animated: true)
-                strongSelf.fileListVC?.tableView?.reloadData()          // updates the file size in FileListVC
+                strongSelf.fileListVC?.tableView?.reloadData()
                 
-                // show a share sheet for the file that was just encrypted
-                let activityVC = UIActivityViewController(activityItems: [encryptedFile], applicationActivities: nil)
-                activityVC.modalPresentationStyle = .popover
-                
-                strongSelf.present(activityVC, animated: true, completion: nil)
+                var body: String = Strings.FileEncryptionSuccessBodyPrefix + friends.map({ $0.name}).joined(separator: ", ")
+
+                // Let the user know whether they can decrypt the file in the future or not
+                if friends.filter({ $0.id == CurrentUser.shared.keyPair?.publicId }).first != nil {
+                    body += "\n" + Strings.FileEncryptionSuccessCurrentUserCanDecrypt
+                } else {
+                    body += "\n" + Strings.FileEncryptionSuccessCurrentUserCanNotDecrypt
+                }
+
+                strongSelf.showSuccessSheet(forFileURL: encryptedFile,
+                                            title: Strings.FileEncryptionSuccessTitle,
+                                            body: body)
             }
         }
     }
@@ -292,6 +314,136 @@ class HomeViewController: UITabBarController
         
         return nil
     }()
+    
+    // MARK: - Success/Failure Sheets
+    
+    /// Holds the FinalStatusSheet currently displayed
+    var statusSheetBeingDisplayed: FinalStatusSheet?
+    
+    /// This is the URL that will be shared when the share button of FinalStatusSheet is tapped
+    var latestFileSuccessfullyProcessed: URL?
+
+    /// Displays a FinalStatusSheet configured for _successful_ events
+    ///
+    /// - Parameters:
+    ///   - url: URL of the file that was successfully processed. This will be shared when the user taps the 'Share' button
+    ///   - title: The title of the sheet
+    ///   - body: The body of the sheet
+    private func showSuccessSheet(forFileURL url: URL, title: String, body: String) {
+        latestFileSuccessfullyProcessed = url
+
+        let successView = initSuccessSheet(withTitle: title, body: body)
+        presentSheet(successView)
+        
+        self.statusSheetBeingDisplayed = successView
+    }
+    
+    /// Displays a FinalStatusSheet configured for _unsuccessful_ events
+    ///
+    /// - Parameters:
+    ///   - title: The title of the sheet
+    ///   - body: The body of the sheet
+    private func showErrorSheet(withTitle title: String, body: String) {
+        let errorSheet = initErrorSheet(withTitle: title, body: body)
+        presentSheet(errorSheet)
+        
+        self.statusSheetBeingDisplayed = errorSheet
+    }
+    
+    /// Returns a FinalStatusSheet configured for _successful_ events
+    ///
+    /// - Parameters:
+    ///   - title: The title of the sheet
+    ///   - body: The body of the sheet
+    private func initSuccessSheet(withTitle title: String, body: String) -> FinalStatusSheet {
+        let successSheet = Bundle.main.loadNibNamed("FinalStatusSheet", owner: nil, options: nil)?.first as! FinalStatusSheet
+        
+        successSheet.title = title
+        successSheet.body = body
+
+        successSheet.okButton.addTarget(self, action: #selector(dismissFinalStatusSheet), for: .touchUpInside)
+        successSheet.shareButton.addTarget(self, action: #selector(successViewShareButtonTapped), for: .touchUpInside)
+        
+        return successSheet
+    }
+    
+    /// Returns a FinalStatusSheet configured for _unsuccessful_ events
+    ///
+    /// - Parameters:
+    ///   - title: The title of the sheet
+    ///   - body: The body of the sheet
+    private func initErrorSheet(withTitle title: String, body: String) -> FinalStatusSheet {
+        let errorSheet = initSuccessSheet(withTitle: title, body: body)
+        errorSheet.convertToErrorView()
+        
+        return errorSheet
+    }
+    
+    /// Presents a FinalStatusSheet with animation adding it to self.view
+    ///
+    /// - Parameter sheet: The sheet to present
+    private func presentSheet(_ sheet: FinalStatusSheet) {
+        // position at bottom of the view (outside the screen) initially
+        var initialFrame = self.view.bounds
+        initialFrame.origin = CGPoint(x: view.bounds.minX, y: view.bounds.maxY)
+        sheet.frame = initialFrame
+        
+        // remove the background translucency during animation
+        sheet.backgroundTranslucency = 0.0
+        
+        self.view.addSubview(sheet)
+        
+        UIView.animate(withDuration: 0.5,
+                       delay: 0.0,
+                       usingSpringWithDamping: 0.5,
+                       initialSpringVelocity: 0.5,
+                       options: .beginFromCurrentState,
+                       animations: { sheet.frame = self.view.bounds })
+        { _ in
+            // make the sheet's background translucent again once the animation is complete
+            UIView.animate(withDuration: 0.1, animations: {
+                sheet.backgroundTranslucency = FinalStatusSheet.Constants.DefaultBackgroundTranslucency
+            })
+        }
+    }
+    
+    /// Shares the URL 'latestFileSuccessfullyProcessed' with a share sheet
+    @objc private func successViewShareButtonTapped() {
+        // dismiss the sheet
+        dismissFinalStatusSheet()
+
+        // show a share sheet for the file that was just encrypted
+        let activityVC = UIActivityViewController(activityItems: [latestFileSuccessfullyProcessed!], applicationActivities: nil)
+        activityVC.modalPresentationStyle = .popover
+        
+        present(activityVC, animated: true, completion: nil)
+    }
+    
+    /// Dismisses 'statusSheetBeingDisplayed' with animation and removes it  from self.view
+    @objc private func dismissFinalStatusSheet() {
+        guard let finalStatusSheet = statusSheetBeingDisplayed else {
+            return
+        }
+        
+        // remove translucency before dismissing
+        finalStatusSheet.backgroundTranslucency = 0.0
+
+        // the final frame starts from the botton of the screen
+        var finalFrame = self.view.bounds
+        finalFrame.origin = CGPoint(x: view.bounds.minX, y: view.bounds.maxY)
+        
+        // animate with a spring effect
+        UIView.animate(withDuration: 0.5,
+                       delay: 0.0,
+                       usingSpringWithDamping: 0.5,
+                       initialSpringVelocity: 0.5,
+                       options: .beginFromCurrentState,
+                       animations: { finalStatusSheet.frame = finalFrame })
+        { (_) in
+            // remove from superview after completion
+            finalStatusSheet.removeFromSuperview()
+        }
+    }
 }
 
 // MARK: - FriendPickerDelegate
