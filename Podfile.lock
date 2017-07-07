@@ -3,7 +3,7 @@ PODS:
   - libbase58 (0.1.4)
   - libsodium (1.0.12)
   - MBProgressHUD (1.0.0)
-  - MiniLockCore (0.1.0):
+  - MiniLockCore (0.9.0):
     - libb2s (~> 1.0)
     - libbase58 (~> 0.1)
     - libsodium (~> 1.0)
@@ -11,33 +11,29 @@ PODS:
   - ObjectMapper (2.2.7)
   - QRCodeReader.swift (7.4.3)
   - RFAboutView-Swift (2.0.1)
-  - SkyFloatingLabelTextField (3.1.0)
+  - SkyFloatingLabelTextField (3.2.0)
   - zxcvbn-ios (1.0.4)
 
 DEPENDENCIES:
   - MBProgressHUD (~> 1.0.0)
-  - MiniLockCore (from `../MiniLockCore`)
+  - MiniLockCore (~> 0.9)
   - QRCodeReader.swift (~> 7.4.1)
   - RFAboutView-Swift (~> 2.0.1)
   - SkyFloatingLabelTextField (~> 3.0)
   - zxcvbn-ios (~> 1.0)
-
-EXTERNAL SOURCES:
-  MiniLockCore:
-    :path: "../MiniLockCore"
 
 SPEC CHECKSUMS:
   libb2s: becf51d56fef21f4e7892821bc2eb0baf87af0ab
   libbase58: 7c040313537b8c44b6e2d15586af8e21f7354efd
   libsodium: 9a8faa5ef2fa0d2d57bd7f7d79bf8fb7c1a9f0ea
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
-  MiniLockCore: 768adf0c14583bec199e8954cd76e4bf00ade895
+  MiniLockCore: d8e73ba9c445086301efdfe32bdd5fd1a06cb5c1
   ObjectMapper: 65abcfd9a61cf7396cbd14a4fb22fddfcc46577e
   QRCodeReader.swift: 4a1d46f3057b1b6fc555578b2dc9f2dc99c7ccda
   RFAboutView-Swift: dc31db0e7bc890ab6c9e1ca8f50e8f97bdba9622
-  SkyFloatingLabelTextField: 26a92ad407044dd5a7c3e4e348738ff0991514fe
+  SkyFloatingLabelTextField: 4e2d2f7160af660ed1da6bb9d0027b5c474b4b79
   zxcvbn-ios: fef98b7c80f1512ff0eec47ac1fa399fc00f7e3c
 
-PODFILE CHECKSUM: faa0696cc075e9ba6d4087570236851e2fd4a11b
+PODFILE CHECKSUM: f9442af7d7660b39626ca6fab26f233d293f0204
 
 COCOAPODS: 1.2.1

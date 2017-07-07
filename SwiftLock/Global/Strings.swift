@@ -58,7 +58,7 @@ struct Strings {
 
     static let FileDecryptionSuccessTitle = "Done!"
     static let FileDecryptionSuccessBodyPrefix = "File encrypted by: "
-    static let FileDecryptionSuccessBodyWhenSelfIsSender = "You encrypted this file yourself!"
+    static let FileDecryptionSuccessBodyWhenSelfIsSender = "You encrypted this file to yourself!"
     
     static let FileDecryptionFailureTitle = "Error!"
 }

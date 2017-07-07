@@ -10,9 +10,10 @@ target 'SwiftLock' do
   pod 'QRCodeReader.swift', '~> 7.4.1'
   pod 'MBProgressHUD', '~> 1.0.0'
   pod 'RFAboutView-Swift', '~> 2.0.1'
-  
+  pod 'MiniLockCore', '~> 0.9'
+
   # MiniLockCore Dev
-  pod 'MiniLockCore', :path => '../MiniLockCore'
+  # pod 'MiniLockCore', :path => '../MiniLockCore'
 end
 
 post_install do |installer|

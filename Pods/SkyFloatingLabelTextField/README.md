@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/Skyscanner/SkyFloatingLabelTextField.svg?branch=master)](https://travis-ci.org/Skyscanner/SkyFloatingLabelTextField)
 [![Coverage Status](https://coveralls.io/repos/github/Skyscanner/SkyFloatingLabelTextField/badge.svg?branch=master)](https://coveralls.io/github/Skyscanner/SkyFloatingLabelTextField?branch=master)
 [![Pod Platform](https://img.shields.io/cocoapods/p/SkyFloatingLabelTextField.svg?style=flat)](https://cocoapods.org/pods/SkyFloatingLabelTextField)
-[![Pod License](https://img.shields.io/cocoapods/l/SkyFloatingLabelTextField.svg?style=flat)](https://github.com/SkyFloatingLabelTextField/blob/master/LICENSE.md)
+[![Pod License](https://img.shields.io/cocoapods/l/SkyFloatingLabelTextField.svg?style=flat)](https://github.com/Skyscanner/SkyFloatingLabelTextField/blob/master/LICENSE)
 
 [![Pod Version](https://img.shields.io/cocoapods/v/SkyFloatingLabelTextField.svg?style=flat)](https://cocoapods.org/pods/SkyFloatingLabelTextField)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
@@ -176,7 +176,7 @@ $ gem install cocoapods
 Then simply add `SkyFloatingLabelTextField` to your Podfile:
 
 ```
-pod 'SkyFloatingLabelTextField', '~> 2.0.0'
+pod 'SkyFloatingLabelTextField', '~> 3.0'
 ```
 
 Lastly, let CocoaPods fetch the latest version of the component by running:
@@ -192,7 +192,7 @@ When integrating the component into an Objective C project, in the Podfile add `
 use_frameworks!
 
 target 'SkyFloatingLabelTextFieldObjectiveCExample' do
-  pod 'SkyFloatingLabelTextField', '~> 2.0.0'
+  pod 'SkyFloatingLabelTextField', '~> 3.0'
 end
 ```
 
