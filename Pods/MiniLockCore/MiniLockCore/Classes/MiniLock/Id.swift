@@ -11,16 +11,21 @@ import libb2s
 
 extension MiniLock
 {
+    /// A structure to hold a miniLock Id
     public struct Id: CustomStringConvertible, Equatable
     {
+        /// The raw bytes of the id. These will be the Ed25519 public key followed by the key's checksum
         public let binary: [UInt8]
+        
+        /// Returns the base58 encoded id suitable for sharing
         public let description: String
         
+        /// Returns the base58 encoded id suitable for sharing
         public var base58String: String {
             return description
         }
         
-        /// Initializes MiniLock.Id from a binary Ed25519 public key
+        /// Returns a MiniLock.Id initialized from a binary Ed25519 public key
         ///
         /// - Parameter binary: Ed25519 public key
         /// - Returns: nil on invalid input size
@@ -30,7 +35,7 @@ extension MiniLock
             }
             
             // calculate the checksum of the key
-            var checkSum = [UInt8](repeating: 0, count: KeySizes.PublicKeyCheckSum)
+            let checkSum = [UInt8](repeating: 0, count: KeySizes.PublicKeyCheckSum)
             blake2s(UnsafeMutablePointer(mutating: checkSum),
                     binary,
                     nil,
@@ -43,11 +48,12 @@ extension MiniLock
         }
         
         
-        /// Initializes MiniLock.Id from a base58 encoded string
+        /// Returns a MiniLock.Id initialized from a base58 encoded string
         ///
         /// - Parameter b58String: base58 encoded id
         /// - Returns: nil on invalid input string
         public init?(fromBase58String b58String: String) {
+            // decode the base58 string
             guard let binary = Base58.decode(b58String),
                 binary.count == (KeySizes.PublicKey + KeySizes.PublicKeyCheckSum) else {
                     return nil

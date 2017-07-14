@@ -10,7 +10,8 @@ import Foundation
 import libsodium
 
 extension MiniLock {
-    struct FileFormat {
+    /// Contains the constants used in miniLock's file format.
+    public struct FileFormat {
         static let Version = 1
         static let PlainTextBlockMaxBytes = 1048576
         static let FileNonceBytes = 16

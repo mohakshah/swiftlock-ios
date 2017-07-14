@@ -30,7 +30,7 @@ extension MiniLock
             try! self.init(key: fileKey)
         }
 
-        /// Initialize with key and a random nonce
+        /// Initialize with a provide encryption key and a random nonce
         ///
         /// - Parameter key: encryptionkey to use
         /// - Throws: throws if size of key is invalid
@@ -90,20 +90,16 @@ extension MiniLock
             }
 
             // update blake2s
-            cipherText.withUnsafeBytes { (cipherTextBytesPointer) in
-                _ = withUnsafeMutablePointer(to: &blake2SState) { (statePointer) in
-                    blake2s_update(statePointer, cipherTextBytesPointer, cipherText.count)
-                }
+            cipherText.withUnsafeBytes { (cipherTextBytesPointer) -> Void in
+                blake2s_update(blake2SStatePointer, cipherTextBytesPointer, cipherText.count)
             }
             
 
             if isLastBlock {
                 // finalize and extract the hash
-                _ = withUnsafeMutablePointer(to: &blake2SState) { (statePointer) in
-                    blake2s_final(statePointer,
-                                  UnsafeMutablePointer(mutating: _cipherTextHash),
-                                  StreamCryptoBase.Blake2sOutputLength)
-                }
+                blake2s_final(blake2SStatePointer,
+                              UnsafeMutablePointer(mutating: _cipherTextHash),
+                              StreamCryptoBase.Blake2sOutputLength)
             }
 
             return cipherText

@@ -18,7 +18,7 @@ MiniLockCore is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "MiniLockCore"
+pod "MiniLockCore", '~> 0.9'
 ```
 
 ## Usage
@@ -34,13 +34,13 @@ let keyPair = MiniLock.KeyPair(fromEmail: email, andPassword: password)!
 
 ```swift
 do {
-    let encryptor = try MiniLock.FileEncryptor(fileURL: url,
+    let encryptor = try MiniLock.FileEncryptor(fileURL: urlOfSourceFile,
                                                sender: CurrentUser.keyPair!,
                                                recipients: [recipientId1, recipientId2] )
 
-    let encryptedFileURL = try encryptor.encrypt(destinationDirectory: CurrentUser.shared.encryptedDir,
-                                                 filename: nil,
-                                                 deleteSourceFile: url.isFileInTemporaryLocation)
+    let encryptedFileURL = try encryptor.encrypt(destinationDirectory: urlOfDestinationDirectory,
+                                                 filename: "foo.miniLock",
+                                                 deleteSourceFile: false)
 } catch {
     print("Error encrypting:", error)
 }

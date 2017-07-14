@@ -18,6 +18,8 @@ extension MiniLock
         static let PrivateKey = crypto_box_secretkeybytes()
     }
     
+    /// A structure to hold a set of miniLock public and private keys.
+    /// The public key is stored as a MiniLock.Id and the private key is stored using the SecureBytes class.
     public struct KeyPair
     {
         struct ScryptParameters {
@@ -32,9 +34,9 @@ extension MiniLock
         public let privateKey: SecureBytes
         public let publicId: MiniLock.Id
         
-        /// Initializes a keypair from an existing private key
+        /// Returns a KeyPair object initialized from an existing private key
         ///
-        /// - Returns: fails if privatekey length != KeySizes.PrivateKey
+        /// - Returns: nil if privatekey length != KeySizes.PrivateKey
         public init?(fromPrivateKey privateKey: SecureBytes) {
             if privateKey.length != KeySizes.PrivateKey {
                 return nil
@@ -48,9 +50,9 @@ extension MiniLock
             self.privateKey = privateKey
         }
         
-        /// Initializes a keypair using a user's email id and password
+        /// Returns a KeyPair object initialized from a user's email id and password.
         ///
-        /// - Returns: initialization can fail if scrypt algorithm fails
+        /// - Returns: nil if scrypt algorithm fails
         public init?(fromEmail email: String, andPassword password: String) {
             // hash the password using blake2s
             let blake2sInput = [UInt8](password.utf8)

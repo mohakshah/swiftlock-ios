@@ -45,10 +45,8 @@ extension MiniLock
             }
 
             // calculate the hash of cipherblock
-            cipherBlock.withUnsafeBytes { (cipherBlockPointer) in
-                _ = withUnsafeMutablePointer(to: &blake2SState) { (statePointer) in
-                    blake2s_update(statePointer, cipherBlockPointer, cipherBlock.count)
-                }
+            cipherBlock.withUnsafeBytes { (cipherBlockPointer) -> Void in
+                blake2s_update(blake2SStatePointer, cipherBlockPointer, cipherBlock.count)
             }
             
 
@@ -59,9 +57,7 @@ extension MiniLock
                 _processStatus = .succeeded
 
                 // finalise blake2s and save the result
-                _ = withUnsafeMutablePointer(to: &blake2SState) { (statePointer) in
-                    blake2s_final(statePointer, UnsafeMutablePointer(mutating: _cipherTextHash), StreamCryptoBase.Blake2sOutputLength)
-                }
+                blake2s_final(blake2SStatePointer, UnsafeMutablePointer(mutating: _cipherTextHash), StreamCryptoBase.Blake2sOutputLength)
             }
 
             // attempt to decrypt cipher text

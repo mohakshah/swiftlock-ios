@@ -15,19 +15,25 @@ import libsodium
 /// On deallocation, the memory holding the bytes is zeroed
 /// by sodium_free before the bytes are freed.
 ///
-/// Note: The memory be zeroed and freed only on deinitialization.
-///       Since this is a class, any dangling reference to it will
-///       prevent deinitialization.
-public class SecureBytes {
-    let length: Int
-    let bytes: UnsafeMutablePointer<UInt8>
+/// ## Note: 
+/// The memory be zeroed and freed only on deinitialization.
+/// Since this is a class, any dangling reference to it 
+/// prevent deinitialization.
+public class SecureBytes
+{
+    /// Length of the bytes stores
+    public let length: Int
+
+    /// Array of bytes stored
+    public let bytes: UnsafeMutablePointer<UInt8>
     
-    /// Allocates an array of bytes of size 'length' using sodium_malloc
+    /// Returns a SecureBytes object initialized with an array of bytes of size
+    /// 'length' allocated using sodium_malloc
     ///
     /// - Parameters:
     ///   - length: size of the array
     /// - Returns: nil if allocation failed for some reason (e.g. Low memory)
-    init?(ofLength length: Int) {
+    public init?(ofLength length: Int) {
         self.length = length
         guard let bytesPointer = sodium_malloc(length) else {
             // Could not allocate memory
