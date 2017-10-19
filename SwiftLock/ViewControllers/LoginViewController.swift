@@ -215,7 +215,7 @@ extension LoginViewController: UITextFieldDelegate {
             passwordField.errorMessage = nil
             return true
         } else {
-            passwordField.errorMessage = "Passphrase is weak. Try one of the suggested passphrases."
+            passwordField.errorMessage = "Passphrase is weak"
             return false
         }
     }

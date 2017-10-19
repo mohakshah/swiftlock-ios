@@ -1,9 +1,9 @@
 //
 //  BlockingView.swift
-//  FrainzTests
+//  SwiftLock
 //
 //  Created by Mohak Shah on 07/03/17.
-//  Copyright © 2017 Frainz. All rights reserved.
+//  Copyright © 2017 Mohak Shah. All rights reserved.
 //
 
 import UIKit

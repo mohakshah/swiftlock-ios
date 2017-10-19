@@ -63,7 +63,7 @@ class HomeViewController: UITabBarController
     @objc fileprivate func userLoggedIn() {
         // dispatch off to main q
         DispatchQueue.main.async { [weak self] in
-            if self?.presentedViewController is LoginViewController {
+            if self?.presentedViewController is LoginPageViewController {
                 self?.dismiss(animated: true, completion: nil)
             }
         }

@@ -1,9 +1,9 @@
 //
 //  GlobalExtensions.swift
-//  Frainz-iOS
+//  SwiftLock
 //
 //  Created by Mohak Shah on 06/03/17.
-//  Copyright © 2017 Frainz. All rights reserved.
+//  Copyright © 2017 Mohak Shah. All rights reserved.
 //
 
 import UIKit
