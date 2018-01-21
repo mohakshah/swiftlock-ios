@@ -24,6 +24,9 @@ class LoginPageViewController: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // fix the "transparent while seguing in" bug
+        self.view.backgroundColor = UIColor.white
+
         dataSource = self
         
         // Show the Welcome screen on the first display and Login screen on consecutive displays 
