@@ -12,7 +12,7 @@ import libb2s
 
 public class MiniLock
 {
-    /// <#Description#>
+    /// The errors that are thrown by various methods and sub-classes of this class
     ///
     /// - recepientListEmpty: The array of recipients is empty
     /// - notAFileURL: The URL provided does not point to a file

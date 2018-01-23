@@ -26,8 +26,8 @@
 
 import UIKit
 
-final class QRCodeReaderView: UIView, QRCodeReaderDisplayable {
-  lazy var overlayView: UIView? = {
+final public class QRCodeReaderView: UIView, QRCodeReaderDisplayable {
+  public lazy var overlayView: UIView? = {
     let ov = ReaderOverlayView()
 
     ov.backgroundColor                           = .clear
@@ -37,7 +37,7 @@ final class QRCodeReaderView: UIView, QRCodeReaderDisplayable {
     return ov
   }()
 
-  let cameraView: UIView = {
+  public let cameraView: UIView = {
     let cv = UIView()
 
     cv.clipsToBounds                             = true
@@ -46,7 +46,7 @@ final class QRCodeReaderView: UIView, QRCodeReaderDisplayable {
     return cv
   }()
 
-  lazy var cancelButton: UIButton? = {
+  public lazy var cancelButton: UIButton? = {
     let cb = UIButton()
 
     cb.translatesAutoresizingMaskIntoConstraints = false
@@ -55,7 +55,7 @@ final class QRCodeReaderView: UIView, QRCodeReaderDisplayable {
     return cb
   }()
 
-  lazy var switchCameraButton: UIButton? = {
+  public lazy var switchCameraButton: UIButton? = {
     let scb = SwitchCameraButton()
 
     scb.translatesAutoresizingMaskIntoConstraints = false
@@ -63,7 +63,7 @@ final class QRCodeReaderView: UIView, QRCodeReaderDisplayable {
     return scb
   }()
 
-  lazy var toggleTorchButton: UIButton? = {
+  public lazy var toggleTorchButton: UIButton? = {
     let ttb = ToggleTorchButton()
 
     ttb.translatesAutoresizingMaskIntoConstraints = false
@@ -71,8 +71,10 @@ final class QRCodeReaderView: UIView, QRCodeReaderDisplayable {
     return ttb
   }()
 
-  func setupComponents(showCancelButton: Bool, showSwitchCameraButton: Bool, showTorchButton: Bool, showOverlayView: Bool) {
-    translatesAutoresizingMaskIntoConstraints = false
+  private weak var reader: QRCodeReader?
+
+  public func setupComponents(showCancelButton: Bool, showSwitchCameraButton: Bool, showTorchButton: Bool, showOverlayView: Bool, reader: QRCodeReader?) {
+    self.reader = reader
 
     addComponents()
 
@@ -110,6 +112,12 @@ final class QRCodeReaderView: UIView, QRCodeReaderDisplayable {
     }
   }
 
+  public override func layoutSubviews() {
+    super.layoutSubviews()
+
+    reader?.previewLayer.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height)
+  }
+
   // MARK: - Scan Result Indication
 
   func startTimerForBorderReset() {
@@ -122,6 +130,7 @@ final class QRCodeReaderView: UIView, QRCodeReaderDisplayable {
 
   func addRedBorder() {
     self.startTimerForBorderReset()
+
     if let ovl = self.overlayView as? ReaderOverlayView {
       ovl.overlayColor = .red
     }
@@ -129,14 +138,29 @@ final class QRCodeReaderView: UIView, QRCodeReaderDisplayable {
 
   func addGreenBorder() {
     self.startTimerForBorderReset()
+    
     if let ovl = self.overlayView as? ReaderOverlayView {
       ovl.overlayColor = .green
+    }
+  }
+
+  func orientationDidChange() {
+    setNeedsDisplay()
+    overlayView?.setNeedsDisplay()
+
+    if let connection = reader?.previewLayer.connection, connection.isVideoOrientationSupported {
+      let orientation                    = UIDevice.current.orientation
+      let supportedInterfaceOrientations = UIApplication.shared.supportedInterfaceOrientations(for: nil)
+
+      connection.videoOrientation = QRCodeReader.videoOrientation(deviceOrientation: orientation, withSupportedOrientations: supportedInterfaceOrientations, fallbackOrientation: connection.videoOrientation)
     }
   }
 
   // MARK: - Convenience Methods
 
   private func addComponents() {
+    NotificationCenter.default.addObserver(self, selector: #selector(QRCodeReaderView.orientationDidChange), name: .UIDeviceOrientationDidChange, object: nil)
+
     addSubview(cameraView)
 
     if let ov = overlayView {
@@ -153,6 +177,12 @@ final class QRCodeReaderView: UIView, QRCodeReaderDisplayable {
     
     if let cb = cancelButton {
       addSubview(cb)
+    }
+
+    if let reader = reader {
+      cameraView.layer.insertSublayer(reader.previewLayer, at: 0)
+      
+      orientationDidChange()
     }
   }
 }

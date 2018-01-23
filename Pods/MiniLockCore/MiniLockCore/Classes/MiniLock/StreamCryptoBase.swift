@@ -20,7 +20,7 @@ extension MiniLock
         static let Nonce = crypto_secretbox_noncebytes()
     }
 
-    /// A base class that contains the common entities of Encryptor and Decryptor classes
+    /// A base class that contains the common entities of StreamEncryptor and StreamDecryptor
     /// It doesn't provide any functionalities.
     public class StreamCryptoBase {
         static let Blake2sOutputLength = 32

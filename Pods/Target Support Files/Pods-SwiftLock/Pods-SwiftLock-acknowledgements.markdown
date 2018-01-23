@@ -25,7 +25,7 @@ THE SOFTWARE.
 
 ## MiniLockCore
 
-Copyright (c) 2017 Mohak Shah <mohak@mohakshah.in>
+Copyright (c) 2017 Mohak Shah
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

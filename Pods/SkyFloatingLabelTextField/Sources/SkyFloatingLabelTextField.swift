@@ -20,7 +20,7 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
      A Boolean value that determines if the language displayed is LTR. 
      Default value set automatically from the application language settings.
      */
-    open var isLTRLanguage = UIApplication.shared.userInterfaceLayoutDirection == .leftToRight {
+    open var isLTRLanguage: Bool = UIApplication.shared.userInterfaceLayoutDirection == .leftToRight {
         didSet {
            updateTextAligment()
         }
@@ -39,9 +39,9 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
     // MARK: Animation timing
 
     /// The value of the title appearing duration
-    dynamic open var titleFadeInDuration: TimeInterval = 0.2
+    @objc dynamic open var titleFadeInDuration: TimeInterval = 0.2
     /// The value of the title disappearing duration
-    dynamic open var titleFadeOutDuration: TimeInterval = 0.3
+    @objc dynamic open var titleFadeOutDuration: TimeInterval = 0.3
 
     // MARK: Colors
 
@@ -67,23 +67,34 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
     }
 
     /// A UIFont value that determines text color of the placeholder label
-    dynamic open var placeholderFont: UIFont? {
+    @objc dynamic open var placeholderFont: UIFont? {
         didSet {
             updatePlaceholder()
         }
     }
 
     fileprivate func updatePlaceholder() {
-        if let placeholder = placeholder, let font = placeholderFont ?? font {
-                attributedPlaceholder = NSAttributedString(
-                    string: placeholder,
-                    attributes: [NSForegroundColorAttributeName: placeholderColor, NSFontAttributeName: font]
-                )
+        guard let placeholder = placeholder, let font = placeholderFont ?? font else {
+            return
         }
+        let color = isEnabled ? placeholderColor : disabledColor
+        #if swift(>=4.0)
+            attributedPlaceholder = NSAttributedString(
+                string: placeholder,
+                attributes: [
+                    NSAttributedStringKey.foregroundColor: color, NSAttributedStringKey.font: font
+                ]
+            )
+        #else
+            attributedPlaceholder = NSAttributedString(
+                string: placeholder,
+                attributes: [NSForegroundColorAttributeName: color, NSFontAttributeName: font]
+            )
+        #endif
     }
 
     /// A UIFont value that determines the text font of the title label
-    dynamic open var titleFont: UIFont = .systemFont(ofSize: 13) {
+    @objc dynamic open var titleFont: UIFont = .systemFont(ofSize: 13) {
         didSet {
             updateTitleLabel()
         }
@@ -107,6 +118,14 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
     @IBInspectable dynamic open var errorColor: UIColor = .red {
         didSet {
             updateColors()
+        }
+    }
+
+    /// A UIColor value that determines the color used for the title label and line when text field is disabled
+    @IBInspectable dynamic open var disabledColor: UIColor = UIColor(white: 0.88, alpha: 1.0) {
+        didSet {
+            updateControl()
+            updatePlaceholder()
         }
     }
 
@@ -182,7 +201,7 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
     }
 
     /// The backing property for the highlighted property
-    fileprivate var _highlighted = false
+    fileprivate var _highlighted: Bool = false
 
     /**
      A Boolean value that determines whether the receiver is highlighted.
@@ -289,7 +308,7 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
     /**
      Invoked when the editing state of the textfield changes. Override to respond to this change.
      */
-    open func editingChanged() {
+    @objc open func editingChanged() {
         updateControl(true)
         updateTitleLabel(true)
     }
@@ -345,9 +364,17 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
      */
     @discardableResult
     override open func resignFirstResponder() -> Bool {
-        let result =  super.resignFirstResponder()
+        let result = super.resignFirstResponder()
         updateControl(true)
         return result
+    }
+
+    /// update colors when is enabled changed
+    override open var isEnabled: Bool {
+        didSet {
+            updateControl()
+            updatePlaceholder()
+        }
     }
 
     // MARK: - View updates
@@ -375,7 +402,9 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
     }
 
     fileprivate func updateLineColor() {
-        if hasErrorMessage {
+        if !isEnabled {
+            lineView.backgroundColor = disabledColor
+        } else if hasErrorMessage {
             lineView.backgroundColor = errorColor
         } else {
             lineView.backgroundColor = editingOrSelected ? selectedLineColor : lineColor
@@ -383,7 +412,9 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
     }
 
     fileprivate func updateTitleColor() {
-        if hasErrorMessage {
+        if !isEnabled {
+            titleLabel.textColor = disabledColor
+        } else if hasErrorMessage {
             titleLabel.textColor = errorColor
         } else {
             if editingOrSelected || isHighlighted {
@@ -395,7 +426,9 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
     }
 
     fileprivate func updateTextColor() {
-        if hasErrorMessage {
+        if !isEnabled {
+            super.textColor = disabledColor
+        } else if hasErrorMessage {
             super.textColor = errorColor
         } else {
             super.textColor = cachedTextColor
@@ -425,7 +458,7 @@ open class SkyFloatingLabelTextField: UITextField { // swiftlint:disable:this ty
         updateTitleVisibility(animated)
     }
 
-    fileprivate var _titleVisible = false
+    fileprivate var _titleVisible: Bool = false
 
     /*
     *   Set this value to make the title visible

@@ -16,9 +16,8 @@ import libsodium
 /// by sodium_free before the bytes are freed.
 ///
 /// ## Note: 
-/// The memory be zeroed and freed only on deinitialization.
-/// Since this is a class, any dangling reference to it 
-/// prevent deinitialization.
+/// The memory is zeroed and freed when the object is deinitialized.
+/// Since this is a class, care must be taken to ensure no dangling references to an object remain.
 public class SecureBytes
 {
     /// Length of the bytes stores
