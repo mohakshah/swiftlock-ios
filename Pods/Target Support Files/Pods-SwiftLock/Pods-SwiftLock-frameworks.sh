@@ -134,6 +134,8 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/EAIntroView/EAIntroView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/EARestrictedScrollView/EARestrictedScrollView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MiniLockCore/MiniLockCore.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework"
@@ -146,6 +148,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/zxcvbn-ios/zxcvbn_ios.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/EAIntroView/EAIntroView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/EARestrictedScrollView/EARestrictedScrollView.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MiniLockCore/MiniLockCore.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework"

@@ -1,4 +1,7 @@
 PODS:
+  - EAIntroView (2.12.0):
+    - EARestrictedScrollView (~> 1.1.0)
+  - EARestrictedScrollView (1.1.0)
   - libb2s (1.0.2)
   - libbase58 (0.1.4)
   - libsodium (1.0.12)
@@ -15,6 +18,7 @@ PODS:
   - zxcvbn-ios (1.0.4)
 
 DEPENDENCIES:
+  - EAIntroView (~> 2.12)
   - MBProgressHUD (~> 1.0)
   - MiniLockCore (~> 1.0)
   - QRCodeReader.swift (~> 7.0)
@@ -23,6 +27,8 @@ DEPENDENCIES:
   - zxcvbn-ios (~> 1.0)
 
 SPEC CHECKSUMS:
+  EAIntroView: 249559079ddfdbe80e5bcb755c04c3b964b2ac27
+  EARestrictedScrollView: b0c2a3f92fb2610bb44d71c5e4893777c89e45ef
   libb2s: 6c16cb234a7858060dfea5fe72d66f2d1e150576
   libbase58: 7c040313537b8c44b6e2d15586af8e21f7354efd
   libsodium: 9a8faa5ef2fa0d2d57bd7f7d79bf8fb7c1a9f0ea
@@ -34,6 +40,6 @@ SPEC CHECKSUMS:
   SkyFloatingLabelTextField: 703aa1420b697392b1e7dba25571180dde018477
   zxcvbn-ios: fef98b7c80f1512ff0eec47ac1fa399fc00f7e3c
 
-PODFILE CHECKSUM: bd4a5446fefbe4274c65626cfbf2c6e5e98c5ed7
+PODFILE CHECKSUM: 70328f0c06dbd9e2381ab28153b3f106bf33ac8b
 
 COCOAPODS: 1.4.0

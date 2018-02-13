@@ -10,6 +10,7 @@ target 'SwiftLock' do
   pod 'QRCodeReader.swift', '~> 7.0'
   pod 'MBProgressHUD', '~> 1.0'
   pod 'RFAboutView-Swift', '~> 2.0.1'
+  pod 'EAIntroView', '~> 2.12'
   pod 'MiniLockCore', '~> 1.0'
 
   # MiniLockCore Dev
