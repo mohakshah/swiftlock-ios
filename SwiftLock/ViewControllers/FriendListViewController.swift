@@ -54,13 +54,19 @@ class FriendListViewController: UITableViewController
     @objc fileprivate func userLoggedIn() {
         // Create a new Friend with the default name and newly logged in user's public id and update the currentUser
         currentUser = Friend(name: Constants.NameForCurrentUser, id: CurrentUser.shared.keyPair!.publicId)
-        tableView.reloadData()
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.reloadData()
+        }
     }
     
     @objc fileprivate func userLoggedOut() {
         // In case we are displaying a Friend's details, go back to the root VC
         self.navigationController?.popToRootViewController(animated: true)
-        tableView.reloadData()
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.reloadData()
+        }
     }
     
     @objc fileprivate func addFriend() {

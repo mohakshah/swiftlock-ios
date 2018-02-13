@@ -14,7 +14,10 @@ class FileListViewController: UITableViewController
     var directories = [URL]() {
         didSet {
             setupDirectoryWatchers()
-            updateFileList()
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.updateFileList()
+            }
         }
     }
     
