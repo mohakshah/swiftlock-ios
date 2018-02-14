@@ -29,6 +29,11 @@ class HomeViewController: UITabBarController
         // register for login and logout notifications
         onLoginCall(#selector(userLoggedIn))
         onLogoutCall(#selector(userLoggedOut))
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(userLoggedInForTheFirstTime),
+                                               name: Notification.Name(NotificationNames.UserLoggedInForTheFirstTime),
+                                               object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -59,12 +64,27 @@ class HomeViewController: UITabBarController
     
     // MARK: - Login/Logout event handling
     
+    fileprivate var startWalkthrough = false
+    
+    @objc fileprivate func userLoggedInForTheFirstTime() {
+        startWalkthrough = true
+    }
+    
     /// dimisses the presented VC, if it's a LoginVC
     @objc fileprivate func userLoggedIn() {
         // dispatch off to main q
         DispatchQueue.main.async { [weak self] in
-            if self?.presentedViewController is LoginPageViewController {
-                self?.dismiss(animated: true, completion: nil)
+            guard let strongSelf = self else {
+                return
+            }
+
+            if strongSelf.presentedViewController is LoginPageViewController {
+                strongSelf.dismiss(animated: true, completion: nil)
+            }
+            
+            if strongSelf.startWalkthrough {
+                strongSelf.startWalkthrough = false
+                print("First Login for this user")
             }
         }
     }

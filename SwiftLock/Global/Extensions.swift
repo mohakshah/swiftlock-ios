@@ -71,11 +71,9 @@ extension UIViewController
     ///
     /// - Parameter selector: The selector called when the notification is broadcast
     func onLoginCall(_ selector: Selector) {
-        let loginNotification = Notification.Name(NotificationNames.UserLoggedIn)
-        
         NotificationCenter.default.addObserver(self,
                                                selector: selector,
-                                               name: loginNotification,
+                                               name: Notification.Name(NotificationNames.UserLoggedIn),
                                                object: nil)
     }
     
@@ -83,11 +81,9 @@ extension UIViewController
     ///
     /// - Parameter selector: The selector called when the notification is broadcast
     func onLogoutCall(_ selector: Selector) {
-        let logoutNotification = Notification.Name(NotificationNames.UserLoggedOut)
-        
         NotificationCenter.default.addObserver(self,
                                                selector: selector,
-                                               name: logoutNotification,
+                                               name: Notification.Name(NotificationNames.UserLoggedOut),
                                                object: nil)
     }
 }

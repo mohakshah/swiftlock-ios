@@ -18,6 +18,7 @@ struct ColorPalette {
 
 struct NotificationNames {
     static let UserLoggedIn = "SLUserDidLogin"
+    static let UserLoggedInForTheFirstTime = "SLUserDidLoginFirstTime"
     static let UserLoggedOut = "SLUserDidLogout"
 }
 

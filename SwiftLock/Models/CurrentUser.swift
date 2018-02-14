@@ -46,23 +46,29 @@ class CurrentUser
     var email: String? {
         return _email
     }
-    
+
     var isLoggedIn: Bool {
         return _keyPair != nil
     }
-    
+
     func login(withKeyPair keyPair: MiniLock.KeyPair, email: String) {
         _keyPair = keyPair
-        
-        setupDirectories()
 
+        // check if the home directory of the user already exists
+        let homeDirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent(generateHomeDirBasename())
+        let isFirstLoginByThisUser = !FileManager.default.fileExists(atPath: homeDirURL.path)
+
+        setupDirectories()
         friendsDb = try? FriendsDatabase(url: homeDir.appendingPathComponent(Constants.FriedsDbName), keyPair: keyPair)
 
         // post a notification
-        let notification = Notification.Name(rawValue: NotificationNames.UserLoggedIn)
-        NotificationCenter.default.post(name: notification, object: self)
+        NotificationCenter.default.post(name: Notification.Name(rawValue:  NotificationNames.UserLoggedIn), object: self)
+
+        if isFirstLoginByThisUser {
+            NotificationCenter.default.post(name: Notification.Name(rawValue:  NotificationNames.UserLoggedInForTheFirstTime), object: self)
+        }
     }
-    
+
     func logout() {
         _keyPair = nil
         
