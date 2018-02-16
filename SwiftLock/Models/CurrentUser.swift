@@ -116,6 +116,7 @@ class CurrentUser
     private func generateHomeDirBasename() -> String {
         let input = _keyPair!.publicId.binary + salt
         var output = [UInt8](repeating: 0, count: Constants.HashOutputBytes)
+        output[0] = 0 // to stop the "output was never mutated" warning
         blake2s(UnsafeMutablePointer(mutating: output),
                 input,
                 nil,

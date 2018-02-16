@@ -9,7 +9,7 @@
 import UIKit
 
 struct ColorPalette {
-    static let tint = UIColor(fromHex: [Character]("64c897".characters))
+    static let tint = UIColor(fromHex: [Character]("64c897"))
     static let background = UIColor.white
     static let logo = UIColor(red:0.24, green:0.49, blue:0.69, alpha:1.0)
     

@@ -101,7 +101,7 @@ extension String {
     func adding(seperator: String, afterCharacters n: Int) -> String {
         var seperatedString = ""
         
-        let characters = [Character](self.characters)
+        let characters = [Character](self)
         
         stride(from: 0, to: characters.count, by: n).forEach { (start) in
             if start > 0 {
