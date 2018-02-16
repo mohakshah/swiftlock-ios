@@ -24,6 +24,10 @@ class SettingsViewController: UITableViewController
 
     }
 
+    @IBAction func showWalkthrough(_ sender: Any) {
+        (UIApplication.shared.delegate as! AppDelegate).showWalkthrough()
+    }
+    
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -73,6 +73,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return false
     }
     
+    /// Asks HomeVC to start the walkthrough
+    func showWalkthrough() {
+        if let homeVC = window?.rootViewController?.mainVC as? HomeViewController {
+            homeVC.startWalkthrough()
+        }
+    }
+    
     /// Convenience class function for the instance method openFile(url: )
     class func openFile(url: URL) -> Bool {
         return (UIApplication.shared.delegate as! AppDelegate).openFile(url: url)

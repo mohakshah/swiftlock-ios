@@ -72,7 +72,7 @@ class HomeViewController: UITabBarController
         }
     }
     
-    fileprivate func startWalkthrough() {
+    func startWalkthrough() {
         var introPages = [EAIntroPage]()
         
         for (image, text) in Constants.IntroImageTextPairs {
