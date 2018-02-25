@@ -142,18 +142,33 @@ class HomeViewController: UITabBarController
     func handleFile(url: URL) {
         guard CurrentUser.shared.isLoggedIn else {
             presentedViewController?.alert(withTitle: Strings.TryingToOpenFileWhenLoggedOut, message: nil)
+            
+            // delete the file off the main Q
+            DispatchQueue.global(qos: .utility).async {
+                do {
+                    if url.isFileInTemporaryLocation {
+                        try FileManager.default.removeItem(at: url)
+                    }
+                } catch (let error) {
+                    print("Error deleting the source file: ", error)
+                }
+            }
+
             return
         }
 
         if currentFile == nil {
             currentFile = url
         } else {
-            do {
-                if url.isFileInTemporaryLocation {
-                    try FileManager.default.removeItem(at: url)
+            // delete the file off the main Q
+            DispatchQueue.global(qos: .utility).async {
+                do {
+                    if url.isFileInTemporaryLocation {
+                        try FileManager.default.removeItem(at: url)
+                    }
+                } catch (let error) {
+                    print("Error deleting the source file: ", error)
                 }
-            } catch (let error) {
-                print("Error deleting the source file: ", error)
             }
 
             print("Currently working on another file:", currentFile!)
