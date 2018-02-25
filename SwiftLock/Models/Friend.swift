@@ -54,7 +54,7 @@ struct Friend: ImmutableMappable {
             let transform = CGAffineTransform(scaleX: size.width / ciImage.extent.size.width,
                                               y: size.height / ciImage.extent.size.height)
 
-            return UIImage(ciImage: ciImage.applying(transform))
+            return UIImage(ciImage: ciImage.transformed(by: transform))
         }
 
         return nil
@@ -117,7 +117,7 @@ struct Friend: ImmutableMappable {
         // match the whole string
         guard let match = qrCodeSchemeRegex.firstMatch(in: scheme,
                                                        options: [],
-                                                       range: NSRange(location: 0, length: scheme.characters.count)) else {
+                                                       range: NSRange(location: 0, length: scheme.count)) else {
                                                         return nil
         }
         
@@ -127,12 +127,12 @@ struct Friend: ImmutableMappable {
         }
 
         // extract name
-        let name = (scheme as NSString).substring(with: match.rangeAt(1))
+        let name = (scheme as NSString).substring(with: match.range(at: 1))
                                         .replacingOccurrences(of: "\\;", with: ";")
                                         .replacingOccurrences(of: "\\:", with: ":")
         
         // extract base58 id string
-        let b58 = (scheme as NSString).substring(with: match.rangeAt(2))
+        let b58 = (scheme as NSString).substring(with: match.range(at: 2))
         
         // create an id object
         guard let id = MiniLock.Id(fromBase58String: b58) else {

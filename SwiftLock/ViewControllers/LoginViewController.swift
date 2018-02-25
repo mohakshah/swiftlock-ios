@@ -196,7 +196,7 @@ extension LoginViewController: UITextFieldDelegate {
     
     // checks email validity and updates the errormesssage accordingly
     // returns true if the email is valid
-    func validateEmailField() -> Bool {
+    @objc func validateEmailField() -> Bool {
         if let email = emailField.text,
             isAValidEmail(email) {
             emailField.errorMessage = nil
@@ -209,7 +209,7 @@ extension LoginViewController: UITextFieldDelegate {
     
     // checks password validity and updates the errormesssage accordingly
     // returns true if the password is valid
-    func validatePasswordField() -> Bool {
+    @objc func validatePasswordField() -> Bool {
         if let password = passwordField.text,
             isAStrongEnoughPassword(password) {
             passwordField.errorMessage = nil
@@ -223,7 +223,7 @@ extension LoginViewController: UITextFieldDelegate {
     // return true if the email string matches regex in LocalConstants.emailPattern
     fileprivate func isAValidEmail(_ email: String) -> Bool {
         if let regex = (try? NSRegularExpression(pattern: Constants.emailPattern, options: [.anchorsMatchLines])),
-            let _ = regex.firstMatch(in: email, options: [], range: NSRange(location: 0, length: email.characters.count)) {
+            let _ = regex.firstMatch(in: email, options: [], range: NSRange(location: 0, length: email.count)) {
             return true
         } else {
             return false
@@ -241,7 +241,7 @@ extension LoginViewController: UITextFieldDelegate {
     }
     
     // resizes the scrollView to adjust to the keyboard appearing
-    func keyboardWillAppear(notification: Notification) {
+    @objc func keyboardWillAppear(notification: Notification) {
         guard let kbFrame = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey]
             as? NSValue)?.cgRectValue else { return }
         
@@ -251,7 +251,7 @@ extension LoginViewController: UITextFieldDelegate {
         scrollView.scrollIndicatorInsets = keyboardInset
     }
     
-    func keyboardWillHide(notification: Notification) {
+    @objc func keyboardWillHide(notification: Notification) {
         // unset the content inset
         let zeroInset = UIEdgeInsets.zero
         scrollView.contentInset = zeroInset

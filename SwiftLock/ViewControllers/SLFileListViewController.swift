@@ -133,7 +133,7 @@ class SLFileListViewController: FileListViewController {
     /// Displays the user's camera. Asks for authorization first, if that's required
     fileprivate func showCamera() {
         // check and handle the authorization status
-        switch AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo) {
+        switch AVCaptureDevice.authorizationStatus(for: AVMediaType.video) {
         case .denied:
             alert(withTitle: Strings.PhotoLibraryAuthorizationDeniedTitle, message: Strings.PhotoLibraryAuthorizationDeniedMessage)
             return
@@ -143,7 +143,7 @@ class SLFileListViewController: FileListViewController {
             return
             
         case .notDetermined:
-            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo) { [weak self] (success) in
+            AVCaptureDevice.requestAccess(for: AVMediaType.video) { [weak self] (success) in
                 if success {
                     self?.showCamera()
                 }

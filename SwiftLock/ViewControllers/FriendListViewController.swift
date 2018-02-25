@@ -77,7 +77,9 @@ class FriendListViewController: UITableViewController
         let sheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         // option to scan qr code
-        if AVCaptureDevice.devices(withMediaType: AVMediaTypeVideo).count > 0 {
+        if AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera, AVCaptureDevice.DeviceType.builtInTelephotoCamera],
+                                           mediaType: AVMediaType.video,
+                                           position: .unspecified).devices.count > 0 {
             sheet.addAction(UIAlertAction(title: Strings.ScanQRCode, style: .default) { [weak self] (_) in
                 self?.present(self!.qrReaderVC, animated: true, completion: nil)
             })
@@ -99,7 +101,7 @@ class FriendListViewController: UITableViewController
     // lazily instantiate and setup QRReaderVC
     lazy var qrReaderVC: QRCodeReaderViewController = {
         let builder = QRCodeReaderViewControllerBuilder {
-            $0.reader = QRCodeReader(metadataObjectTypes: [AVMetadataObjectTypeQRCode], captureDevicePosition: .back)
+            $0.reader = QRCodeReader(metadataObjectTypes: [AVMetadataObject.ObjectType.qr.rawValue], captureDevicePosition: .back)
         }
         
         let reader = QRCodeReaderViewController(builder: builder)

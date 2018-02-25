@@ -103,7 +103,7 @@ extension FriendEditController: UITextFieldDelegate {
     /// Validates the name field
     ///
     /// - Returns: Returns the name if it's valid; otherwise, returns nil.
-    func validateNameField() -> String? {
+    @objc func validateNameField() -> String? {
         guard let name = nameField.text, !name.isEmpty else {
             // Display error
             nameField.errorMessage = "Invalid"
