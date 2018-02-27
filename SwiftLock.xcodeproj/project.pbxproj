@@ -53,6 +53,16 @@
 		A2CBEB56E0CA438D79644EC5 /* Pods_SwiftLock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D78B1EE843F942D57E8B39B /* Pods_SwiftLock.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		717BA3A52044BBD800A93FB8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 714E168A1E7DF1880067F1AC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7161E3732042B36C00A93FB8;
+			remoteInfo = IncrementBuild;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0D78B1EE843F942D57E8B39B /* Pods_SwiftLock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftLock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		710888B61EF87500001C7FBE /* EncryptActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptActivity.swift; sourceTree = "<group>"; };
@@ -257,6 +267,23 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXLegacyTarget section */
+		7161E3732042B36C00A93FB8 /* IncrementBuild */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "\"${PROJECT_DIR}/bump_build.sh\" \"${PROJECT_DIR}/SwiftLock/Info.plist\"";
+			buildConfigurationList = 7161E3762042B36C00A93FB8 /* Build configuration list for PBXLegacyTarget "IncrementBuild" */;
+			buildPhases = (
+			);
+			buildToolPath = /bin/bash;
+			buildWorkingDirectory = "";
+			dependencies = (
+			);
+			name = IncrementBuild;
+			passBuildSettingsInEnvironment = 1;
+			productName = IncrementBuild;
+		};
+/* End PBXLegacyTarget section */
+
 /* Begin PBXNativeTarget section */
 		714E16911E7DF1880067F1AC /* SwiftLock */ = {
 			isa = PBXNativeTarget;
@@ -272,6 +299,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				717BA3A62044BBD800A93FB8 /* PBXTargetDependency */,
 			);
 			name = SwiftLock;
 			productName = SwiftLock;
@@ -294,6 +322,11 @@
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
+					7161E3732042B36C00A93FB8 = {
+						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = KWU29G76Q9;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 714E168D1E7DF1880067F1AC /* Build configuration list for PBXProject "SwiftLock" */;
@@ -310,6 +343,7 @@
 			projectRoot = "";
 			targets = (
 				714E16911E7DF1880067F1AC /* SwiftLock */,
+				7161E3732042B36C00A93FB8 /* IncrementBuild */,
 			);
 		};
 /* End PBXProject section */
@@ -452,6 +486,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		717BA3A62044BBD800A93FB8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7161E3732042B36C00A93FB8 /* IncrementBuild */;
+			targetProxy = 717BA3A52044BBD800A93FB8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		714E16991E7DF1880067F1AC /* Main.storyboard */ = {
@@ -613,6 +655,41 @@
 			};
 			name = Release;
 		};
+		7161E3742042B36C00A93FB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = KWU29G76Q9;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		7161E3752042B36C00A93FB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = KWU29G76Q9;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -630,6 +707,15 @@
 			buildConfigurations = (
 				714E16A51E7DF1880067F1AC /* Debug */,
 				714E16A61E7DF1880067F1AC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7161E3762042B36C00A93FB8 /* Build configuration list for PBXLegacyTarget "IncrementBuild" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7161E3742042B36C00A93FB8 /* Debug */,
+				7161E3752042B36C00A93FB8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
