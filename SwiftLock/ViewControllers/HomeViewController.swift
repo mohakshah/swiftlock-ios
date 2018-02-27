@@ -142,18 +142,7 @@ class HomeViewController: UITabBarController
     func handleFile(url: URL) {
         guard CurrentUser.shared.isLoggedIn else {
             presentedViewController?.alert(withTitle: Strings.TryingToOpenFileWhenLoggedOut, message: nil)
-            
-            // delete the file off the main Q
-            DispatchQueue.global(qos: .utility).async {
-                do {
-                    if url.isFileInTemporaryLocation {
-                        try FileManager.default.removeItem(at: url)
-                    }
-                } catch (let error) {
-                    print("Error deleting the source file: ", error)
-                }
-            }
-
+            deleteIfTemporary(url: url)
             return
         }
 
@@ -161,15 +150,7 @@ class HomeViewController: UITabBarController
             currentFile = url
         } else {
             // delete the file off the main Q
-            DispatchQueue.global(qos: .utility).async {
-                do {
-                    if url.isFileInTemporaryLocation {
-                        try FileManager.default.removeItem(at: url)
-                    }
-                } catch (let error) {
-                    print("Error deleting the source file: ", error)
-                }
-            }
+            deleteIfTemporary(url: url)
 
             print("Currently working on another file:", currentFile!)
         }
@@ -179,6 +160,11 @@ class HomeViewController: UITabBarController
     /// Setting this to a non-nil value starts the process of (en/de)cryption.
     fileprivate var currentFile: URL? {
         didSet {
+            // delete previous file if it was in a temp directory
+            if let oldFile = oldValue, FileManager.default.fileExists(atPath: oldFile.path) {
+                deleteIfTemporary(url: oldFile)
+            }
+
             guard let url = currentFile  else  {
                 return
             }
@@ -216,6 +202,24 @@ class HomeViewController: UITabBarController
                         // segue to the friend picker, it will call the encrypt funciton
                         self?.performSegue(withIdentifier: SegueIds.ToFriendPicker, sender: nil)
                     }
+                }
+            }
+        }
+    }
+    
+    /// Deletes the file at "url" _if_ it  is inside one of the locations in
+    /// HomeViewController.Constants.TemporaryLocations
+    ///
+    /// - Parameter url: URL of the file to delete
+    fileprivate func deleteIfTemporary(url: URL) {
+        // do all the work in a background Q
+        DispatchQueue.global(qos: .utility).async {
+            // check if file is in a temporary location
+            if url.isFileInTemporaryLocation {
+                do {
+                    try FileManager.default.removeItem(at: url)
+                } catch {
+                    print("Error deleting previous file (\(url.path)):", error)
                 }
             }
         }
@@ -263,6 +267,7 @@ class HomeViewController: UITabBarController
                     self?.progressHUD?.hide(animated: true)
                     self?.showErrorSheet(withTitle: Strings.FileDecryptionFailureTitle, body: error.localizedDescription)
                 }
+
                 return
             }
             
@@ -532,15 +537,7 @@ extension HomeViewController: FriendPickerDelegate {
     
     func friendPickerDidCancel(_ picker: FriendPickerViewController) {
         dismiss(animated: true, completion: nil)
-
-        if let url = currentFile {
-            // delete currentFile if it is in a temp directory
-            if url.isFileInTemporaryLocation {
-                try? FileManager.default.removeItem(at: url)
-            }
-
-            currentFile = nil
-        }
+        currentFile = nil
     }
 }
 
@@ -558,7 +555,7 @@ extension HomeViewController: MiniLockProcessDelegate {
 extension URL {
     /// true if the url's direct parent is one of the directories `HomeViewController.Constants.TemporaryLocations`
     var isFileInTemporaryLocation: Bool {
-        let parentDir = self.deletingLastPathComponent()
+        let parentDir = self.resolvingSymlinksInPath().deletingLastPathComponent()
         return HomeViewController.Constants.TemporaryLocations.contains(parentDir)
     }
 }
