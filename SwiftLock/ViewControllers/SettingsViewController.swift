@@ -22,7 +22,25 @@ class SettingsViewController: UITableViewController
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        #if DEBUG
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(listFiles))
+        #endif
     }
+    
+    #if DEBUG
+    /// Hacky function to print a tree of all files in the document directory
+    @objc private func listFiles() {
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let dirEnumerator = FileManager.default.enumerator(at: documentsURL, includingPropertiesForKeys: [.nameKey])!
+        for file in dirEnumerator {
+            for _ in 1..<dirEnumerator.level {
+                print("\t", separator: "", terminator: "")
+            }
+            print((file as! URL).lastPathComponent)
+        }
+    }
+    #endif
+
 
     @IBAction func showWalkthrough(_ sender: Any) {
         (UIApplication.shared.delegate as! AppDelegate).showWalkthrough()
