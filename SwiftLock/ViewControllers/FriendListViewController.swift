@@ -101,7 +101,7 @@ class FriendListViewController: UITableViewController
     // lazily instantiate and setup QRReaderVC
     lazy var qrReaderVC: QRCodeReaderViewController = {
         let builder = QRCodeReaderViewControllerBuilder {
-            $0.reader = QRCodeReader(metadataObjectTypes: [AVMetadataObject.ObjectType.qr.rawValue], captureDevicePosition: .back)
+            $0.reader = QRCodeReader(metadataObjectTypes: [AVMetadataObject.ObjectType.qr], captureDevicePosition: .back)
         }
         
         let reader = QRCodeReaderViewController(builder: builder)

@@ -12,7 +12,7 @@ PODS:
     - libsodium (~> 1.0)
     - ObjectMapper (~> 3.0)
   - ObjectMapper (3.1.0)
-  - QRCodeReader.swift (7.5.1)
+  - QRCodeReader.swift (8.1.1)
   - RFAboutView-Swift (2.0.1)
   - SkyFloatingLabelTextField (3.4.0)
   - zxcvbn-ios (1.0.4)
@@ -21,7 +21,7 @@ DEPENDENCIES:
   - EAIntroView (~> 2.12)
   - MBProgressHUD (~> 1.0)
   - MiniLockCore (~> 1.0)
-  - QRCodeReader.swift (~> 7.0)
+  - QRCodeReader.swift (~> 8.0)
   - RFAboutView-Swift (~> 2.0.1)
   - SkyFloatingLabelTextField (~> 3.0)
   - zxcvbn-ios (~> 1.0)
@@ -35,11 +35,11 @@ SPEC CHECKSUMS:
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MiniLockCore: d861c511d8614a020db3afe0abe7cc7fcca53657
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
-  QRCodeReader.swift: 686aa64b260327b8b0c976d8104dec2b088fd493
+  QRCodeReader.swift: b164a681887de276d405ff02bce854d82cd6360b
   RFAboutView-Swift: dc31db0e7bc890ab6c9e1ca8f50e8f97bdba9622
   SkyFloatingLabelTextField: 703aa1420b697392b1e7dba25571180dde018477
   zxcvbn-ios: fef98b7c80f1512ff0eec47ac1fa399fc00f7e3c
 
-PODFILE CHECKSUM: 70328f0c06dbd9e2381ab28153b3f106bf33ac8b
+PODFILE CHECKSUM: b07ab32a852196a9f18608c81b7f6a2efe430c43
 
 COCOAPODS: 1.4.0

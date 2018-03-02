@@ -7,7 +7,7 @@ target 'SwiftLock' do
   # Pods for SwiftLock
   pod 'zxcvbn-ios', '~> 1.0'  
   pod 'SkyFloatingLabelTextField', '~> 3.0'
-  pod 'QRCodeReader.swift', '~> 7.0'
+  pod 'QRCodeReader.swift', '~> 8.0'
   pod 'MBProgressHUD', '~> 1.0'
   pod 'RFAboutView-Swift', '~> 2.0.1'
   pod 'EAIntroView', '~> 2.12'
