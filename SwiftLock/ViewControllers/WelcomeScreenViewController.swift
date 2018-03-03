@@ -15,4 +15,21 @@ class WelcomeScreenViewController: UIViewController
             pageVC.scrollToNext()
         }
     }
+    
+    @IBOutlet weak var scrollView: UIScrollView!
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        scrollView.layoutSubviews()
+        
+        // disable scrollbars so they don't interfere during resizing
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
+        
+        scrollView.contentSize = scrollView.subViewArea()
+        
+        // re-enable the scrollbars
+        scrollView.showsVerticalScrollIndicator = true
+        scrollView.showsHorizontalScrollIndicator = true
+    }
 }

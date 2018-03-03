@@ -146,6 +146,9 @@
                             <constraint firstItem="dAM-EU-jjb" firstAttribute="leading" secondItem="a0O-gd-crJ" secondAttribute="leading" id="tik-5B-UnL"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="scrollView" destination="dAM-EU-jjb" id="ocm-Zi-WC3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JEQ-Us-yMQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
