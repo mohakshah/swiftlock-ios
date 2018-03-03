@@ -433,8 +433,8 @@
             <objects>
                 <navigationController id="YC0-GZ-0o4" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Settings" image="Settings" id="gG8-BO-g7L"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qb8-L5-2rb">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="qb8-L5-2rb">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -451,8 +451,8 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pXQ-ZI-5TQ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Files" image="file-list-icon" id="9N5-VY-E0J"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kER-cB-hTr">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="kER-cB-hTr">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -496,7 +496,7 @@
                             <outlet property="delegate" destination="5YT-ru-Pd6" id="Uot-G2-ZId"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Friends" id="F47-zN-zBV"/>
+                    <navigationItem key="navigationItem" title="Friends" largeTitleDisplayMode="always" id="F47-zN-zBV"/>
                     <connections>
                         <segue destination="OF4-Eb-7dh" kind="show" identifier="FriendList2Friend" id="gEe-SJ-ntu"/>
                         <segue destination="4Eh-3j-efw" kind="presentation" identifier="FriendList2Add" id="dSZ-RP-0FG"/>
@@ -756,8 +756,8 @@
         <scene sceneID="gSs-WI-cPt">
             <objects>
                 <navigationController id="ITS-sM-E0A" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sgc-0J-uDi">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="sgc-0J-uDi">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -796,8 +796,8 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tfY-iB-iaL" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Friends" image="friends-icon" id="qkJ-Y9-fVf"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qsZ-gN-cBk">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="qsZ-gN-cBk">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -837,6 +837,6 @@
         <image name="friends-icon" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dSZ-RP-0FG"/>
+        <segue reference="NCO-sS-iTS"/>
     </inferredMetricsTieBreakers>
 </document>

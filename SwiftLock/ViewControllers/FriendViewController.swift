@@ -81,6 +81,20 @@ class FriendViewController: UITableViewController
         self.refreshUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        // disable large titles
+        if #available(iOS 11.0, *) {
+            self.navigationController?.navigationBar.prefersLargeTitles = false
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        // re-enable large titles
+        if #available(iOS 11.0, *) {
+            self.navigationController?.navigationBar.prefersLargeTitles = true
+        }
+    }
+    
     private func refreshUI() {
         name?.text = friend?.name
         qrCode?.image = friend?.qrCode(ofSize: qrCode.frame.size)
