@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		710888B71EF87500001C7FBE /* EncryptActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710888B61EF87500001C7FBE /* EncryptActivity.swift */; };
 		710888B91EF87B26001C7FBE /* DecryptActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710888B81EF87B26001C7FBE /* DecryptActivity.swift */; };
+		7129EC9F204C460100A93FB8 /* HomeViewController+Walkthrough.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7129EC9E204C460100A93FB8 /* HomeViewController+Walkthrough.swift */; };
+		7129ECA1204C494500A93FB8 /* HomeViewController+StatusSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7129ECA0204C494500A93FB8 /* HomeViewController+StatusSheet.swift */; };
 		714840721ECCD287004938A0 /* PassphraseSuggesterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714840711ECCD287004938A0 /* PassphraseSuggesterViewController.swift */; };
 		714E16961E7DF1880067F1AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714E16951E7DF1880067F1AC /* AppDelegate.swift */; };
 		714E169B1E7DF1880067F1AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 714E16991E7DF1880067F1AC /* Main.storyboard */; };
@@ -67,6 +69,8 @@
 		0D78B1EE843F942D57E8B39B /* Pods_SwiftLock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftLock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		710888B61EF87500001C7FBE /* EncryptActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptActivity.swift; sourceTree = "<group>"; };
 		710888B81EF87B26001C7FBE /* DecryptActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecryptActivity.swift; sourceTree = "<group>"; };
+		7129EC9E204C460100A93FB8 /* HomeViewController+Walkthrough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+Walkthrough.swift"; sourceTree = "<group>"; };
+		7129ECA0204C494500A93FB8 /* HomeViewController+StatusSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+StatusSheet.swift"; sourceTree = "<group>"; };
 		714840711ECCD287004938A0 /* PassphraseSuggesterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassphraseSuggesterViewController.swift; sourceTree = "<group>"; };
 		714E16921E7DF1880067F1AC /* SwiftLock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftLock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		714E16951E7DF1880067F1AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -192,6 +196,8 @@
 				71F296881F656E1700A93FB8 /* WelcomeScreenViewController.swift */,
 				714840711ECCD287004938A0 /* PassphraseSuggesterViewController.swift */,
 				71A108F11E98C6A00083FA66 /* HomeViewController.swift */,
+				7129ECA0204C494500A93FB8 /* HomeViewController+StatusSheet.swift */,
+				7129EC9E204C460100A93FB8 /* HomeViewController+Walkthrough.swift */,
 				71A108F31E9A863C0083FA66 /* FileListViewController.swift */,
 				71B0F2961EB63C8400734113 /* SLFileListViewController.swift */,
 				71B634291EBB91C00099EBAA /* FriendListViewController.swift */,
@@ -471,6 +477,7 @@
 				71E596711EBC44430092CAE1 /* FriendViewController.swift in Sources */,
 				71A108EE1E98C0E00083FA66 /* CurrentUser.swift in Sources */,
 				71F296891F656E1700A93FB8 /* WelcomeScreenViewController.swift in Sources */,
+				7129EC9F204C460100A93FB8 /* HomeViewController+Walkthrough.swift in Sources */,
 				715EB3D81EC06F6F00AE04F4 /* FriendPickerViewController.swift in Sources */,
 				71A108FB1E9AD1CD0083FA66 /* VariadicFunctionWrappers.c in Sources */,
 				71D6F8B21E816A4E003F30A2 /* Extensions.swift in Sources */,
@@ -478,6 +485,7 @@
 				71AF11E61EB33A230045FA64 /* Friend.swift in Sources */,
 				71B0F2971EB63C8400734113 /* SLFileListViewController.swift in Sources */,
 				710888B71EF87500001C7FBE /* EncryptActivity.swift in Sources */,
+				7129ECA1204C494500A93FB8 /* HomeViewController+StatusSheet.swift in Sources */,
 				7178823C1F090D5600B81D48 /* FinalStatusSheet.swift in Sources */,
 				71F296871F6548B400A93FB8 /* LoginPageViewController.swift in Sources */,
 				71BB44511F030F3F0074FD03 /* FileTypeIcons.swift in Sources */,
