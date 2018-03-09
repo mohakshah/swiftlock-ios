@@ -11,6 +11,12 @@
 		710888B91EF87B26001C7FBE /* DecryptActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710888B81EF87B26001C7FBE /* DecryptActivity.swift */; };
 		7129EC9F204C460100A93FB8 /* HomeViewController+Walkthrough.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7129EC9E204C460100A93FB8 /* HomeViewController+Walkthrough.swift */; };
 		7129ECA1204C494500A93FB8 /* HomeViewController+StatusSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7129ECA0204C494500A93FB8 /* HomeViewController+StatusSheet.swift */; };
+		7129ECA7204CD6B300A93FB8 /* Screen 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7129ECA2204CD6B200A93FB8 /* Screen 1.png */; };
+		7129ECA8204CD6B300A93FB8 /* Screen 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 7129ECA3204CD6B200A93FB8 /* Screen 4.png */; };
+		7129ECA9204CD6B300A93FB8 /* Screen 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 7129ECA4204CD6B200A93FB8 /* Screen 5.png */; };
+		7129ECAA204CD6B300A93FB8 /* Screen 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7129ECA5204CD6B200A93FB8 /* Screen 3.png */; };
+		7129ECAB204CD6B300A93FB8 /* Screen 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 7129ECA6204CD6B200A93FB8 /* Screen 2.png */; };
+		7129ECAD204CD6D700A93FB8 /* Screen 6.png in Resources */ = {isa = PBXBuildFile; fileRef = 7129ECAC204CD6D700A93FB8 /* Screen 6.png */; };
 		714840721ECCD287004938A0 /* PassphraseSuggesterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714840711ECCD287004938A0 /* PassphraseSuggesterViewController.swift */; };
 		714E16961E7DF1880067F1AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714E16951E7DF1880067F1AC /* AppDelegate.swift */; };
 		714E169B1E7DF1880067F1AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 714E16991E7DF1880067F1AC /* Main.storyboard */; };
@@ -46,12 +52,6 @@
 		71E596731EBCADE60092CAE1 /* FriendEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E596721EBCADE60092CAE1 /* FriendEditController.swift */; };
 		71F296871F6548B400A93FB8 /* LoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F296861F6548B400A93FB8 /* LoginPageViewController.swift */; };
 		71F296891F656E1700A93FB8 /* WelcomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F296881F656E1700A93FB8 /* WelcomeScreenViewController.swift */; };
-		71FD1DA120364E8800A93FB8 /* Screen 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 71FD1D9B20364E8800A93FB8 /* Screen 1.jpg */; };
-		71FD1DA220364E8800A93FB8 /* Screen 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 71FD1D9C20364E8800A93FB8 /* Screen 2.jpg */; };
-		71FD1DA320364E8800A93FB8 /* Screen 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 71FD1D9D20364E8800A93FB8 /* Screen 3.jpg */; };
-		71FD1DA420364E8800A93FB8 /* Screen 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 71FD1D9E20364E8800A93FB8 /* Screen 4.jpg */; };
-		71FD1DA520364E8800A93FB8 /* Screen 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 71FD1D9F20364E8800A93FB8 /* Screen 5.jpg */; };
-		71FD1DA620364E8800A93FB8 /* Screen 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 71FD1DA020364E8800A93FB8 /* Screen 6.jpg */; };
 		A2CBEB56E0CA438D79644EC5 /* Pods_SwiftLock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D78B1EE843F942D57E8B39B /* Pods_SwiftLock.framework */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +71,12 @@
 		710888B81EF87B26001C7FBE /* DecryptActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecryptActivity.swift; sourceTree = "<group>"; };
 		7129EC9E204C460100A93FB8 /* HomeViewController+Walkthrough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+Walkthrough.swift"; sourceTree = "<group>"; };
 		7129ECA0204C494500A93FB8 /* HomeViewController+StatusSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeViewController+StatusSheet.swift"; sourceTree = "<group>"; };
+		7129ECA2204CD6B200A93FB8 /* Screen 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen 1.png"; sourceTree = "<group>"; };
+		7129ECA3204CD6B200A93FB8 /* Screen 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen 4.png"; sourceTree = "<group>"; };
+		7129ECA4204CD6B200A93FB8 /* Screen 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen 5.png"; sourceTree = "<group>"; };
+		7129ECA5204CD6B200A93FB8 /* Screen 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen 3.png"; sourceTree = "<group>"; };
+		7129ECA6204CD6B200A93FB8 /* Screen 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen 2.png"; sourceTree = "<group>"; };
+		7129ECAC204CD6D700A93FB8 /* Screen 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen 6.png"; sourceTree = "<group>"; };
 		714840711ECCD287004938A0 /* PassphraseSuggesterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassphraseSuggesterViewController.swift; sourceTree = "<group>"; };
 		714E16921E7DF1880067F1AC /* SwiftLock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftLock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		714E16951E7DF1880067F1AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -110,12 +116,6 @@
 		71E596721EBCADE60092CAE1 /* FriendEditController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendEditController.swift; sourceTree = "<group>"; };
 		71F296861F6548B400A93FB8 /* LoginPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPageViewController.swift; sourceTree = "<group>"; };
 		71F296881F656E1700A93FB8 /* WelcomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScreenViewController.swift; sourceTree = "<group>"; };
-		71FD1D9B20364E8800A93FB8 /* Screen 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Screen 1.jpg"; sourceTree = "<group>"; };
-		71FD1D9C20364E8800A93FB8 /* Screen 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Screen 2.jpg"; sourceTree = "<group>"; };
-		71FD1D9D20364E8800A93FB8 /* Screen 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Screen 3.jpg"; sourceTree = "<group>"; };
-		71FD1D9E20364E8800A93FB8 /* Screen 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Screen 4.jpg"; sourceTree = "<group>"; };
-		71FD1D9F20364E8800A93FB8 /* Screen 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Screen 5.jpg"; sourceTree = "<group>"; };
-		71FD1DA020364E8800A93FB8 /* Screen 6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Screen 6.jpg"; sourceTree = "<group>"; };
 		935CC6B360341A7ADFC0DA54 /* Pods-SwiftLock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftLock.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftLock/Pods-SwiftLock.release.xcconfig"; sourceTree = "<group>"; };
 		CDD972301F907F4A16CC4873 /* Pods-SwiftLock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftLock.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftLock/Pods-SwiftLock.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -252,12 +252,12 @@
 		71FD1D9A20364E8800A93FB8 /* IntroImages */ = {
 			isa = PBXGroup;
 			children = (
-				71FD1D9B20364E8800A93FB8 /* Screen 1.jpg */,
-				71FD1D9C20364E8800A93FB8 /* Screen 2.jpg */,
-				71FD1D9D20364E8800A93FB8 /* Screen 3.jpg */,
-				71FD1D9E20364E8800A93FB8 /* Screen 4.jpg */,
-				71FD1D9F20364E8800A93FB8 /* Screen 5.jpg */,
-				71FD1DA020364E8800A93FB8 /* Screen 6.jpg */,
+				7129ECA2204CD6B200A93FB8 /* Screen 1.png */,
+				7129ECA6204CD6B200A93FB8 /* Screen 2.png */,
+				7129ECA5204CD6B200A93FB8 /* Screen 3.png */,
+				7129ECA3204CD6B200A93FB8 /* Screen 4.png */,
+				7129ECA4204CD6B200A93FB8 /* Screen 5.png */,
+				7129ECAC204CD6D700A93FB8 /* Screen 6.png */,
 			);
 			path = IntroImages;
 			sourceTree = "<group>";
@@ -359,23 +359,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71FD1DA520364E8800A93FB8 /* Screen 5.jpg in Resources */,
+				7129ECA9204CD6B300A93FB8 /* Screen 5.png in Resources */,
+				7129ECAB204CD6B300A93FB8 /* Screen 2.png in Resources */,
+				7129ECA7204CD6B300A93FB8 /* Screen 1.png in Resources */,
 				71D6F8B81E81AC41003F30A2 /* BlockingView.xib in Resources */,
 				71B8418E1E85BC5200F9C902 /* minilock-icon-small.png in Resources */,
 				71BB44531F030F5C0074FD03 /* FileTypeIcons-Roundicons.xcassets in Resources */,
 				719323E52030CEF600A93FB8 /* IntroCustomPageView.xib in Resources */,
 				71A17EB41E808E2A00A5EDCC /* Words.plist in Resources */,
 				71B5D72D1EC99D3100CFA2ED /* Acknowledgements.plist in Resources */,
-				71FD1DA220364E8800A93FB8 /* Screen 2.jpg in Resources */,
 				71B8418D1E85BC5200F9C902 /* minilock-icon-large.png in Resources */,
-				71FD1DA320364E8800A93FB8 /* Screen 3.jpg in Resources */,
+				7129ECAA204CD6B300A93FB8 /* Screen 3.png in Resources */,
 				7178823E1F090D6100B81D48 /* FinalStatusSheet.xib in Resources */,
-				71FD1DA120364E8800A93FB8 /* Screen 1.jpg in Resources */,
 				714E16A01E7DF1880067F1AC /* LaunchScreen.storyboard in Resources */,
 				714E169D1E7DF1880067F1AC /* Assets.xcassets in Resources */,
-				71FD1DA620364E8800A93FB8 /* Screen 6.jpg in Resources */,
+				7129ECAD204CD6D700A93FB8 /* Screen 6.png in Resources */,
+				7129ECA8204CD6B300A93FB8 /* Screen 4.png in Resources */,
 				714E169B1E7DF1880067F1AC /* Main.storyboard in Resources */,
-				71FD1DA420364E8800A93FB8 /* Screen 4.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

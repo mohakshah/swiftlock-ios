@@ -15,12 +15,12 @@ extension HomeViewController
     fileprivate struct Constants {
         /// Tuples of images and text that are to be displayed during the intro walkthrough
         static let IntroImageTextPairs: [(UIImage, String)] = [
-            (#imageLiteral(resourceName: "Screen 1.jpg"), "Share your id with your friends from the “Friends” tab. Ask them to scan the QR Code or   use the “Share” button to share via Twitter, email, etc."),
-            (#imageLiteral(resourceName: "Screen 2.jpg"), "Scan your friends’ QR Codes to send them encrypted files."),
-            (#imageLiteral(resourceName: "Screen 3.jpg"), "Tap ‘+’ button on the “Files” tab to pick a photo from your library and encrypt it. Optionally, open files in SwiftLock using the “Share Sheet” from other apps to encrypt those files."),
-            (#imageLiteral(resourceName: "Screen 4.jpg"), "Next, select the recipients. These are the people who will be able to decrypt the file. Keep “Me” checked so that you yourself can decrypt the file in the future."),
-            (#imageLiteral(resourceName: "Screen 5.jpg"), "Tap on the encrypted file’s name to share it via a medium of your choice."),
-            (#imageLiteral(resourceName: "Screen 6.jpg"), "If you receive an encrypted file from your friend, open it in SwiftLock using the “Share Sheet” to decrypt it.")
+            (#imageLiteral(resourceName: "Screen 1.png"), "Share your id with your friends from the “Friends” tab. Ask them to scan the QR Code or   use the “Share” button to share via Twitter, email, etc."),
+            (#imageLiteral(resourceName: "Screen 2.png"), "Scan your friends’ QR Codes to send them encrypted files."),
+            (#imageLiteral(resourceName: "Screen 3.png"), "Tap ‘+’ button on the “Files” tab to pick a photo from your library and encrypt it. Optionally, open files in SwiftLock using the “Share Sheet” from other apps to encrypt those files."),
+            (#imageLiteral(resourceName: "Screen 4.png"), "Next, select the recipients. These are the people who will be able to decrypt the file. Keep “Me” checked so that you yourself can decrypt the file in the future."),
+            (#imageLiteral(resourceName: "Screen 5.png"), "Tap on the encrypted file’s name to open it in or share it via another app."),
+            (#imageLiteral(resourceName: "Screen 6.png"), "If you receive an encrypted file from your friend, open it in SwiftLock using the “Share Sheet” to decrypt it.")
         ]
     }
         
