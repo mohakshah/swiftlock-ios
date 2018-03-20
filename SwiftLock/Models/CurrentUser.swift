@@ -59,7 +59,7 @@ class CurrentUser
         let isFirstLoginByThisUser = !FileManager.default.fileExists(atPath: homeDirURL.path)
 
         setupDirectories()
-        friendsDb = try? FriendsDatabase(url: homeDir.appendingPathComponent(Constants.FriedsDbName), keyPair: keyPair)
+        userDbManager = try? UserDatabaseManager(url: homeDir.appendingPathComponent(Constants.FriedsDbName), keyPair: keyPair)
 
         // post a notification
         NotificationCenter.default.post(name: Notification.Name(rawValue:  NotificationNames.UserLoggedIn), object: self)
@@ -76,7 +76,7 @@ class CurrentUser
         let notification = Notification.Name(rawValue: NotificationNames.UserLoggedOut)
         NotificationCenter.default.post(name: notification, object: self)
         
-        friendsDb = nil
+        userDbManager = nil
         
         closeDirectories()
     }
@@ -97,7 +97,7 @@ class CurrentUser
         return _decryptedDir
     }
     
-    var friendsDb: FriendsDatabase?
+    var userDbManager: UserDatabaseManager?
     
     private func setupDirectories() {
         _homeDir = addSubDirectory(to: FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!,

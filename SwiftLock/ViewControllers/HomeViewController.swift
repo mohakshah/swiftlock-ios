@@ -251,7 +251,7 @@ class HomeViewController: UITabBarController
                 
                 if decryptor.sender == CurrentUser.shared.keyPair?.publicId {
                     body = Strings.FileDecryptionSuccessBodyWhenSelfIsSender
-                } else if let name = CurrentUser.shared.friendsDb?.friends.filter({ $0.id == decryptor.sender }).first?.name {
+                } else if let name = CurrentUser.shared.userDbManager?.userDb.friends.filter({ $0.id == decryptor.sender }).first?.name {
                     body = Strings.FileDecryptionSuccessBodyPrefix + name
                 } else {
                     body = Strings.FileDecryptionSuccessBodyPrefix + decryptor.sender.base58String

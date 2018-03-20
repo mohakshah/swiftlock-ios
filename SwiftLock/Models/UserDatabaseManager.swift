@@ -9,8 +9,8 @@
 import Foundation
 import MiniLockCore
 
-/// Manages an on-disk encrypted array of 'Friend' objects
-struct FriendsDatabase
+/// Struct to manage an on-disk, encrypted UserDatabase
+struct UserDatabaseManager
 {
     enum Errors: Error {
         case jsonMappingError
@@ -20,10 +20,10 @@ struct FriendsDatabase
 
     let url: URL
     let keyPair: MiniLock.KeyPair
-    
-    var friends: [Friend] {
+
+    var userDb: UserDatabase {
         didSet {
-            try? saveFriendListToDb()
+            try? saveDatabaseToDisk()
         }
     }
 
@@ -32,7 +32,7 @@ struct FriendsDatabase
     /// - Parameters:
     ///   - url: url where database should be saved
     ///   - keyPair: The KeyPair to use to encrypt/decrypt the db
-    /// - Throws: FriendDatabase.Errors
+    /// - Throws: UserDatabaseManager.Errors
     init(url: URL, keyPair: MiniLock.KeyPair) throws {
         if !url.isFileURL {
             throw Errors.invalidDbURL
@@ -40,28 +40,14 @@ struct FriendsDatabase
 
         self.url = url
         self.keyPair = keyPair
-        self.friends = [Friend]()
-        try? updateFriendsFromDb()
+        self.userDb = UserDatabase()
+        try? readDatabaseFromDisk()
     }
     
-    /// Inserts 'friend' in the array sorted by their 'name' property
+    /// Decrypts, reads and loads the userDb from the disk
     ///
-    /// - Parameter friend: Friend to add to the db
-    mutating func insertSorted(friend: Friend) {
-        for i in 0..<friends.count {
-            if friends[i].name.localizedCaseInsensitiveCompare(friend.name) == ComparisonResult.orderedDescending {
-                friends.insert(friend, at: i)
-                return
-            }
-        }
-        
-        friends.append(friend)
-    }
-    
-    /// Reads friends list from the db and loads it in 'friends' property of the object
-    ///
-    /// - Throws: FriendDatabase.Errors
-    private mutating func updateFriendsFromDb() throws {
+    /// - Throws: UserDatabaseManager.Errors
+    private mutating func readDatabaseFromDisk() throws {
         // decrypt the database in-memory
         let decryptor = try MiniLock.FileDecryptor(sourceFile: url, recipientKeys: keyPair)
         
@@ -74,19 +60,19 @@ struct FriendsDatabase
 
         // map json to object
         guard let jsonString = String(bytes: data, encoding: .utf8),
-            let friendsList = Array<Friend>(JSONString: jsonString) else {
+            let userDb = try? UserDatabase(JSONString: jsonString) else {
             throw Errors.jsonMappingError
         }
         
-        self.friends = friendsList
+        self.userDb = userDb
     }
     
-    /// Encrypts and saves 'friends' property in the db
+    /// Encrypts and saves the userDb to disk
     ///
-    /// - Throws: FriendDatabase.Errors
-    private func saveFriendListToDb() throws {
-        // convert 'friends' to JSON
-        guard let jsonString = friends.toJSONString() else {
+    /// - Throws: UserDatabaseManager.Errors
+    private func saveDatabaseToDisk() throws {
+        // convert the database to JSON
+        guard let jsonString = userDb.toJSONString() else {
             throw Errors.jsonMappingError
         }
         

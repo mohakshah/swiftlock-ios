@@ -52,7 +52,7 @@ class FriendPickerViewController: FriendListViewController
 
     @objc fileprivate func done() {
         if let indices = tableView.indexPathsForSelectedRows,
-            let friendList = CurrentUser.shared.friendsDb?.friends {
+            let friendList = CurrentUser.shared.userDbManager?.userDb.friends {
             // create an array of 'Friend' objects selected
             var selectedFriends = [Friend]()
             for index in indices {
