@@ -29,13 +29,15 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1.0</string>
+	<string>1.2.0</string>
 	<key>CFBundleVersion</key>
-	<string>48</string>
+	<string>78</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>The camera is needed in order to import photos to encrypt and scan QR Codes</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Access to microphone is needed to record and encrypt videos</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>The photo library is needed in order to import photos to encrypt and save QR Codes</string>
 	<key>UIFileSharingEnabled</key>

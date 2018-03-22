@@ -19,7 +19,7 @@ class HomeViewController: UITabBarController
 
     fileprivate struct Constants {
         static let TemporaryLocations: [URL] = [URL(string: "file://" + NSTemporaryDirectory())!,
-                                                FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("Inbox")]
+                                                FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("Inbox")].map{ $0.resolvingSymlinksInPath() }
     }
 
     // MARK: - View
@@ -143,6 +143,7 @@ class HomeViewController: UITabBarController
                 fileIsEncrypted = try MiniLock.isEncryptedFile(url: url)
             } catch (let error) {
                 print(error)
+                currentFile = nil
                 return
             }
             

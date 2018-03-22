@@ -169,9 +169,14 @@ class SLFileListViewController: FileListViewController {
         let imagePicker = UIImagePickerController()
         
         // configure imagePicker
-        imagePicker.mediaTypes = [kUTTypeImage as String]
+        imagePicker.mediaTypes = [kUTTypeImage, kUTTypeMovie] as [String]
         imagePicker.allowsEditing = false
         imagePicker.delegate = self
+        imagePicker.videoQuality = .typeHigh
+        
+        if #available(iOS 11.0, *) {
+            imagePicker.videoExportPreset = AVAssetExportPresetPassthrough
+        }
         
         return imagePicker
     }()
@@ -182,37 +187,67 @@ extension SLFileListViewController: UIImagePickerControllerDelegate, UINavigatio
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         // dismiss imagePicker
         dismiss(animated: true) {
-            // get the image user selected
-            guard let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
-                return
-            }
+            var mediaURL: URL
+            var newName: String
             
-            // convert it to JPEG
-            guard let jpegData = UIImageJPEGRepresentation(selectedImage, Constants.JPEGQuality) else {
-                print("Error converting the selected image to JPEG")
-                return
-            }
+            let mediaType = info[UIImagePickerControllerMediaType] as! CFString
+            switch mediaType {
+            case kUTTypeMovie:
+                mediaURL = info[UIImagePickerControllerMediaURL] as! URL
+                newName = "VID-\(arc4random_uniform(9999)).\(mediaURL.pathExtension)"
+            case kUTTypeImage:
+                // get the image user selected
+                guard let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+                    // TODO: report error
+                    return
+                }
+                
+                // convert it to JPEG
+                guard let jpegData = UIImageJPEGRepresentation(selectedImage, Constants.JPEGQuality) else {
+                    // TODO: report error
+                    print("Error converting the selected image to JPEG")
+                    return
+                }
+                
+                // get fd and path of a unique temp file
+                let (tempFD, tempPath) = GlobalUtils.createUniqueFile(withExtension: "jpg", in: nil)
+                guard tempFD != -1 else {
+                    // TODO: report error
+                    return
+                }
 
-            // get fd and path of a unique temp file
-            let (tempFD, tempPath) = GlobalUtils.createUniqueFile(withExtension: "jpg", in: nil)
-            guard tempFD != -1 else {
-                // report error
+                // write the jpeg data to a temp file
+                let tempHandle = FileHandle(fileDescriptor: tempFD, closeOnDealloc: true)
+                tempHandle.write(jpegData)
+                tempHandle.closeFile()
+                
+                // create url object from tempPath
+                guard let tempURL = URL(string: "file://" + String(cString: tempPath)) else {
+                    // TODO: report error
+                    print("Could not convert tempPath to URL object!")
+                    return
+                }
+
+                mediaURL = tempURL
+                newName = "IMG-\(arc4random_uniform(9999)).\(mediaURL.pathExtension)"
+                
+            default:
+                // TODO: report error
+                print("Unknown media type: \(mediaType)")
                 return
             }
             
-            // write the jpeg data to a temp file
-            let tempHandle = FileHandle(fileDescriptor: tempFD, closeOnDealloc: true)
-            tempHandle.write(jpegData)
-            tempHandle.closeFile()
-            
-            // create url object from tempPath
-            guard let tempURL = URL(string: "file://" + String(cString: tempPath)) else {
-                print("Could not convert tempPath to URL object!")
-                return
+            // Try to rename to new name. If that fails, just use the old name.
+            do {
+                let newURL = URL(fileURLWithPath: NSTemporaryDirectory() + newName)
+                try FileManager.default.moveItem(at: mediaURL, to: newURL)
+                mediaURL = newURL
+            } catch {
+                print("Error renaming media: ", error)
             }
             
             // let AppDelegate handle the file now
-            _ = AppDelegate.openFile(url: tempURL)
+            _ = AppDelegate.openFile(url: mediaURL)
         }
     }
 
