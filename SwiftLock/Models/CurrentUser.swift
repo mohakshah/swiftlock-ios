@@ -15,7 +15,7 @@ class CurrentUser
     struct Constants {
         static let EncryptedDirectoryName = "Encrypted"
         static let DecryptedDirectoryName = "Decrypted"
-        static let FriedsDbName = "friends.db"
+        static let FriedsDbName = "user.db"
         
         static let PublicKeySaltUserDefaultsKey = "SaltForPublicKey"
         
