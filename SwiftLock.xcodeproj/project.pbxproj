@@ -195,9 +195,9 @@
 		71AA59511EAA1FBE008436C0 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				71F296881F656E1700A93FB8 /* WelcomeScreenViewController.swift */,
 				71A17EAF1E804D9100A5EDCC /* LoginViewController.swift */,
 				71F296861F6548B400A93FB8 /* LoginPageViewController.swift */,
-				71F296881F656E1700A93FB8 /* WelcomeScreenViewController.swift */,
 				714840711ECCD287004938A0 /* PassphraseSuggesterViewController.swift */,
 				71A108F11E98C6A00083FA66 /* HomeViewController.swift */,
 				7129ECA0204C494500A93FB8 /* HomeViewController+StatusSheet.swift */,
