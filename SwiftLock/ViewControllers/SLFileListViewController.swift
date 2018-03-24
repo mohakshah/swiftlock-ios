@@ -188,13 +188,16 @@ extension SLFileListViewController: UIImagePickerControllerDelegate, UINavigatio
         // dismiss imagePicker
         dismiss(animated: true) {
             var mediaURL: URL
-            var newName: String
+            
+            // the default name set for media by iOS are long UUID strings.
+            // We instead try to use something like "IMG-1234" or "VID-1234"
+            var simplerNamePrefix: String
             
             let mediaType = info[UIImagePickerControllerMediaType] as! CFString
             switch mediaType {
             case kUTTypeMovie:
                 mediaURL = info[UIImagePickerControllerMediaURL] as! URL
-                newName = "VID-\(arc4random_uniform(9999)).\(mediaURL.pathExtension)"
+                simplerNamePrefix = "VID-"
             case kUTTypeImage:
                 // get the image user selected
                 guard let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
@@ -229,7 +232,7 @@ extension SLFileListViewController: UIImagePickerControllerDelegate, UINavigatio
                 }
 
                 mediaURL = tempURL
-                newName = "IMG-\(arc4random_uniform(9999)).\(mediaURL.pathExtension)"
+                simplerNamePrefix = "IMG-"
                 
             default:
                 // TODO: report error
@@ -239,7 +242,10 @@ extension SLFileListViewController: UIImagePickerControllerDelegate, UINavigatio
             
             // Try to rename to new name. If that fails, just use the old name.
             do {
-                let newURL = URL(fileURLWithPath: NSTemporaryDirectory() + newName)
+                let newURL = URL(fileURLWithPath: NSTemporaryDirectory()
+                                                    + simplerNamePrefix
+                                                    + String(format: "%04d", arc4random_uniform(1000))
+                                                    + ".\(mediaURL.pathExtension.lowercased())")
                 try FileManager.default.moveItem(at: mediaURL, to: newURL)
                 mediaURL = newURL
             } catch {
