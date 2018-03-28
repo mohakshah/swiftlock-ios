@@ -37,12 +37,12 @@ struct Strings {
     static let PhotoLibraryAuthorizationRestrictedTitle = "Error opening the photo library"
     static let PhotoLibraryAuthorizationRestrictedMessage = "Your organization has restricted this app's access to the photo library."
     static let PhotoLibraryAuthorizationDeniedTitle = "Error opening the photo library"
-    static let PhotoLibraryAuthorizationDeniedMessage = "To allow this app to open the photo library, go to iPhone's Settings→Privacy→Photos and turn on access to this app."
+    static let PhotoLibraryAuthorizationDeniedMessage = "To allow this app to open the photo library, go to your device's Settings→Privacy→Photos and turn on access to this app."
     
     static let CameraAuthorizationRestrictedTitle = "Error opening the camera"
     static let CameraAuthorizationRestrictedMessage = "Your organization has restricted this app's access to the camera."
     static let CameraAuthorizationDeniedTitle = "Error opening the camera"
-    static let CameraAuthorizationDeniedMessage = "To allow this app to open the camera, go to iPhone's Settings→Privacy→Camera and turn on access to this app."
+    static let CameraAuthorizationDeniedMessage = "To allow this app to open the camera, go to your device's Settings→Privacy→Camera and turn on access to this app."
     
     static let ErrorDeletingMultipleFilesTitle = "Error Deleting!"
     static let ErrorDeletingMultipleFilesMessagePrefix = "Could not delete "

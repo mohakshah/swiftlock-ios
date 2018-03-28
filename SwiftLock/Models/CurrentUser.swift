@@ -62,11 +62,14 @@ class CurrentUser
         userDbManager = try? UserDatabaseManager(url: homeDir.appendingPathComponent(Constants.FriedsDbName), keyPair: keyPair)
 
         // post a notification
-        NotificationCenter.default.post(name: Notification.Name(rawValue:  NotificationNames.UserLoggedIn), object: self)
-
         if isFirstLoginByThisUser {
             NotificationCenter.default.post(name: Notification.Name(rawValue:  NotificationNames.UserLoggedInForTheFirstTime), object: self)
+            
+            let indexOfAt = email.index(of: "@") ?? email.endIndex
+            userDbManager?.userDb.preferences.name = String(email[..<indexOfAt])
         }
+
+        NotificationCenter.default.post(name: Notification.Name(rawValue:  NotificationNames.UserLoggedIn), object: self)
     }
 
     func logout() {

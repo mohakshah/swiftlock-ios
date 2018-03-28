@@ -20,6 +20,7 @@ class FriendEditController: UITableViewController
     @IBOutlet weak var nameField: SkyFloatingLabelTextField! {
         didSet {
             nameField.text = friend?.name
+            nameField.autocapitalizationType = .words
             nameField.delegate = self
         }
     }

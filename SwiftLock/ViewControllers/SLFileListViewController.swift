@@ -135,11 +135,11 @@ class SLFileListViewController: FileListViewController {
         // check and handle the authorization status
         switch AVCaptureDevice.authorizationStatus(for: AVMediaType.video) {
         case .denied:
-            alert(withTitle: Strings.PhotoLibraryAuthorizationDeniedTitle, message: Strings.PhotoLibraryAuthorizationDeniedMessage)
+            alert(withTitle: Strings.CameraAuthorizationDeniedTitle, message: Strings.CameraAuthorizationDeniedMessage)
             return
             
         case .restricted:
-            alert(withTitle: Strings.PhotoLibraryAuthorizationRestrictedTitle, message: Strings.PhotoLibraryAuthorizationRestrictedMessage)
+            alert(withTitle: Strings.CameraAuthorizationRestrictedTitle, message: Strings.CameraAuthorizationRestrictedMessage)
             return
             
         case .notDetermined:

@@ -76,13 +76,18 @@ class FriendListViewController: UITableViewController
     
     lazy var addFriendOptionsSheet: UIAlertController = {
         let sheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
+
         // option to scan qr code
         if AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera, AVCaptureDevice.DeviceType.builtInTelephotoCamera],
                                            mediaType: AVMediaType.video,
                                            position: .unspecified).devices.count > 0 {
             sheet.addAction(UIAlertAction(title: Strings.ScanQRCode, style: .default) { [weak self] (_) in
-                self?.present(self!.qrReaderVC, animated: true, completion: nil)
+                if QRCodeReader.isAvailable() {
+                    self?.present(self!.qrReaderVC, animated: true, completion: nil)
+                } else {
+                    // We don't have access to the device's camera
+                    self?.alert(withTitle: Strings.CameraAuthorizationDeniedTitle, message: Strings.CameraAuthorizationDeniedMessage)
+                }
             })
         }
 
